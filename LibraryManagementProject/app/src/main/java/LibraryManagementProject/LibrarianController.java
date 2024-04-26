@@ -8,7 +8,7 @@ package LibraryManagementProject;
  *
  * @author emmas
  */
-public class Librarian {
-    private int librarianID;
-    private String librarianName;
+public class LibrarianController {
+    private Librarian librarian;
+    private LibrarianView view;
 }

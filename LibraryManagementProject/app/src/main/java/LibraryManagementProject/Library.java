@@ -4,11 +4,25 @@
  */
 package LibraryManagementProject;
 
+import java.util.List;
+
 /**
  *
  * @author emmas
  */
-public class Librarian {
-    private int librarianID;
-    private String librarianName;
+public class Library {
+    List<Book> books;
+
+    public Library(List<Book> books) {
+        this.books = books;
+    }
+    
+    private void connectDataBase(){
+        
+    }
+    
+    public void login(){
+        
+    }
+    
 }

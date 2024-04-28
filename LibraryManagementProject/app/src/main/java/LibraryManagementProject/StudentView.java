@@ -26,28 +26,20 @@ public class StudentView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        studentIDTextField = new javax.swing.JTextField();
-        enterStudentIDLabel = new javax.swing.JLabel();
-        confirmAccountButton = new javax.swing.JButton();
         booksBorrowedLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         booksBorrowedTextArea = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
-        enterBookNumberTextField = new javax.swing.JTextField();
+        enterBorrowBookLabel = new javax.swing.JLabel();
+        enterBorrowBookTextField = new javax.swing.JTextField();
         returnBookButton = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        bookCatalogTextArea = new javax.swing.JTextArea();
+        enterReturnBookLabel = new javax.swing.JLabel();
+        enterReturnBookTextField = new javax.swing.JTextField();
+        borrowBookButton = new javax.swing.JButton();
+        bookCatalogLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        studentIDTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                studentIDTextFieldActionPerformed(evt);
-            }
-        });
-
-        enterStudentIDLabel.setText("Enter your student ID:");
-
-        confirmAccountButton.setText("Confirm Account");
 
         booksBorrowedLabel.setText("BOOKS BORROWED");
 
@@ -55,17 +47,36 @@ public class StudentView extends javax.swing.JFrame {
         booksBorrowedTextArea.setRows(5);
         jScrollPane1.setViewportView(booksBorrowedTextArea);
 
-        jLabel1.setText("Enter book number:");
+        enterBorrowBookLabel.setText("Enter book number:");
 
-        enterBookNumberTextField.addActionListener(new java.awt.event.ActionListener() {
+        enterBorrowBookTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enterBookNumberTextFieldActionPerformed(evt);
+                enterBorrowBookTextFieldActionPerformed(evt);
             }
         });
 
         returnBookButton.setText("Return Book");
 
-        jButton2.setText("Book Catalog");
+        bookCatalogTextArea.setColumns(20);
+        bookCatalogTextArea.setRows(5);
+        jScrollPane2.setViewportView(bookCatalogTextArea);
+
+        enterReturnBookLabel.setText("Enter book number:");
+
+        enterReturnBookTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enterReturnBookTextFieldActionPerformed(evt);
+            }
+        });
+
+        borrowBookButton.setText("Borrow Book");
+        borrowBookButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                borrowBookButtonActionPerformed(evt);
+            }
+        });
+
+        bookCatalogLabel.setText("BOOK CATALOG");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,64 +85,79 @@ public class StudentView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(enterStudentIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                                .addGap(6, 6, 6)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(64, 64, 64)
+                                .addComponent(bookCatalogLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(enterBookNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(returnBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButton2)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(studentIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(confirmAccountButton)))))
+                                    .addComponent(enterReturnBookLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(returnBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(enterReturnBookTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(1, 1, 1)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(enterBorrowBookTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(borrowBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addComponent(enterBorrowBookLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
+                        .addGap(64, 64, 64)
                         .addComponent(booksBorrowedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(21, 21, 21))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(enterStudentIDLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(studentIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(confirmAccountButton))
-                .addGap(28, 28, 28)
+                .addContainerGap()
                 .addComponent(booksBorrowedLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(enterReturnBookLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(enterReturnBookTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(returnBookButton))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(enterBookNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bookCatalogLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(enterBorrowBookLabel)
+                        .addGap(12, 12, 12)
+                        .addComponent(enterBorrowBookTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(returnBookButton)))
-                .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                        .addComponent(borrowBookButton)))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void studentIDTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentIDTextFieldActionPerformed
+    private void enterBorrowBookTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterBorrowBookTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_studentIDTextFieldActionPerformed
+    }//GEN-LAST:event_enterBorrowBookTextFieldActionPerformed
 
-    private void enterBookNumberTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterBookNumberTextFieldActionPerformed
+    private void enterReturnBookTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterReturnBookTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_enterBookNumberTextFieldActionPerformed
+    }//GEN-LAST:event_enterReturnBookTextFieldActionPerformed
+
+    private void borrowBookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrowBookButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_borrowBookButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,15 +195,17 @@ public class StudentView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bookCatalogLabel;
+    private javax.swing.JTextArea bookCatalogTextArea;
     private javax.swing.JLabel booksBorrowedLabel;
     private javax.swing.JTextArea booksBorrowedTextArea;
-    private javax.swing.JButton confirmAccountButton;
-    private javax.swing.JTextField enterBookNumberTextField;
-    private javax.swing.JLabel enterStudentIDLabel;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton borrowBookButton;
+    private javax.swing.JLabel enterBorrowBookLabel;
+    private javax.swing.JTextField enterBorrowBookTextField;
+    private javax.swing.JLabel enterReturnBookLabel;
+    private javax.swing.JTextField enterReturnBookTextField;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton returnBookButton;
-    private javax.swing.JTextField studentIDTextField;
     // End of variables declaration//GEN-END:variables
 }

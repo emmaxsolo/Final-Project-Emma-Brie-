@@ -2,19 +2,26 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package LibraryManagementProject;
+package LibraryManagementProject.models;
 
 import java.util.List;
 
 /**
  *
- * @author emmas
+ * @author bridj
  */
-public class Student {
+public class Student extends User {
     private int studentID;
-    private String name;
+    private String studentName;
     private String contactNumber;
     private int bookLimit;
+    
+    public Student(int id, String username, String password, String role) {
+        super(id, username, password, role);
+    }
+//    public Student(User user) {
+//        super(user.getId(), user.getUsername(), user.getPassword(), "Student");
+//    }
     
     public List<Book> searchBookByTitle(String title){
         return null;
@@ -28,12 +35,12 @@ public class Student {
         this.studentID = studentID;
     }
 
-    public String getName() {
-        return name;
+    public String getStudentName() {
+        return studentName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String studentName) {
+        this.studentName = studentName;
     }
 
     public String getContactNumber() {
@@ -51,5 +58,4 @@ public class Student {
     public void setBookLimit(int bookLimit) {
         this.bookLimit = bookLimit;
     }
-    
 }

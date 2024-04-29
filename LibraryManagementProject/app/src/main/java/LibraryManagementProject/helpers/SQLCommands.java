@@ -2,13 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package LibraryManagementProject;
+package LibraryManagementProject.helpers;
 
 /**
  *
- * @author emmas
+ * @author bridj
  */
-public class LibrarianController {
-    private Librarian librarian;
-    private LibrarianView view;
+public class SQLCommands {
+    // TBA query commands
 }

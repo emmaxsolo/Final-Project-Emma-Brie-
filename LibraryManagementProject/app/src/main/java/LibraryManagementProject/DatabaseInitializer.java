@@ -17,10 +17,12 @@ public class DatabaseInitializer {
     private DatabaseInitializer() {
         // private empty constructor to prevent multiple instances of the databases
     }
-    
+
     /**
-     * Function: Instantiate the database connection using singleton pattern and applying thread-safety.
-     * It throws an exception if there is an error to establish a connection with the database.
+     * Function: Instantiate the database connection using singleton pattern and
+     * applying thread-safety. It throws an exception if there is an error to
+     * establish a connection with the database.
+     *
      * @return the connected database
      */
     public static Connection getConnection() {
@@ -29,6 +31,7 @@ public class DatabaseInitializer {
                 if (connection == null) {
                     try {
                         connection = DriverManager.getConnection(url); // try to connect via the jdbc database path
+                        initializeDatabase();
                     } catch (SQLException e) {
                         e.printStackTrace();
                         throw new RuntimeException("Error: Cannot connect to database", e);
@@ -40,24 +43,36 @@ public class DatabaseInitializer {
     }
 
     /**
-     * Function: Initialize our database and creating the database tables for Users, Students, Books, IssuedBooks
-     * It throws an error if it can not create a database using the tables provided.
+     * Function: Initialize our database and creating the database tables for
+     * Users, Students, Books, IssuedBooks It throws an error if it can not
+     * create a database using the tables provided.
      */
     public static void initializeDatabase() {
         Connection connect = getConnection();
         try (Statement stmt = connect.createStatement()) {
 
             stmt.execute("CREATE TABLE IF NOT EXISTS Users("
-                    + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + "username TEXT NOT NULL UNIQUE,"
-                    + "password TEXT NOT NULL,"
-                    + "role TEXT NOT NULL CHECK(role IN('Librarian', 'Student'))" + ");"
+                    + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + "username TEXT NOT NULL UNIQUE, "
+                    + "password TEXT NOT NULL, "
+                    + "role TEXT NOT NULL CHECK(role IN('Librarian', 'Student')));"
             );
 
             stmt.execute("CREATE TABLE IF NOT EXISTS Students("
-                    + "studentID TEXT PRIMARY KEY"
-                    + "studentName TEXT NOT NULL,"
-                    + "contactNumber TEXT NOT NULL" + ");"
+                    + "studentID INT PRIMARY KEY, "
+                    + "studentName TEXT NOT NULL, "
+                    + "contactNumber TEXT NOT NULL, "
+//                    + "username TEXT NOT NULL UNIQUE, "
+//                    + "password TEXT NOT NULL, "
+//                    + "role TEXT NOT NULL CHECK (role IN ('Librarian', 'Student')));"
+            );
+
+            stmt.execute("CREATE TABLE IF NOT EXISTS Librarians ("
+                    + "librarianID INT PRIMARY KEY, "
+                    + "librarianName TEXT NOT NULL, "
+//                    + "username TEXT NOT NULL UNIQUE, "
+//                    + "password TEXT NOT NULL, "
+//                    + "role TEXT NOT NULL CHECK (role IN ('Librarian', 'Student')));"
             );
 
             stmt.execute("CREATE TABLE IF NOT EXISTS Books("
@@ -69,7 +84,6 @@ public class DatabaseInitializer {
                     + "quanity INTEGER NOT NULL,"
                     + "issued INTEGER NOT NULL DEFAULT 0,"
                     + "addedDate INTEGER TEXT NOT NULL"
-                    + ");"
             );
 
             stmt.execute("CREATE TABLE IF NOT EXISTS IssuedBooks ("
@@ -79,7 +93,7 @@ public class DatabaseInitializer {
                     + "IssueDate TEXT NOT NULL,"
                     + "FOREIGN KEY (SN) REFERENCES Books(SN),"
                     + "FOREIGN KEY (stID) REFERENCES Students(studentID)"
-                    + ");");
+            );
 
             System.out.println("Tables created successfully.");
         } catch (SQLException e) {
@@ -101,4 +115,3 @@ public class DatabaseInitializer {
         }
     }
 }
-

@@ -4,6 +4,7 @@
  */
 package LibraryManagementProject;
 
+import LibraryManagementProject.models.Book;
 import java.util.List;
 
 /**

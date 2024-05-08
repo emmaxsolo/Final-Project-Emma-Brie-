@@ -14,13 +14,19 @@ import java.util.Map;
  * @author emmas
  */
 public class StudentController {
-    private Student student;
-    private StudentView view;
+     private Student student;
+     private StudentView view;
 
-    public StudentController(Student student, StudentView view) {
+    public StudentController() {
+        
+    }
+
+    // private Student student;
+    // private StudentView view;
+    /*public StudentController(Student student, StudentView view) {
         this.student = student;
         this.view = view;
-    }
+    }*/
     
     public List<Book> searchBookByTitle(String title){
         return null;

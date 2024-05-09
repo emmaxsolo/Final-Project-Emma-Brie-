@@ -4,27 +4,19 @@
  */
 package LibraryManagementProject.views;
 
-import LibraryManagementProject.controllers.LibrarianController;
-
 /**
  *
- * @author bridj
+ * @author emmas
  */
-public class LibrarianSignUpView extends javax.swing.JFrame {
+public class StudentSignUpView extends javax.swing.JFrame {
 
-    // private LibrarianController librarianController;
     /**
-     * Creates new form LibrarianSignUpView
+     * Creates new form StudentSignUpView
      */
-//    public LibrarianSignUpView(LibrarianController librarianController) {
-//        this.librarianController = librarianController;
-//        initComponents();
-//    }
-    
-    public LibrarianSignUpView() {
+    public StudentSignUpView() {
         initComponents();
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,59 +29,51 @@ public class LibrarianSignUpView extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         labelTitle = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        labelLibrarianID = new javax.swing.JLabel();
-        labelLibrarianUsername = new javax.swing.JLabel();
-        labelLibrarianPassword = new javax.swing.JLabel();
-        txtfieldLibrarianID = new javax.swing.JTextField();
-        txtfieldLibrarianUsername = new javax.swing.JTextField();
-        txtfieldLibrarianPassword = new javax.swing.JTextField();
+        labelStudentID = new javax.swing.JLabel();
+        labelStudentUsername = new javax.swing.JLabel();
+        labelStudentPassword = new javax.swing.JLabel();
+        txtfieldStudentD = new javax.swing.JTextField();
+        txtfieldStudentUsername = new javax.swing.JTextField();
+        txtfieldStudentPassword = new javax.swing.JTextField();
         btnSignup = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Librarian Sign Up");
-        setBackground(new java.awt.Color(202, 233, 255));
-        setMaximumSize(new java.awt.Dimension(500, 300));
-        setName("librarianSignupFrame"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(500, 300));
-        setSize(new java.awt.Dimension(500, 300));
 
         jPanel1.setBackground(new java.awt.Color(194, 228, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.setPreferredSize(new java.awt.Dimension(500, 300));
 
         labelTitle.setFont(new java.awt.Font("Modern No. 20", 1, 36)); // NOI18N
         labelTitle.setForeground(new java.awt.Color(27, 73, 101));
         labelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelTitle.setText("Librarian Sign Up");
+        labelTitle.setText("Student Sign Up");
         labelTitle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jPanel2.setBackground(new java.awt.Color(214, 237, 255));
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        labelLibrarianID.setFont(new java.awt.Font("Modern No. 20", 0, 18)); // NOI18N
-        labelLibrarianID.setForeground(new java.awt.Color(27, 73, 101));
-        labelLibrarianID.setText("Librarian ID:");
+        labelStudentID.setFont(new java.awt.Font("Modern No. 20", 0, 18)); // NOI18N
+        labelStudentID.setForeground(new java.awt.Color(27, 73, 101));
+        labelStudentID.setText("Studnet ID:");
 
-        labelLibrarianUsername.setFont(new java.awt.Font("Modern No. 20", 0, 18)); // NOI18N
-        labelLibrarianUsername.setForeground(new java.awt.Color(27, 73, 101));
-        labelLibrarianUsername.setText("Username:");
+        labelStudentUsername.setFont(new java.awt.Font("Modern No. 20", 0, 18)); // NOI18N
+        labelStudentUsername.setForeground(new java.awt.Color(27, 73, 101));
+        labelStudentUsername.setText("Username:");
 
-        labelLibrarianPassword.setFont(new java.awt.Font("Modern No. 20", 0, 18)); // NOI18N
-        labelLibrarianPassword.setForeground(new java.awt.Color(27, 73, 101));
-        labelLibrarianPassword.setText("Password:");
+        labelStudentPassword.setFont(new java.awt.Font("Modern No. 20", 0, 18)); // NOI18N
+        labelStudentPassword.setForeground(new java.awt.Color(27, 73, 101));
+        labelStudentPassword.setText("Password:");
 
-        txtfieldLibrarianID.setBackground(new java.awt.Color(214, 237, 255));
-        txtfieldLibrarianID.setFont(new java.awt.Font("Modern No. 20", 0, 14)); // NOI18N
-        txtfieldLibrarianID.setForeground(new java.awt.Color(27, 73, 101));
+        txtfieldStudentD.setBackground(new java.awt.Color(214, 237, 255));
+        txtfieldStudentD.setFont(new java.awt.Font("Modern No. 20", 0, 14)); // NOI18N
+        txtfieldStudentD.setForeground(new java.awt.Color(27, 73, 101));
 
-        txtfieldLibrarianUsername.setBackground(new java.awt.Color(214, 237, 255));
-        txtfieldLibrarianUsername.setFont(new java.awt.Font("Modern No. 20", 0, 14)); // NOI18N
-        txtfieldLibrarianUsername.setForeground(new java.awt.Color(27, 73, 101));
+        txtfieldStudentUsername.setBackground(new java.awt.Color(214, 237, 255));
+        txtfieldStudentUsername.setFont(new java.awt.Font("Modern No. 20", 0, 14)); // NOI18N
+        txtfieldStudentUsername.setForeground(new java.awt.Color(27, 73, 101));
 
-        txtfieldLibrarianPassword.setBackground(new java.awt.Color(214, 237, 255));
-        txtfieldLibrarianPassword.setFont(new java.awt.Font("Modern No. 20", 0, 14)); // NOI18N
-        txtfieldLibrarianPassword.setForeground(new java.awt.Color(27, 73, 101));
+        txtfieldStudentPassword.setBackground(new java.awt.Color(214, 237, 255));
+        txtfieldStudentPassword.setFont(new java.awt.Font("Modern No. 20", 0, 14)); // NOI18N
+        txtfieldStudentPassword.setForeground(new java.awt.Color(27, 73, 101));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -99,41 +83,36 @@ public class LibrarianSignUpView extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(labelLibrarianPassword)
+                        .addComponent(labelStudentPassword)
                         .addGap(18, 18, 18)
-                        .addComponent(txtfieldLibrarianPassword))
+                        .addComponent(txtfieldStudentPassword))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(labelLibrarianUsername)
+                        .addComponent(labelStudentUsername)
                         .addGap(18, 18, 18)
-                        .addComponent(txtfieldLibrarianUsername))
+                        .addComponent(txtfieldStudentUsername))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(labelLibrarianID)
+                        .addComponent(labelStudentID)
                         .addGap(18, 18, 18)
-                        .addComponent(txtfieldLibrarianID)))
+                        .addComponent(txtfieldStudentD)))
                 .addGap(15, 15, 15))
         );
-
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {labelLibrarianID, labelLibrarianPassword, labelLibrarianUsername});
-
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelLibrarianID, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtfieldLibrarianID))
+                    .addComponent(labelStudentID, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtfieldStudentD))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelLibrarianUsername)
-                    .addComponent(txtfieldLibrarianUsername))
+                    .addComponent(labelStudentUsername)
+                    .addComponent(txtfieldStudentUsername))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelLibrarianPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtfieldLibrarianPassword))
+                    .addComponent(labelStudentPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtfieldStudentPassword))
                 .addGap(17, 17, 17))
         );
-
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {labelLibrarianID, labelLibrarianPassword, labelLibrarianUsername});
 
         btnSignup.setBackground(new java.awt.Color(95, 168, 211));
         btnSignup.setFont(new java.awt.Font("Modern No. 20", 0, 24)); // NOI18N
@@ -168,14 +147,15 @@ public class LibrarianSignUpView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(labelTitle)
-                            .addComponent(btnSignup)))
+                        .addGap(170, 170, 170)
+                        .addComponent(btnSignup))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
+                        .addGap(110, 110, 110)
+                        .addComponent(labelTitle))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
                         .addComponent(backButton)))
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,8 +171,6 @@ public class LibrarianSignUpView extends javax.swing.JFrame {
                 .addGap(16, 16, 16))
         );
 
-        labelTitle.getAccessibleContext().setAccessibleName("labelTitle");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -201,7 +179,7 @@ public class LibrarianSignUpView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -212,7 +190,6 @@ public class LibrarianSignUpView extends javax.swing.JFrame {
         /*
         Need to implement
         */
-
     }//GEN-LAST:event_btnSignupActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -236,20 +213,20 @@ public class LibrarianSignUpView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LibrarianSignUpView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StudentSignUpView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LibrarianSignUpView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StudentSignUpView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LibrarianSignUpView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StudentSignUpView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LibrarianSignUpView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StudentSignUpView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LibrarianSignUpView().setVisible(true);
+                new StudentSignUpView().setVisible(true);
             }
         });
     }
@@ -259,12 +236,12 @@ public class LibrarianSignUpView extends javax.swing.JFrame {
     private javax.swing.JButton btnSignup;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel labelLibrarianID;
-    private javax.swing.JLabel labelLibrarianPassword;
-    private javax.swing.JLabel labelLibrarianUsername;
+    private javax.swing.JLabel labelStudentID;
+    private javax.swing.JLabel labelStudentPassword;
+    private javax.swing.JLabel labelStudentUsername;
     private javax.swing.JLabel labelTitle;
-    private javax.swing.JTextField txtfieldLibrarianID;
-    private javax.swing.JTextField txtfieldLibrarianPassword;
-    private javax.swing.JTextField txtfieldLibrarianUsername;
+    private javax.swing.JTextField txtfieldStudentD;
+    private javax.swing.JTextField txtfieldStudentPassword;
+    private javax.swing.JTextField txtfieldStudentUsername;
     // End of variables declaration//GEN-END:variables
 }

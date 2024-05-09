@@ -35,6 +35,7 @@ public class StudentView extends javax.swing.JFrame {
         enterReturnBookLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         catalogButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,6 +78,16 @@ public class StudentView extends javax.swing.JFrame {
             }
         });
 
+        backButton.setBackground(new java.awt.Color(95, 168, 211));
+        backButton.setFont(new java.awt.Font("Modern No. 20", 0, 24)); // NOI18N
+        backButton.setForeground(new java.awt.Color(27, 73, 101));
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -106,7 +117,10 @@ public class StudentView extends javax.swing.JFrame {
                         .addComponent(booksBorrowedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(192, 192, 192)
-                        .addComponent(catalogButton, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(catalogButton, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(backButton)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -129,7 +143,9 @@ public class StudentView extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(43, 43, 43)))
                 .addComponent(catalogButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42))
+                .addGap(3, 3, 3)
+                .addComponent(backButton)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -153,6 +169,10 @@ public class StudentView extends javax.swing.JFrame {
     private void catalogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_catalogButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_catalogButtonActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_backButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,6 +210,7 @@ public class StudentView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backButton;
     private javax.swing.JLabel booksBorrowedLabel;
     private javax.swing.JTextArea booksBorrowedTextArea;
     private javax.swing.JButton catalogButton;

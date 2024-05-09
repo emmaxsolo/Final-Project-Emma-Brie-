@@ -30,6 +30,7 @@ public class CatalogViewLibrarian extends javax.swing.JFrame {
         catalogLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         librarianCatalogTextArea = new javax.swing.JTextArea();
+        backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,6 +54,16 @@ public class CatalogViewLibrarian extends javax.swing.JFrame {
         librarianCatalogTextArea.setRows(5);
         jScrollPane1.setViewportView(librarianCatalogTextArea);
 
+        backButton.setBackground(new java.awt.Color(95, 168, 211));
+        backButton.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
+        backButton.setForeground(new java.awt.Color(27, 73, 101));
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -64,7 +75,10 @@ public class CatalogViewLibrarian extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(89, 89, 89)
-                        .addComponent(catalogLabel)))
+                        .addComponent(catalogLabel))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(backButton)))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -74,7 +88,9 @@ public class CatalogViewLibrarian extends javax.swing.JFrame {
                 .addComponent(catalogLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(backButton)
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -94,6 +110,10 @@ public class CatalogViewLibrarian extends javax.swing.JFrame {
     private void jPanel1AncestorMoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel1AncestorMoved
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel1AncestorMoved
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_backButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -131,6 +151,7 @@ public class CatalogViewLibrarian extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backButton;
     private javax.swing.JLabel catalogLabel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

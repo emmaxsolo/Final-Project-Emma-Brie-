@@ -34,7 +34,7 @@ public class EntryView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnLibrarian = new javax.swing.JButton();
         btnStudent = new javax.swing.JButton();
-        filipinoButton = new javax.swing.JRadioButton();
+        frenchButton = new javax.swing.JRadioButton();
         englishButton = new javax.swing.JRadioButton();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
@@ -87,10 +87,10 @@ public class EntryView extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup1.add(filipinoButton);
-        filipinoButton.setFont(new java.awt.Font("Modern No. 20", 0, 14)); // NOI18N
-        filipinoButton.setForeground(new java.awt.Color(27, 73, 101));
-        filipinoButton.setText("Filipino");
+        buttonGroup1.add(frenchButton);
+        frenchButton.setFont(new java.awt.Font("Modern No. 20", 0, 14)); // NOI18N
+        frenchButton.setForeground(new java.awt.Color(27, 73, 101));
+        frenchButton.setText("French");
 
         englishButton.setFont(new java.awt.Font("Modern No. 20", 0, 14)); // NOI18N
         englishButton.setForeground(new java.awt.Color(27, 73, 101));
@@ -113,7 +113,7 @@ public class EntryView extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(btnStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(12, 12, 12)))
-                    .addComponent(filipinoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(frenchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnLibrarian, btnStudent});
@@ -128,7 +128,7 @@ public class EntryView extends javax.swing.JFrame {
                     .addComponent(btnLibrarian, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
-                .addComponent(filipinoButton)
+                .addComponent(frenchButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(englishButton)
                 .addGap(21, 21, 21))
@@ -200,7 +200,7 @@ public class EntryView extends javax.swing.JFrame {
     private javax.swing.JButton btnStudent;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JRadioButton englishButton;
-    private javax.swing.JRadioButton filipinoButton;
+    private javax.swing.JRadioButton frenchButton;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

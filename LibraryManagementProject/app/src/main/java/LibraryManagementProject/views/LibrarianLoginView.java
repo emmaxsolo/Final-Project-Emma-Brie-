@@ -43,12 +43,12 @@ private LibrarianController controller;
         labelLibrarianPassword = new javax.swing.JLabel();
         txtfieldLibrarianUsername = new javax.swing.JTextField();
         txtfieldLibrarianPassword = new javax.swing.JTextField();
+        backButton = new javax.swing.JButton();
         btnLogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Librarian Login");
         setName("librarianLoginViewFrame"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(500, 300));
         setSize(new java.awt.Dimension(500, 300));
 
         jPanel1.setBackground(new java.awt.Color(194, 228, 255));
@@ -90,7 +90,7 @@ private LibrarianController controller;
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(labelLibrarianUsername)
                         .addGap(18, 18, 18)
-                        .addComponent(txtfieldLibrarianUsername))
+                        .addComponent(txtfieldLibrarianUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(labelLibrarianPassword)
                         .addGap(18, 18, 18)
@@ -111,6 +111,17 @@ private LibrarianController controller;
                 .addGap(20, 20, 20))
         );
 
+        backButton.setBackground(new java.awt.Color(95, 168, 211));
+        backButton.setFont(new java.awt.Font("Modern No. 20", 0, 24)); // NOI18N
+        backButton.setForeground(new java.awt.Color(27, 73, 101));
+        backButton.setText("Back");
+        backButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+
         btnLogin.setBackground(new java.awt.Color(95, 168, 211));
         btnLogin.setFont(new java.awt.Font("Modern No. 20", 0, 24)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(27, 73, 101));
@@ -130,9 +141,19 @@ private LibrarianController controller;
                 .addGap(6, 6, 6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelTitle)
-                    .addComponent(btnLogin))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelTitle)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(backButton)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(6, 6, 6))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(215, Short.MAX_VALUE)
+                    .addComponent(btnLogin)
+                    .addGap(195, 195, 195)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,9 +162,14 @@ private LibrarianController controller;
                 .addComponent(labelTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(btnLogin)
-                .addGap(84, 84, 84))
+                .addGap(88, 88, 88)
+                .addComponent(backButton)
+                .addGap(14, 14, 14))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(191, Short.MAX_VALUE)
+                    .addComponent(btnLogin)
+                    .addGap(74, 74, 74)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -160,9 +186,13 @@ private LibrarianController controller;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
 
+    }//GEN-LAST:event_backButtonActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
@@ -201,31 +231,14 @@ private LibrarianController controller;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backButton;
     private javax.swing.JButton btnLogin;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JLabel labelLibrarianID;
-    private javax.swing.JLabel labelLibrarianID1;
     private javax.swing.JLabel labelLibrarianPassword;
-    private javax.swing.JLabel labelLibrarianPassword1;
-    private javax.swing.JLabel labelLibrarianPassword2;
     private javax.swing.JLabel labelLibrarianUsername;
-    private javax.swing.JLabel labelLibrarianUsername1;
-    private javax.swing.JLabel labelLibrarianUsername2;
     private javax.swing.JLabel labelTitle;
-    private javax.swing.JLabel labelTitle1;
-    private javax.swing.JLabel labelTitle2;
-    private javax.swing.JTextField txtfieldLibrarianID;
-    private javax.swing.JTextField txtfieldLibrarianID1;
     private javax.swing.JTextField txtfieldLibrarianPassword;
-    private javax.swing.JTextField txtfieldLibrarianPassword1;
-    private javax.swing.JTextField txtfieldLibrarianPassword2;
     private javax.swing.JTextField txtfieldLibrarianUsername;
-    private javax.swing.JTextField txtfieldLibrarianUsername1;
-    private javax.swing.JTextField txtfieldLibrarianUsername2;
     // End of variables declaration//GEN-END:variables
 }

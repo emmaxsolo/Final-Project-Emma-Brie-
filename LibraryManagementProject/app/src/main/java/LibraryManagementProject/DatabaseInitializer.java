@@ -25,18 +25,14 @@ public class DatabaseInitializer {
      *
      * @return the connected database
      */
-    public static Connection getConnection() {
+    public static synchronized Connection getConnection() {
         if (connection == null) {
-            synchronized (DatabaseInitializer.class) { // enable multithreading and allowing synchronization
-                if (connection == null) {
-                    try {
-                        connection = DriverManager.getConnection(url); // try to connect via the jdbc database path
-                        initializeDatabase();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                        throw new RuntimeException("Error: Cannot connect to database", e);
-                    }
-                }
+            try {
+                connection = DriverManager.getConnection(url);
+                initializeDatabase(); // Create tables after establishing connection
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Error: Cannot connect to database", e);
             }
         }
         return connection;
@@ -51,29 +47,20 @@ public class DatabaseInitializer {
         Connection connect = getConnection();
         try (Statement stmt = connect.createStatement()) {
 
-            stmt.execute("CREATE TABLE IF NOT EXISTS Users("
+            stmt.execute("CREATE TABLE IF NOT EXISTS Users ("
                     + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + "username TEXT NOT NULL UNIQUE, "
                     + "password TEXT NOT NULL, "
-                    + "role TEXT NOT NULL CHECK(role IN('Librarian', 'Student')));"
-            );
-
-            stmt.execute("CREATE TABLE IF NOT EXISTS Students("
-                    + "studentID INT PRIMARY KEY, "
-                    + "studentName TEXT NOT NULL, "
-                    + "contactNumber TEXT NOT NULL, "
-//                    + "username TEXT NOT NULL UNIQUE, "
-//                    + "password TEXT NOT NULL, "
-//                    + "role TEXT NOT NULL CHECK (role IN ('Librarian', 'Student')));"
-            );
+                    + "role TEXT NOT NULL CHECK(role IN ('Librarian', 'Student')));");
 
             stmt.execute("CREATE TABLE IF NOT EXISTS Librarians ("
-                    + "librarianID INT PRIMARY KEY, "
-                    + "librarianName TEXT NOT NULL, "
-//                    + "username TEXT NOT NULL UNIQUE, "
-//                    + "password TEXT NOT NULL, "
-//                    + "role TEXT NOT NULL CHECK (role IN ('Librarian', 'Student')));"
-            );
+                    + "librarianID INTEGER PRIMARY KEY, "
+                    + "librarianName TEXT NOT NULL);");
+
+            stmt.execute("CREATE TABLE IF NOT EXISTS Students ("
+                    + "studentID INTEGER PRIMARY KEY, "
+                    + "studentName TEXT NOT NULL, "
+                    + "contactNumber TEXT NOT NULL);");
 
             stmt.execute("CREATE TABLE IF NOT EXISTS Books("
                     + "SN TEXT PRIMARY KEY,"

@@ -23,5 +23,12 @@ public interface UserDAO {
 
     boolean deleteUser(User user) throws SQLException;
     
+    Librarian findLibrarianByID(int librarianID) throws SQLException;
+
+    Student findStudentByID(int studentID) throws SQLException;
+
+    boolean createLibrarian(Librarian librarian) throws SQLException;
+
+    boolean createStudent(Student student) throws SQLException;
     
 }

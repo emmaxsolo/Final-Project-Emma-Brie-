@@ -4,16 +4,19 @@
  */
 package LibraryManagementProject.views;
 
+import LibraryManagementProject.models.Librarian;
+
 /**
  *
  * @author emmas
  */
 public class LibrarianView extends javax.swing.JFrame {
-
+    private Librarian currentLibrarian;
     /**
      * Creates new form LibrarianView
      */
-    public LibrarianView() {
+    public LibrarianView(Librarian librarian) {
+        this.currentLibrarian = librarian;
         initComponents();
     }
 
@@ -151,6 +154,7 @@ public class LibrarianView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(194, 228, 255));
+        setName("librarianView"); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(194, 228, 255));
 
@@ -357,12 +361,12 @@ public class LibrarianView extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LibrarianView().setVisible(true);
-            }
-        });
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new LibrarianView(librarian).setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -372,11 +376,6 @@ public class LibrarianView extends javax.swing.JFrame {
     private javax.swing.JButton allowButton1;
     private javax.swing.JButton allowButton2;
     private javax.swing.JButton backBtn;
-    private javax.swing.JButton backButton;
-    private javax.swing.JButton backButton1;
-    private javax.swing.JButton backButton2;
-    private javax.swing.JButton backButton3;
-    private javax.swing.JButton backButton4;
     private javax.swing.JLabel bookCatalogLabel;
     private javax.swing.JTextArea bookCatalogTextArea;
     private javax.swing.JTextArea bookRequestsTextArea;

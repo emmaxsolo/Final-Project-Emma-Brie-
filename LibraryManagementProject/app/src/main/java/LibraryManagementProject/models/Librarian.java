@@ -12,9 +12,9 @@ public class Librarian extends User {
     private int librarianID;
     private String librarianName;
     
-//    public Librarian(User user) {
-//        super(user.getId(), user.getUsername(), user.getPassword(), "Librarian");
-//    }
+    public Librarian(User user) {
+        super(user.getId(), user.getUsername(), user.getPassword(), "Librarian");
+    }
 
     public Librarian(int id, String username, String password, String role) {
         super(id, username, password, role);

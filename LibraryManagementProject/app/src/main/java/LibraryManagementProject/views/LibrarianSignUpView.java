@@ -5,6 +5,7 @@
 package LibraryManagementProject.views;
 
 import LibraryManagementProject.controllers.LibrarianController;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,7 +13,8 @@ import LibraryManagementProject.controllers.LibrarianController;
  */
 public class LibrarianSignUpView extends javax.swing.JFrame {
 
-    // private LibrarianController librarianController;
+     private LibrarianController librarianController;
+
     /**
      * Creates new form LibrarianSignUpView
      */
@@ -21,7 +23,8 @@ public class LibrarianSignUpView extends javax.swing.JFrame {
 //        initComponents();
 //    }
     
-    public LibrarianSignUpView() {
+    public LibrarianSignUpView(LibrarianController controller) {
+        this.librarianController = controller;
         initComponents();
     }
     
@@ -49,9 +52,7 @@ public class LibrarianSignUpView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Librarian Sign Up");
         setBackground(new java.awt.Color(202, 233, 255));
-        setMaximumSize(new java.awt.Dimension(500, 300));
         setName("librarianSignupFrame"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(500, 300));
         setSize(new java.awt.Dimension(500, 300));
 
         jPanel1.setBackground(new java.awt.Color(194, 228, 255));
@@ -209,14 +210,37 @@ public class LibrarianSignUpView extends javax.swing.JFrame {
 
     private void btnSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupActionPerformed
         // TODO add your handling code here:
-        /*
-        Need to implement
-        */
+        String librarianIDStr = txtfieldLibrarianID.getText().trim();
+        String username = txtfieldLibrarianUsername.getText().trim();
+        String password = txtfieldLibrarianPassword.getText().trim();
 
+        if (librarianIDStr.isEmpty() || username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "All fields must be filled in.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int librarianID;
+        try {
+            librarianID = Integer.parseInt(librarianIDStr);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Invalid Librarian ID format.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        boolean success = librarianController.signUpLibrarian(username, password, "Librarian Name Placeholder", librarianID);
+
+        if (success) {
+            JOptionPane.showMessageDialog(this, "Librarian account successfully created.", "Success", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Failed to create librarian account. Please try again.", "Sign Up Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnSignupActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
+        EntryView entryView = new EntryView();
+        entryView.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 
     /**
@@ -247,11 +271,11 @@ public class LibrarianSignUpView extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LibrarianSignUpView().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new LibrarianSignUpView(librarianController).setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

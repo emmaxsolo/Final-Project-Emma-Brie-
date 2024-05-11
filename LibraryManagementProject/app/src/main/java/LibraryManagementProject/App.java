@@ -3,6 +3,9 @@
  */
 package LibraryManagementProject;
 
+import LibraryManagementProject.controllers.LibrarianController;
+import LibraryManagementProject.views.LibrarianLoginView;
+import LibraryManagementProject.views.LibrarianSignUpView;
     import java.sql.Connection;
     import java.sql.DriverManager;
     import java.sql.ResultSet;
@@ -13,6 +16,12 @@ public class App {
    
 
     public static void main(String[] args) {
+//        LibrarianController librarianController = new LibrarianController();
+//
+//        java.awt.EventQueue.invokeLater(() -> {
+//            new LibrarianSignUpView(librarianController).setVisible(true);
+//            new LibrarianLoginView(librarianController).setVisible(true);
+//        });
     }
 }
 /*

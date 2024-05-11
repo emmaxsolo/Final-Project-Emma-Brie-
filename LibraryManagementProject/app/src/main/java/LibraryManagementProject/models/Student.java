@@ -19,9 +19,9 @@ public class Student extends User {
     public Student(int id, String username, String password, String role) {
         super(id, username, password, role);
     }
-//    public Student(User user) {
-//        super(user.getId(), user.getUsername(), user.getPassword(), "Student");
-//    }
+    public Student(User user) {
+        super(user.getId(), user.getUsername(), user.getPassword(), "Student");
+    }
     
     public List<Book> searchBookByTitle(String title){
         return null;
@@ -39,7 +39,7 @@ public class Student extends User {
         return studentName;
     }
 
-    public void setName(String studentName) {
+    public void setStudentName(String studentName) {
         this.studentName = studentName;
     }
 

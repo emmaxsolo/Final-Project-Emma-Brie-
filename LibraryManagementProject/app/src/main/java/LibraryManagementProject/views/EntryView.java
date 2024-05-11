@@ -5,6 +5,8 @@
 package LibraryManagementProject.views;
 
 import LibraryManagementProject.DatabaseInitializer;
+import LibraryManagementProject.controllers.LibrarianController;
+import LibraryManagementProject.controllers.StudentController;
 
 /**
  *
@@ -143,21 +145,21 @@ public class EntryView extends javax.swing.JFrame {
 
     private void btnLibrarianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLibrarianActionPerformed
         // TODO add your handling code here:
-        // LoginView loginView = new LoginView("Librarian");
-        // loginView.setVisible(true);
-        this.dispose();
-        
+        LibrarianController librarianController = new LibrarianController();
+        LibrarianLoginView librarianLoginView = new LibrarianLoginView(librarianController);
+        librarianLoginView.setVisible(true);
+        this.dispose(); 
     }//GEN-LAST:event_btnLibrarianActionPerformed
 
     private void btnStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudentActionPerformed
         // TODO add your handling code here:
-        // LoginView loginView = new LoginView("Student");
-        // loginView.setVisible(true);
+        StudentController studentController = new StudentController();
+        StudentLoginView studentLoginView = new StudentLoginView(studentController);
+        studentLoginView.setVisible(true);
         this.dispose();
-        
+
     }//GEN-LAST:event_btnStudentActionPerformed
 
-    
     /**
      * @param args the command line arguments
      */
@@ -186,7 +188,7 @@ public class EntryView extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
+        DatabaseInitializer.initializeDatabase();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

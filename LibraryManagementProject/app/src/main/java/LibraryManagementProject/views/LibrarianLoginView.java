@@ -3,30 +3,39 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package LibraryManagementProject.views;
+
 import LibraryManagementProject.controllers.LibrarianController;
+import LibraryManagementProject.models.*;
+import LibraryManagementProject.views.*;
 import javax.swing.*;
+import LibraryManagementProject.dao.*;
 import java.awt.*;
 import java.awt.event.*;
+
 /**
  *
  * @author bridj
  */
 public class LibrarianLoginView extends javax.swing.JFrame {
-    
-private LibrarianController controller;
+
+    private LibrarianController librarianController;
+    private LibrarianView librarianView;
+    private LibrarianSignUpView librarianSignUpView;
+
     /**
      * Creates new form LibrarianLoginView
      */
-    public LibrarianLoginView() {
+    public LibrarianLoginView(LibrarianController librarianController) {
+        this.librarianController = librarianController;
+        this.librarianSignUpView = librarianSignUpView;
+        this.librarianView = librarianView;
         initComponents();
     }
-    
+
 //    public LibrarianLoginView(LibrarianController controller) {
 //        this.controller = controller;
 //        initComponents();
 //    }
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,6 +54,7 @@ private LibrarianController controller;
         txtfieldLibrarianPassword = new javax.swing.JTextField();
         backButton = new javax.swing.JButton();
         btnLogin = new javax.swing.JButton();
+        labelSignUp = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Librarian Login");
@@ -90,7 +100,7 @@ private LibrarianController controller;
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(labelLibrarianUsername)
                         .addGap(18, 18, 18)
-                        .addComponent(txtfieldLibrarianUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE))
+                        .addComponent(txtfieldLibrarianUsername))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(labelLibrarianPassword)
                         .addGap(18, 18, 18)
@@ -133,6 +143,15 @@ private LibrarianController controller;
             }
         });
 
+        labelSignUp.setFont(new java.awt.Font("Modern No. 20", 0, 14)); // NOI18N
+        labelSignUp.setForeground(new java.awt.Color(27, 73, 101));
+        labelSignUp.setText("No Account? Sign Up Here!");
+        labelSignUp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelSignUpMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -140,20 +159,23 @@ private LibrarianController controller;
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelTitle)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(backButton)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(6, 6, 6))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(215, Short.MAX_VALUE)
-                    .addComponent(btnLogin)
-                    .addGap(195, 195, 195)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(6, 6, 6))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(backButton)
+                        .addGap(228, 228, 228)
+                        .addComponent(labelSignUp)
+                        .addGap(18, 18, 18))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelTitle)
+                .addGap(110, 110, 110))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(197, 197, 197)
+                .addComponent(btnLogin)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,21 +184,20 @@ private LibrarianController controller;
                 .addComponent(labelTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(88, 88, 88)
-                .addComponent(backButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnLogin)
+                .addGap(49, 49, 49)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(backButton)
+                    .addComponent(labelSignUp))
                 .addGap(14, 14, 14))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(191, Short.MAX_VALUE)
-                    .addComponent(btnLogin)
-                    .addGap(74, 74, 74)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,12 +209,41 @@ private LibrarianController controller;
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-
+        EntryView entryView = new EntryView();
+        entryView.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
+        String username = txtfieldLibrarianUsername.getText();
+        String password = txtfieldLibrarianPassword.getText();
+
+        if (username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Login Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Attempt to log in the librarian using the controller
+        Librarian librarian = librarianController.login(username, password);
+        if (librarian != null) {
+            JOptionPane.showMessageDialog(this, "Login successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+            // Initialize the LibrarianView with the authenticated librarian
+            LibrarianView librarianView = new LibrarianView(librarian);
+            librarianView.setVisible(true);
+            this.dispose(); // Close the login form
+        } else {
+            JOptionPane.showMessageDialog(this, "Invalid credentials. Please try again.", "Login Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void labelSignUpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSignUpMouseClicked
+        // TODO add your handling code here:
+        LibrarianSignUpView librarianSignUpView = new LibrarianSignUpView(librarianController);
+        librarianSignUpView.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_labelSignUpMouseClicked
 
     /**
      * @param args the command line arguments
@@ -222,12 +272,12 @@ private LibrarianController controller;
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LibrarianLoginView().setVisible(true);
-            }
-        });
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new LibrarianLoginView().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -237,6 +287,7 @@ private LibrarianController controller;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel labelLibrarianPassword;
     private javax.swing.JLabel labelLibrarianUsername;
+    private javax.swing.JLabel labelSignUp;
     private javax.swing.JLabel labelTitle;
     private javax.swing.JTextField txtfieldLibrarianPassword;
     private javax.swing.JTextField txtfieldLibrarianUsername;

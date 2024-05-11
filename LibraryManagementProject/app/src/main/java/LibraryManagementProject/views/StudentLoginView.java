@@ -4,16 +4,24 @@
  */
 package LibraryManagementProject.views;
 
+import LibraryManagementProject.controllers.StudentController;
+import LibraryManagementProject.views.StudentView;
+
 /**
  *
  * @author emmas
  */
 public class StudentLoginView extends javax.swing.JFrame {
 
+    private StudentController studentController;
+    private StudentView studentView;
+
     /**
      * Creates new form StudentLoginView
      */
-    public StudentLoginView() {
+    public StudentLoginView(StudentController studentController) {
+        this.studentController = studentController;
+        this.studentView = studentView;
         initComponents();
     }
 
@@ -29,14 +37,15 @@ public class StudentLoginView extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         labelTitle = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        labelLibrarianUsername = new javax.swing.JLabel();
-        labelLibrarianPassword = new javax.swing.JLabel();
+        labelStudentUsername = new javax.swing.JLabel();
+        labelStudentPassword = new javax.swing.JLabel();
         txtfieldStudentUsername = new javax.swing.JTextField();
         txtfieldStudentPassword = new javax.swing.JTextField();
         btnLogin = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Student Log In");
 
         jPanel1.setBackground(new java.awt.Color(194, 228, 255));
 
@@ -49,13 +58,13 @@ public class StudentLoginView extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(214, 237, 255));
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        labelLibrarianUsername.setFont(new java.awt.Font("Modern No. 20", 0, 18)); // NOI18N
-        labelLibrarianUsername.setForeground(new java.awt.Color(27, 73, 101));
-        labelLibrarianUsername.setText("Username:");
+        labelStudentUsername.setFont(new java.awt.Font("Modern No. 20", 0, 18)); // NOI18N
+        labelStudentUsername.setForeground(new java.awt.Color(27, 73, 101));
+        labelStudentUsername.setText("Username:");
 
-        labelLibrarianPassword.setFont(new java.awt.Font("Modern No. 20", 0, 18)); // NOI18N
-        labelLibrarianPassword.setForeground(new java.awt.Color(27, 73, 101));
-        labelLibrarianPassword.setText("Password:");
+        labelStudentPassword.setFont(new java.awt.Font("Modern No. 20", 0, 18)); // NOI18N
+        labelStudentPassword.setForeground(new java.awt.Color(27, 73, 101));
+        labelStudentPassword.setText("Password:");
 
         txtfieldStudentUsername.setBackground(new java.awt.Color(214, 237, 255));
         txtfieldStudentUsername.setFont(new java.awt.Font("Modern No. 20", 0, 14)); // NOI18N
@@ -73,11 +82,11 @@ public class StudentLoginView extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(labelLibrarianUsername)
+                        .addComponent(labelStudentUsername)
                         .addGap(18, 18, 18)
-                        .addComponent(txtfieldStudentUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE))
+                        .addComponent(txtfieldStudentUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(labelLibrarianPassword)
+                        .addComponent(labelStudentPassword)
                         .addGap(18, 18, 18)
                         .addComponent(txtfieldStudentPassword)))
                 .addGap(15, 15, 15))
@@ -87,11 +96,11 @@ public class StudentLoginView extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelLibrarianUsername)
+                    .addComponent(labelStudentUsername)
                     .addComponent(txtfieldStudentUsername))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelLibrarianPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelStudentPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtfieldStudentPassword))
                 .addGap(20, 20, 20))
         );
@@ -152,7 +161,7 @@ public class StudentLoginView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,7 +176,9 @@ public class StudentLoginView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
+        EntryView entryView = new EntryView();
+        entryView.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 
     /**
@@ -198,11 +209,11 @@ public class StudentLoginView extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new StudentLoginView().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new StudentLoginView().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -210,8 +221,8 @@ public class StudentLoginView extends javax.swing.JFrame {
     private javax.swing.JButton btnLogin;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel labelLibrarianPassword;
-    private javax.swing.JLabel labelLibrarianUsername;
+    private javax.swing.JLabel labelStudentPassword;
+    private javax.swing.JLabel labelStudentUsername;
     private javax.swing.JLabel labelTitle;
     private javax.swing.JTextField txtfieldStudentPassword;
     private javax.swing.JTextField txtfieldStudentUsername;

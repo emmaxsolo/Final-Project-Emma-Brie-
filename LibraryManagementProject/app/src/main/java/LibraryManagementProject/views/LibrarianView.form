@@ -238,6 +238,7 @@
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="ff" green="e4" red="c2" type="rgb"/>
     </Property>
+    <Property name="name" type="java.lang.String" value="librarianView" noResource="true"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>

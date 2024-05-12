@@ -9,16 +9,16 @@ package LibraryManagementProject.factory;
  */
 public class BookFactory {
     
-      public Book createBook(char c, int sN, String title, String publisher, boolean isBookAvailable) {
+      public Book createBook(char c, int sN, String title, String publisher, boolean isBookAvailable, int qte, int qteIssued) {
         switch(c) {
             case 'E' -> {
-                return new EBook(sN, title, publisher, isBookAvailable);
+                return new EBook(sN, title, publisher, isBookAvailable,qte,qteIssued);
               }
             case 'H' -> {
-                return new HardCover(sN, title, publisher, isBookAvailable);
+                return new HardCover(sN, title, publisher, isBookAvailable,qte,qteIssued);
               }
             case 'P' -> {
-                return new Paperback(sN, title, publisher, isBookAvailable);
+                return new Paperback(sN, title, publisher, isBookAvailable,qte,qteIssued);
               }
             default -> throw new IllegalArgumentException("Invalid book type: " + c);
         }

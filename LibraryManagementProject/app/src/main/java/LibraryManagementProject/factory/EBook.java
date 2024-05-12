@@ -13,6 +13,8 @@ public class EBook implements Book {
     private String title;
     private String publisher;
     private boolean isBookAvailable;
+    private int qte;
+    private int qteIssued;
     
     @Override
     public String getType() {
@@ -22,14 +24,16 @@ public class EBook implements Book {
     public EBook() {
     }
 
-    public EBook(int sN, String title, String publisher, boolean isBookAvailable) {
+    public EBook(int sN, String title, String publisher, boolean isBookAvailable,int qte, int qteIssued) {
         this.sN = sN;
         this.title = title;
         this.publisher = publisher;
         this.isBookAvailable = isBookAvailable;
+        this.qte = qte;
+        this.qteIssued = qteIssued;
     }
 
-    
+   
     @Override
     public int getSN() {
         return sN;
@@ -50,4 +54,14 @@ public class EBook implements Book {
         return isBookAvailable;
     }
 
+    @Override
+    public int getQte() {
+        return qte;
+    }
+
+    @Override
+    public int getQteIssued() {
+        return qteIssued;
+    }
+    
 }

@@ -9,10 +9,13 @@ package LibraryManagementProject.factory;
  * @author 1982228,emmas
  */
 public class HardCover implements Book{
-    private int sN;
+      private int sN;
     private String title;
     private String publisher;
     private boolean isBookAvailable;
+    private int qte;
+    private int qteIssued;
+    
     
     @Override
     public String getType() {
@@ -22,11 +25,13 @@ public class HardCover implements Book{
     public HardCover() {
     }
 
-    public HardCover(int sN, String title, String publisher, boolean isBookAvailable) {
+    public HardCover(int sN, String title, String publisher, boolean isBookAvailable, int qte, int qteIssued) {
         this.sN = sN;
         this.title = title;
         this.publisher = publisher;
         this.isBookAvailable = isBookAvailable;
+        this.qte = qte;
+        this.qteIssued = qteIssued;
     }
     
     
@@ -49,6 +54,16 @@ public class HardCover implements Book{
     @Override
     public boolean isAvailable() {
         return isBookAvailable;
+    }
+
+    @Override
+    public int getQte() {
+        return qte;
+    }
+
+    @Override
+    public int getQteIssued() {
+        return qteIssued;
     }
     
 }

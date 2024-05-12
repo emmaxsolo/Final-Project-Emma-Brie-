@@ -14,4 +14,6 @@ public interface Book {
     String getPublisher();
     boolean isAvailable();
     String getType();
+    int getQte();
+    int getQteIssued();
 }

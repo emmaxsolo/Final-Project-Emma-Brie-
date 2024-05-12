@@ -16,7 +16,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author emmas
+ * @author 1982228,emmas
  */
 public class LibrarianController {
     

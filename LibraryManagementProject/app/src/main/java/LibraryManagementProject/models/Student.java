@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  *
- * @author bridj
+ * @author bridj,emmas
  */
 public class Student extends User {
     private int studentID;

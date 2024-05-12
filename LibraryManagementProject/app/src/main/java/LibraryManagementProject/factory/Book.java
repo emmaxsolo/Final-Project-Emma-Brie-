@@ -6,8 +6,12 @@ package LibraryManagementProject.factory;
 
 /**
  *
- * @author 1982228
+ * @author 1982228,emmas
  */
 public interface Book {
-   public String getType();
+    int getSN();
+    String getTitle();
+    String getPublisher();
+    boolean isAvailable();
+    String getType();
 }

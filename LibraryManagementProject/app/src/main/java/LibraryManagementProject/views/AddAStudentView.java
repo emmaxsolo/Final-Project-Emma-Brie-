@@ -211,10 +211,10 @@ public class AddAStudentView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveStudentButtonActionPerformed
-        int librarianId = Session.getCurrentLibrarianId();
+        int librarianId = Session.getCurrentLibrarianId(); // gets the current librarian id
         
         if (librarianId == -1) {
-            JOptionPane.showMessageDialog(null, "No librarian logged in.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No Librarian ID Found.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
@@ -230,11 +230,14 @@ public class AddAStudentView extends javax.swing.JFrame {
 
             if (librarianController.addStudent(studentId, studentName, contactNumber, librarianId)) {
                 JOptionPane.showMessageDialog(this, "Student added successfully!");
+                LibrarianView librarianView = new LibrarianView(librarianController);
+                librarianView.setVisible(true);
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Failed to add student! Please check your inputs or if the student ID already exists.", "Database Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (NumberFormatException nfe) {
-            JOptionPane.showMessageDialog(this, "Invalid Student ID. Please enter a valid number.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Invalid Student ID. Please enter number in number format.", "Input Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "An unexpected error occurred: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }

@@ -14,10 +14,8 @@ import LibraryManagementProject.controllers.StudentController;
  */
 public class EntryView extends javax.swing.JFrame {
 
-    /**
-     * Creates new form LogInView
-     */
     public EntryView() {
+
         initComponents();
     }
 
@@ -33,11 +31,13 @@ public class EntryView extends javax.swing.JFrame {
         jFrame1 = new javax.swing.JFrame();
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        imageLabel = new javax.swing.JLabel();
+        subtitleLabel = new javax.swing.JLabel();
         btnLibrarian = new javax.swing.JButton();
         btnStudent = new javax.swing.JButton();
         frenchButton = new javax.swing.JRadioButton();
         englishButton = new javax.swing.JRadioButton();
+        titleLabel = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -56,21 +56,23 @@ public class EntryView extends javax.swing.JFrame {
         setForeground(new java.awt.Color(179, 200, 207));
         setName("entryFrame"); // NOI18N
         setResizable(false);
-        setSize(new java.awt.Dimension(400, 400));
+        setSize(new java.awt.Dimension(600, 400));
         getContentPane().setLayout(new java.awt.BorderLayout(10, 10));
 
         jPanel1.setBackground(new java.awt.Color(202, 233, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(javax.swing.UIManager.getDefaults().getColor("windowBorder")));
         jPanel1.setName("entryPanel"); // NOI18N
-        jPanel1.setPreferredSize(new java.awt.Dimension(400, 400));
 
-        jLabel1.setFont(new java.awt.Font("Modern No. 20", 1, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(27, 73, 101));
-        jLabel1.setText("I AM A ...");
-        jLabel1.setMaximumSize(new java.awt.Dimension(155, 39));
+        imageLabel.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/entrylibrary.png"))); // NOI18N
+
+        subtitleLabel.setFont(new java.awt.Font("Century Gothic", 1, 28)); // NOI18N
+        subtitleLabel.setForeground(new java.awt.Color(255, 122, 178));
+        subtitleLabel.setText("I AM A ...");
+        subtitleLabel.setMaximumSize(new java.awt.Dimension(155, 39));
 
         btnLibrarian.setBackground(new java.awt.Color(95, 168, 211));
-        btnLibrarian.setFont(new java.awt.Font("Modern No. 20", 0, 18)); // NOI18N
+        btnLibrarian.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         btnLibrarian.setForeground(new java.awt.Color(27, 73, 101));
         btnLibrarian.setText("Librarian");
         btnLibrarian.addActionListener(new java.awt.event.ActionListener() {
@@ -80,7 +82,7 @@ public class EntryView extends javax.swing.JFrame {
         });
 
         btnStudent.setBackground(new java.awt.Color(95, 168, 211));
-        btnStudent.setFont(new java.awt.Font("Modern No. 20", 0, 18)); // NOI18N
+        btnStudent.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         btnStudent.setForeground(new java.awt.Color(27, 73, 101));
         btnStudent.setText("Student");
         btnStudent.addActionListener(new java.awt.event.ActionListener() {
@@ -90,32 +92,47 @@ public class EntryView extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(frenchButton);
-        frenchButton.setFont(new java.awt.Font("Modern No. 20", 0, 14)); // NOI18N
+        frenchButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         frenchButton.setForeground(new java.awt.Color(27, 73, 101));
         frenchButton.setText("French");
 
-        englishButton.setFont(new java.awt.Font("Modern No. 20", 0, 14)); // NOI18N
+        englishButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         englishButton.setForeground(new java.awt.Color(27, 73, 101));
         englishButton.setText("English");
+
+        titleLabel.setFont(new java.awt.Font("Century Gothic", 1, 30)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(27, 73, 101));
+        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titleLabel.setText("LIBRARY MANAGEMENT SYSTEM");
+        titleLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(englishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(89, 89, 89))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(btnLibrarian, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(12, 12, 12)))
-                    .addComponent(frenchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnLibrarian, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(englishButton, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                            .addComponent(frenchButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(imageLabel)))
+                .addGap(29, 29, 29))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(subtitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(223, 223, 223))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58))))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnLibrarian, btnStudent});
@@ -123,17 +140,24 @@ public class EntryView extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLibrarian, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
-                .addComponent(frenchButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(englishButton)
-                .addGap(21, 21, 21))
+                .addGap(57, 57, 57)
+                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(subtitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(frenchButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(englishButton)
+                        .addGap(39, 39, 39))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnLibrarian, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19))))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnLibrarian, btnStudent});
@@ -144,27 +168,26 @@ public class EntryView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLibrarianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLibrarianActionPerformed
-        // TODO add your handling code here:
-        LibrarianController librarianController = new LibrarianController();
-        LibrarianLoginView librarianLoginView = new LibrarianLoginView(librarianController);
+        
+        LibrarianController librarianController = new LibrarianController(); // Create a new instance of the controller
+        LibrarianLoginView librarianLoginView = new LibrarianLoginView(librarianController); // Pass it to the login view
         librarianLoginView.setVisible(true);
-        this.dispose(); 
+        this.dispose();
     }//GEN-LAST:event_btnLibrarianActionPerformed
 
     private void btnStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudentActionPerformed
-        // TODO add your handling code here:
+        
         StudentController studentController = new StudentController();
         StudentLoginView studentLoginView = new StudentLoginView(studentController);
         studentLoginView.setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_btnStudentActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        DatabaseInitializer.initializeDatabase();
+        DatabaseInitializer.getInstance();
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -188,7 +211,6 @@ public class EntryView extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        DatabaseInitializer.initializeDatabase();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -203,8 +225,10 @@ public class EntryView extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JRadioButton englishButton;
     private javax.swing.JRadioButton frenchButton;
+    private javax.swing.JLabel imageLabel;
     private javax.swing.JFrame jFrame1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel subtitleLabel;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }

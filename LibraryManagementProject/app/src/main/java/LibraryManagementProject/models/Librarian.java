@@ -8,18 +8,21 @@ package LibraryManagementProject.models;
  *
  * @author bridj
  */
-public class Librarian extends User {
+public class Librarian {
+// extends user
     private int librarianID;
-    private String librarianName;
-    
-    public Librarian(User user) {
-        super(user.getId(), user.getUsername(), user.getPassword(), "Librarian");
-    }
+    private String username;
+    private String password;
 
-    public Librarian(int id, String username, String password, String role) {
-        super(id, username, password, role);
+//    public Librarian(int id, String username, String password) {
+//        super(id, username, password, "Librarian");
+//    }
+
+    public Librarian(int librarianID, String username, String password) {
+        this.librarianID = librarianID;
+        this.username = username;
+        this.password = password;
     }
-       
 
     public int getLibrarianID() {
         return librarianID;
@@ -29,12 +32,24 @@ public class Librarian extends User {
         this.librarianID = librarianID;
     }
 
-    public String getLibrarianName() {
-        return librarianName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLibrarianName(String librarianName) {
-        this.librarianName = librarianName;
+    public void setUsername(String username) {
+        this.username = username;
     }
-    
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    int getId() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

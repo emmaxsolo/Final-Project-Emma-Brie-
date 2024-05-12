@@ -1,86 +1,85 @@
 package LibraryManagementProject;
 
-/**
- *
- * @author bridj
- */
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DatabaseInitializer {
-
-    private static final String url = "jdbc:sqlite:database.db";
-    private static Connection connection = null;
+    private static DatabaseInitializer instance;
+    private Connection connection;
+    private final String url = "jdbc:sqlite:ourdatabase.db"; // Ensure this path is correctly configured
 
     private DatabaseInitializer() {
-        // private empty constructor to prevent multiple instances of the databases
+        establishConnection();
     }
 
-    /**
-     * Function: Instantiate the database connection using singleton pattern and
-     * applying thread-safety. It throws an exception if there is an error to
-     * establish a connection with the database.
-     *
-     * @return the connected database
-     */
-    public static synchronized Connection getConnection() {
-        if (connection == null) {
-            try {
+    private void establishConnection() {
+        try {
+            // This checks if the connection is null or closed and establishes a new connection if necessary
+            if (connection == null || connection.isClosed()) {
                 connection = DriverManager.getConnection(url);
-                initializeDatabase(); // Create tables after establishing connection
-            } catch (SQLException e) {
-                e.printStackTrace();
-                throw new RuntimeException("Error: Cannot connect to database", e);
+                initializeDatabase();
             }
+        } catch (SQLException e) {
+            System.err.println("Error connecting to the database: " + e.getMessage());
+            throw new RuntimeException("Error connecting to the database", e);
+        }
+    }
+
+    public static synchronized DatabaseInitializer getInstance() {
+        if (instance == null) {
+            instance = new DatabaseInitializer();
+        }
+        return instance;
+    }
+
+    public Connection getConnection() {
+        try {
+            // Check connection and reconnect if necessary
+            if (connection == null || connection.isClosed()) {
+                establishConnection();
+            }
+        } catch (SQLException e) {
+            System.err.println("Failed to re-establish connection: " + e.getMessage());
         }
         return connection;
     }
 
-    /**
-     * Function: Initialize our database and creating the database tables for
-     * Users, Students, Books, IssuedBooks It throws an error if it can not
-     * create a database using the tables provided.
-     */
-    public static void initializeDatabase() {
-        Connection connect = getConnection();
-        try (Statement stmt = connect.createStatement()) {
+    private void initializeDatabase() {
+        try (Statement stmt = connection.createStatement()) {
+            // Create tables if they do not exist
+            stmt.execute("CREATE TABLE IF NOT EXISTS Librarians (" +
+                    "librarian_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "username TEXT NOT NULL UNIQUE, " +
+                    "password TEXT NOT NULL);");
 
-            stmt.execute("CREATE TABLE IF NOT EXISTS Users ("
-                    + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + "username TEXT NOT NULL UNIQUE, "
-                    + "password TEXT NOT NULL, "
-                    + "role TEXT NOT NULL CHECK(role IN ('Librarian', 'Student')));");
+            stmt.execute("CREATE TABLE IF NOT EXISTS Students (" +
+                    "student_id INTEGER PRIMARY KEY, " +
+                    "student_name TEXT NOT NULL, " +
+                    "contact_number TEXT NOT NULL, " +
+                    "username TEXT, " +
+                    "password TEXT, " +
+                    "added_by_librarian INTEGER, " +
+                    "FOREIGN KEY (added_by_librarian) REFERENCES Librarians(librarian_id));");
 
-            stmt.execute("CREATE TABLE IF NOT EXISTS Librarians ("
-                    + "librarianID INTEGER PRIMARY KEY, "
-                    + "librarianName TEXT NOT NULL);");
+            stmt.execute("CREATE TABLE IF NOT EXISTS Books (" +
+                    "SN TEXT PRIMARY KEY, " +
+                    "title TEXT NOT NULL, " +
+                    "author TEXT NOT NULL, " +
+                    "publisher TEXT NOT NULL, " +
+                    "price REAL NOT NULL, " +
+                    "quantity INTEGER NOT NULL, " +
+                    "issued INTEGER NOT NULL DEFAULT 0, " +
+                    "addedDate TEXT NOT NULL);");
 
-            stmt.execute("CREATE TABLE IF NOT EXISTS Students ("
-                    + "studentID INTEGER PRIMARY KEY, "
-                    + "studentName TEXT NOT NULL, "
-                    + "contactNumber TEXT NOT NULL);");
-
-            stmt.execute("CREATE TABLE IF NOT EXISTS Books("
-                    + "SN TEXT PRIMARY KEY,"
-                    + "title TEXT NOT NULL,"
-                    + "author TEXT NOT NULL,"
-                    + "publisher TEXT NOT NULL,"
-                    + "price REAL NOT NULL,"
-                    + "quanity INTEGER NOT NULL,"
-                    + "issued INTEGER NOT NULL DEFAULT 0,"
-                    + "addedDate INTEGER TEXT NOT NULL"
-            );
-
-            stmt.execute("CREATE TABLE IF NOT EXISTS IssuedBooks ("
-                    + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + "SN TEXT NOT NULL,"
-                    + "StId TEXT NOT NULL,"
-                    + "IssueDate TEXT NOT NULL,"
-                    + "FOREIGN KEY (SN) REFERENCES Books(SN),"
-                    + "FOREIGN KEY (stID) REFERENCES Students(studentID)"
-            );
+            stmt.execute("CREATE TABLE IF NOT EXISTS IssuedBooks (" +
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "SN TEXT NOT NULL, " +
+                    "StId TEXT NOT NULL, " +
+                    "IssueDate TEXT NOT NULL, " +
+                    "FOREIGN KEY (SN) REFERENCES Books(SN), " +
+                    "FOREIGN KEY (StId) REFERENCES Students(student_id));");
 
             System.out.println("Tables created successfully.");
         } catch (SQLException e) {
@@ -88,17 +87,14 @@ public class DatabaseInitializer {
         }
     }
 
-    /**
-     * Function: To close the database connection.
-     */
     public static void closeConnection() {
-        if (connection != null) {
-            try {
-                connection.close();
-                connection = null;
-            } catch (SQLException e) {
-                System.err.println("Error closing the database connection: " + e.getMessage());
+        try {
+            if (instance != null && instance.connection != null) {
+                instance.connection.close();
+                instance = null;
             }
+        } catch (SQLException e) {
+            System.err.println("Error closing the database connection: " + e.getMessage());
         }
     }
 }

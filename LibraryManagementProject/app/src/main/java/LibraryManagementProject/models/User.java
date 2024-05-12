@@ -8,11 +8,12 @@ package LibraryManagementProject.models;
  *
  * @author bridj
  */
-public class User {
-    private int id;
-    private String username;
-    private String password;
-    private String role;
+public abstract class User {
+// unused
+    protected int id;
+    protected String username;
+    protected String password;
+    protected String role;
 
     public User(int id, String username, String password, String role) {
         this.id = id;
@@ -52,6 +53,7 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
+
     
-    
+
 }

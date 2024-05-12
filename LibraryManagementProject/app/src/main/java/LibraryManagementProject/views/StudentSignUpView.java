@@ -4,16 +4,22 @@
  */
 package LibraryManagementProject.views;
 
+import LibraryManagementProject.controllers.StudentController;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author emmas
  */
 public class StudentSignUpView extends javax.swing.JFrame {
 
+    private StudentController studentController;
+
     /**
      * Creates new form StudentSignUpView
      */
-    public StudentSignUpView() {
+    public StudentSignUpView(StudentController studentController) {
+        this.studentController = new StudentController();  // Ensure the controller is initialized properly
         initComponents();
     }
 
@@ -32,17 +38,21 @@ public class StudentSignUpView extends javax.swing.JFrame {
         labelStudentID = new javax.swing.JLabel();
         labelStudentUsername = new javax.swing.JLabel();
         labelStudentPassword = new javax.swing.JLabel();
-        txtfieldStudentD = new javax.swing.JTextField();
-        txtfieldStudentUsername = new javax.swing.JTextField();
-        txtfieldStudentPassword = new javax.swing.JTextField();
+        idField = new javax.swing.JTextField();
+        usernameField = new javax.swing.JTextField();
+        passwordField = new javax.swing.JPasswordField();
         btnSignup = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(194, 228, 255));
+        setSize(new java.awt.Dimension(500, 500));
 
         jPanel1.setBackground(new java.awt.Color(194, 228, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setInheritsPopupMenu(true);
 
-        labelTitle.setFont(new java.awt.Font("Modern No. 20", 1, 36)); // NOI18N
+        labelTitle.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         labelTitle.setForeground(new java.awt.Color(27, 73, 101));
         labelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelTitle.setText("Student Sign Up");
@@ -51,29 +61,30 @@ public class StudentSignUpView extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(214, 237, 255));
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        labelStudentID.setFont(new java.awt.Font("Modern No. 20", 0, 18)); // NOI18N
+        labelStudentID.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         labelStudentID.setForeground(new java.awt.Color(27, 73, 101));
         labelStudentID.setText("Student ID:");
 
-        labelStudentUsername.setFont(new java.awt.Font("Modern No. 20", 0, 18)); // NOI18N
+        labelStudentUsername.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         labelStudentUsername.setForeground(new java.awt.Color(27, 73, 101));
         labelStudentUsername.setText("Username:");
 
-        labelStudentPassword.setFont(new java.awt.Font("Modern No. 20", 0, 18)); // NOI18N
+        labelStudentPassword.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         labelStudentPassword.setForeground(new java.awt.Color(27, 73, 101));
         labelStudentPassword.setText("Password:");
 
-        txtfieldStudentD.setBackground(new java.awt.Color(214, 237, 255));
-        txtfieldStudentD.setFont(new java.awt.Font("Modern No. 20", 0, 14)); // NOI18N
-        txtfieldStudentD.setForeground(new java.awt.Color(27, 73, 101));
+        idField.setBackground(new java.awt.Color(214, 237, 255));
+        idField.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        idField.setForeground(new java.awt.Color(27, 73, 101));
 
-        txtfieldStudentUsername.setBackground(new java.awt.Color(214, 237, 255));
-        txtfieldStudentUsername.setFont(new java.awt.Font("Modern No. 20", 0, 14)); // NOI18N
-        txtfieldStudentUsername.setForeground(new java.awt.Color(27, 73, 101));
+        usernameField.setBackground(new java.awt.Color(214, 237, 255));
+        usernameField.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        usernameField.setForeground(new java.awt.Color(27, 73, 101));
 
-        txtfieldStudentPassword.setBackground(new java.awt.Color(214, 237, 255));
-        txtfieldStudentPassword.setFont(new java.awt.Font("Modern No. 20", 0, 14)); // NOI18N
-        txtfieldStudentPassword.setForeground(new java.awt.Color(27, 73, 101));
+        passwordField.setBackground(new java.awt.Color(214, 237, 255));
+        passwordField.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        passwordField.setForeground(new java.awt.Color(27, 73, 101));
+        passwordField.setCaretColor(new java.awt.Color(214, 237, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -83,39 +94,52 @@ public class StudentSignUpView extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(labelStudentPassword)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtfieldStudentPassword))
+                        .addComponent(labelStudentID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(labelStudentUsername)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelStudentUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(labelStudentPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(4, 4, 4)))
                         .addGap(18, 18, 18)
-                        .addComponent(txtfieldStudentUsername))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(labelStudentID)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtfieldStudentD)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(15, 15, 15))
         );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {idField, passwordField, usernameField});
+
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelStudentID, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtfieldStudentD))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(labelStudentID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelStudentUsername)
-                    .addComponent(txtfieldStudentUsername))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(labelStudentUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelStudentPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtfieldStudentPassword))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(labelStudentPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17))
         );
 
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {idField, passwordField, usernameField});
+
         btnSignup.setBackground(new java.awt.Color(95, 168, 211));
-        btnSignup.setFont(new java.awt.Font("Modern No. 20", 0, 24)); // NOI18N
+        btnSignup.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         btnSignup.setForeground(new java.awt.Color(27, 73, 101));
         btnSignup.setText("Sign Up");
         btnSignup.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -126,7 +150,7 @@ public class StudentSignUpView extends javax.swing.JFrame {
         });
 
         backButton.setBackground(new java.awt.Color(95, 168, 211));
-        backButton.setFont(new java.awt.Font("Modern No. 20", 0, 24)); // NOI18N
+        backButton.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         backButton.setForeground(new java.awt.Color(27, 73, 101));
         backButton.setText("Back");
         backButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -140,62 +164,83 @@ public class StudentSignUpView extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.CENTER, jPanel1Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(6, 6, 6))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(backButton))
+                        .addGap(6, 6, 6)
+                        .addComponent(labelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addComponent(labelTitle))
+                        .addContainerGap()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(149, 149, 149)
-                        .addComponent(btnSignup)))
-                .addContainerGap(115, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(backButton)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(174, 174, 174)
+                .addComponent(btnSignup)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(labelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(labelTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnSignup)
-                .addGap(24, 24, 24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(backButton)
-                .addGap(16, 16, 16))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupActionPerformed
-        // TODO add your handling code here:
-        /*
-        Need to implement
-        */
+        try {
+            int studentId = Integer.parseInt(idField.getText().trim());
+            String username = usernameField.getText().trim();
+            String password = new String(passwordField.getPassword());
+
+            if (username.isEmpty() || password.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Username and password cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (studentController.registerStudent(studentId, username, password)) {
+                JOptionPane.showMessageDialog(this, "Sign up successful!");
+                StudentLoginView studentLoginView = new StudentLoginView(studentController);
+                studentLoginView.setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Sign up failed. Ensure your student ID is added by a librarian.", "Sign Up Failed", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid student ID.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnSignupActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
+
+        StudentLoginView studentLoginView = new StudentLoginView(studentController);
+        studentLoginView.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 
     /**
@@ -226,24 +271,24 @@ public class StudentSignUpView extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new StudentSignUpView().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new StudentSignUpView(studentController).setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JButton btnSignup;
+    private javax.swing.JTextField idField;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel labelStudentID;
     private javax.swing.JLabel labelStudentPassword;
     private javax.swing.JLabel labelStudentUsername;
     private javax.swing.JLabel labelTitle;
-    private javax.swing.JTextField txtfieldStudentD;
-    private javax.swing.JTextField txtfieldStudentPassword;
-    private javax.swing.JTextField txtfieldStudentUsername;
+    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables
 }

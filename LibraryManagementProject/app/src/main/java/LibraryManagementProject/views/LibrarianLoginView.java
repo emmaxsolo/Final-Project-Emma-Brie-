@@ -8,7 +8,6 @@ import LibraryManagementProject.controllers.LibrarianController;
 import LibraryManagementProject.models.*;
 import LibraryManagementProject.views.*;
 import javax.swing.*;
-import LibraryManagementProject.dao.*;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -19,8 +18,8 @@ import java.awt.event.*;
 public class LibrarianLoginView extends javax.swing.JFrame {
 
     private LibrarianController librarianController;
-    private LibrarianView librarianView;
     private LibrarianSignUpView librarianSignUpView;
+    private LibrarianView librarianView;
 
     /**
      * Creates new form LibrarianLoginView
@@ -50,22 +49,24 @@ public class LibrarianLoginView extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         labelLibrarianUsername = new javax.swing.JLabel();
         labelLibrarianPassword = new javax.swing.JLabel();
-        txtfieldLibrarianUsername = new javax.swing.JTextField();
-        txtfieldLibrarianPassword = new javax.swing.JTextField();
+        usernameField = new javax.swing.JTextField();
+        passwordField = new javax.swing.JPasswordField();
         backButton = new javax.swing.JButton();
         btnLogin = new javax.swing.JButton();
         labelSignUp = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Librarian Login");
+        setIconImages(null);
+        setLocation(new java.awt.Point(0, 0));
         setName("librarianLoginViewFrame"); // NOI18N
-        setSize(new java.awt.Dimension(500, 300));
+        setSize(new java.awt.Dimension(500, 430));
 
         jPanel1.setBackground(new java.awt.Color(194, 228, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.setPreferredSize(new java.awt.Dimension(500, 300));
+        jPanel1.setPreferredSize(new java.awt.Dimension(500, 430));
 
-        labelTitle.setFont(new java.awt.Font("Modern No. 20", 1, 36)); // NOI18N
+        labelTitle.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         labelTitle.setForeground(new java.awt.Color(27, 73, 101));
         labelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelTitle.setText("Librarian Login");
@@ -74,21 +75,22 @@ public class LibrarianLoginView extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(214, 237, 255));
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        labelLibrarianUsername.setFont(new java.awt.Font("Modern No. 20", 0, 18)); // NOI18N
+        labelLibrarianUsername.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         labelLibrarianUsername.setForeground(new java.awt.Color(27, 73, 101));
         labelLibrarianUsername.setText("Username:");
 
-        labelLibrarianPassword.setFont(new java.awt.Font("Modern No. 20", 0, 18)); // NOI18N
+        labelLibrarianPassword.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         labelLibrarianPassword.setForeground(new java.awt.Color(27, 73, 101));
         labelLibrarianPassword.setText("Password:");
 
-        txtfieldLibrarianUsername.setBackground(new java.awt.Color(214, 237, 255));
-        txtfieldLibrarianUsername.setFont(new java.awt.Font("Modern No. 20", 0, 14)); // NOI18N
-        txtfieldLibrarianUsername.setForeground(new java.awt.Color(27, 73, 101));
+        usernameField.setBackground(new java.awt.Color(214, 237, 255));
+        usernameField.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        usernameField.setForeground(new java.awt.Color(27, 73, 101));
 
-        txtfieldLibrarianPassword.setBackground(new java.awt.Color(214, 237, 255));
-        txtfieldLibrarianPassword.setFont(new java.awt.Font("Modern No. 20", 0, 14)); // NOI18N
-        txtfieldLibrarianPassword.setForeground(new java.awt.Color(27, 73, 101));
+        passwordField.setBackground(new java.awt.Color(214, 237, 255));
+        passwordField.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        passwordField.setForeground(new java.awt.Color(27, 73, 101));
+        passwordField.setCaretColor(new java.awt.Color(214, 237, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -97,32 +99,35 @@ public class LibrarianLoginView extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(labelLibrarianUsername)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtfieldLibrarianUsername))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(labelLibrarianPassword)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtfieldLibrarianPassword)))
+                    .addComponent(labelLibrarianUsername)
+                    .addComponent(labelLibrarianPassword))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15))
         );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {passwordField, usernameField});
+
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelLibrarianUsername)
-                    .addComponent(txtfieldLibrarianUsername))
+                    .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelLibrarianPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtfieldLibrarianPassword))
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
 
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {passwordField, usernameField});
+
         backButton.setBackground(new java.awt.Color(95, 168, 211));
-        backButton.setFont(new java.awt.Font("Modern No. 20", 0, 24)); // NOI18N
+        backButton.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         backButton.setForeground(new java.awt.Color(27, 73, 101));
         backButton.setText("Back");
         backButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -133,7 +138,7 @@ public class LibrarianLoginView extends javax.swing.JFrame {
         });
 
         btnLogin.setBackground(new java.awt.Color(95, 168, 211));
-        btnLogin.setFont(new java.awt.Font("Modern No. 20", 0, 24)); // NOI18N
+        btnLogin.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(27, 73, 101));
         btnLogin.setText("Login");
         btnLogin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -143,7 +148,7 @@ public class LibrarianLoginView extends javax.swing.JFrame {
             }
         });
 
-        labelSignUp.setFont(new java.awt.Font("Modern No. 20", 0, 14)); // NOI18N
+        labelSignUp.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         labelSignUp.setForeground(new java.awt.Color(27, 73, 101));
         labelSignUp.setText("No Account? Sign Up Here!");
         labelSignUp.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -158,24 +163,21 @@ public class LibrarianLoginView extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(6, 6, 6))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
                         .addComponent(backButton)
-                        .addGap(228, 228, 228)
-                        .addComponent(labelSignUp)
-                        .addGap(18, 18, 18))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelSignUp)))
+                .addGap(6, 6, 6))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelTitle)
-                .addGap(110, 110, 110))
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(197, 197, 197)
-                .addComponent(btnLogin)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(223, 223, 223)
+                .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(247, 247, 247))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,59 +185,48 @@ public class LibrarianLoginView extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(labelTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLogin)
-                .addGap(49, 49, 49)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(backButton)
-                    .addComponent(labelSignUp))
-                .addGap(14, 14, 14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelSignUp, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(backButton, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
         EntryView entryView = new EntryView();
         entryView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
-        String username = txtfieldLibrarianUsername.getText();
-        String password = txtfieldLibrarianPassword.getText();
-
-        if (username.isEmpty() || password.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Login Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        // Attempt to log in the librarian using the controller
-        Librarian librarian = librarianController.login(username, password);
-        if (librarian != null) {
-            JOptionPane.showMessageDialog(this, "Login successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
-
-            // Initialize the LibrarianView with the authenticated librarian
-            LibrarianView librarianView = new LibrarianView(librarian);
+        String username = usernameField.getText();
+        String password = new String(passwordField.getPassword());
+        if (librarianController.logInLibrarian(username, password)) {
+            JOptionPane.showMessageDialog(this, "Login Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            LibrarianView librarianView = new LibrarianView(librarianController);
             librarianView.setVisible(true);
-            this.dispose(); // Close the login form
+            this.dispose(); 
         } else {
-            JOptionPane.showMessageDialog(this, "Invalid credentials. Please try again.", "Login Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Invalid credentials.", "Login Failed", JOptionPane.ERROR_MESSAGE);
         }
+
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void labelSignUpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSignUpMouseClicked
@@ -289,7 +280,7 @@ public class LibrarianLoginView extends javax.swing.JFrame {
     private javax.swing.JLabel labelLibrarianUsername;
     private javax.swing.JLabel labelSignUp;
     private javax.swing.JLabel labelTitle;
-    private javax.swing.JTextField txtfieldLibrarianPassword;
-    private javax.swing.JTextField txtfieldLibrarianUsername;
+    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables
 }

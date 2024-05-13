@@ -1,6 +1,7 @@
 package LibraryManagementProject.views;
 
 import LibraryManagementProject.controllers.LibrarianController;
+import LibraryManagementProject.controllers.MainController;
 import LibraryManagementProject.models.Librarian;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -325,6 +326,11 @@ public class LibrarianView extends javax.swing.JFrame {
         addBookButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         addBookButton.setForeground(new java.awt.Color(27, 73, 101));
         addBookButton.setText("Add a book");
+        addBookButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBookButtonActionPerformed(evt);
+            }
+        });
 
         viewCatalogButton.setBackground(new java.awt.Color(95, 168, 211));
         viewCatalogButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -378,12 +384,10 @@ public class LibrarianView extends javax.swing.JFrame {
         sidePanelLayout.setHorizontalGroup(
             sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sidePanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sideActionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(sidePanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(sideActionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(sidePanelLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(dateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 8, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -435,6 +439,13 @@ public class LibrarianView extends javax.swing.JFrame {
         entryView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_logOutButtonActionPerformed
+
+    private void addBookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookButtonActionPerformed
+        MainController main = new MainController();
+        AddBookView addBook = new AddBookView(main.getInstance());
+        addBook.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_addBookButtonActionPerformed
 
     public void currentDateTime() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("YYYY/MM/dd HH:mm:ss");

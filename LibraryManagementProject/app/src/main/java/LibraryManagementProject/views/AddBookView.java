@@ -4,16 +4,21 @@
  */
 package LibraryManagementProject.views;
 
+import LibraryManagementProject.controllers.MainController;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author emmas
  */
 public class AddBookView extends javax.swing.JFrame {
 
+    private MainController main;
     /**
      * Creates new form AddBookView
      */
-    public AddBookView() {
+    public AddBookView(MainController main) {
+        this.main = main;
         initComponents();
     }
 
@@ -49,6 +54,11 @@ public class AddBookView extends javax.swing.JFrame {
         addBookButton.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         addBookButton.setForeground(new java.awt.Color(27, 73, 101));
         addBookButton.setText("Add");
+        addBookButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBookButtonActionPerformed(evt);
+            }
+        });
 
         backButton.setBackground(new java.awt.Color(95, 168, 211));
         backButton.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
@@ -109,6 +119,18 @@ public class AddBookView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addBookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookButtonActionPerformed
+        String title = addBookTextField.getText();
+        
+        if(!title.isEmpty()){
+            main.addBook(title);
+            JOptionPane.showMessageDialog(rootPane, "SUCCESSFULLY ADDED");
+        }
+        else{
+             JOptionPane.showMessageDialog(rootPane, "ENTER A BOOK");
+        }
+    }//GEN-LAST:event_addBookButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -139,7 +161,8 @@ public class AddBookView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddBookView().setVisible(true);
+                 MainController mainController = new MainController();
+                new AddBookView(mainController).setVisible(true);
             }
         });
     }

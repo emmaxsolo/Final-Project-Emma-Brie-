@@ -18,7 +18,7 @@ public class Librarian {
         this.username = username;
         this.password = password;
     }
-
+    
     public int getLibrarianID() {
         return librarianID;
     }

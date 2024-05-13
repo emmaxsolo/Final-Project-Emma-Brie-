@@ -5,7 +5,6 @@
 package LibraryManagementProject.models;
 
 
-import LibraryManagementProject.models.*;
 import java.util.Map;
 
 /**
@@ -35,7 +34,7 @@ public class Book {
     
     public void addBook(Book book){
         
-        //Adds it to th edatabase
+        //Adds it to the database
     }
     
     public boolean issueBook(Book book, Student student){

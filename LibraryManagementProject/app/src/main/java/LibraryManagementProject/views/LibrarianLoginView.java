@@ -1,15 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package LibraryManagementProject.views;
 
 import LibraryManagementProject.controllers.LibrarianController;
-import LibraryManagementProject.models.*;
 import LibraryManagementProject.views.*;
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
 
 /**
  *
@@ -21,9 +14,6 @@ public class LibrarianLoginView extends javax.swing.JFrame {
     private LibrarianSignUpView librarianSignUpView;
     private LibrarianView librarianView;
 
-    /**
-     * Creates new form LibrarianLoginView
-     */
     public LibrarianLoginView(LibrarianController librarianController) {
         this.librarianController = librarianController;
         this.librarianSignUpView = librarianSignUpView;
@@ -31,10 +21,6 @@ public class LibrarianLoginView extends javax.swing.JFrame {
         initComponents();
     }
 
-//    public LibrarianLoginView(LibrarianController controller) {
-//        this.controller = controller;
-//        initComponents();
-//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -230,7 +216,6 @@ public class LibrarianLoginView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void labelSignUpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSignUpMouseClicked
-        // TODO add your handling code here:
         LibrarianSignUpView librarianSignUpView = new LibrarianSignUpView(librarianController);
         librarianSignUpView.setVisible(true);
         this.dispose();

@@ -9,14 +9,9 @@ package LibraryManagementProject.models;
  * @author bridj
  */
 public class Librarian {
-// extends user
     private int librarianID;
     private String username;
     private String password;
-
-//    public Librarian(int id, String username, String password) {
-//        super(id, username, password, "Librarian");
-//    }
 
     public Librarian(int librarianID, String username, String password) {
         this.librarianID = librarianID;
@@ -48,8 +43,5 @@ public class Librarian {
         this.password = password;
     }
 
-    int getId() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
 }

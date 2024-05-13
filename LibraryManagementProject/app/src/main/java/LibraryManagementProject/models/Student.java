@@ -10,25 +10,15 @@ package LibraryManagementProject.models;
  * @author bridj
  */
 public class Student {
-// extends user
     private int studentID;
     private String studentName;
     private String contactNumber;
-
-//    public Student(int id, String username, String password) {
-//        super(id, username, password, "Student");
-//    }
 
     public Student(int studentID, String studentName, String contactNumber) {
         this.studentID = studentID;
         this.studentName = studentName;
         this.contactNumber = contactNumber;
     }
-
-
-//    public List<Book> searchBookByTitle(String title) {
-//        return null;
-//    }
 
     public int getStudentID() {
         return studentID;

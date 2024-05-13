@@ -42,17 +42,33 @@ public class StudentController {
     }
 
     public boolean logInStudent(String username, String password) {
-        String query = "SELECT * FROM students WHERE username = ? AND password = ?";
+        String query = "SELECT * FROM Students WHERE username = ? AND password = ?";
         try (Connection conn = DatabaseInitializer.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, username);
             pstmt.setString(2, password);
-            try (ResultSet rs = pstmt.executeQuery()) {
-                return rs.next();
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                Student loggedInStudent = new Student(
+                    rs.getInt("student_id"),
+                    rs.getString("student_name"),
+                    rs.getString("contact_number")
+                );
+                Session.setCurrentStudent(loggedInStudent);
+                System.out.println("Successful login for student ID: " + loggedInStudent.getStudentID());
+                return true;
             }
+            System.out.println("Failed login for student: " + username);
+            return false;
         } catch (SQLException e) {
-            System.err.println("SQL Error: " + e.getMessage());
+            System.err.println("Failed login for student: " + e.getMessage());
             return false;
         }
+        
+    }
+    
+    public void logout() {
+        System.out.println("Logging out student: " + (Session.getCurrentStudent() != null ? Session.getCurrentStudent().getStudentName() : "No student logged in"));
+        Session.clearCurrentStudent();
     }
 
 }

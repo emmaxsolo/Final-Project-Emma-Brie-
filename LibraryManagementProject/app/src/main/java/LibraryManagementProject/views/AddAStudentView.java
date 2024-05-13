@@ -234,7 +234,7 @@ public class AddAStudentView extends javax.swing.JFrame {
                 librarianView.setVisible(true);
                 this.dispose();
             } else {
-                JOptionPane.showMessageDialog(this, "Failed to add student! Please check your inputs or if the student ID already exists.", "Database Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Failed to add student! The student ID already exists.", "Database Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (NumberFormatException nfe) {
             JOptionPane.showMessageDialog(this, "Invalid Student ID. Please enter number in number format.", "Input Error", JOptionPane.ERROR_MESSAGE);

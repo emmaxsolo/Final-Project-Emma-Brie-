@@ -212,7 +212,7 @@ public class StudentLoginView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Invalid username or password.", "Login Failed", JOptionPane.ERROR_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, "Login Successful!", "Login Success", JOptionPane.INFORMATION_MESSAGE);
-            StudentView studentView = new StudentView();
+            StudentView studentView = new StudentView(studentController);
             studentView.setVisible(true);
             this.dispose();
         }

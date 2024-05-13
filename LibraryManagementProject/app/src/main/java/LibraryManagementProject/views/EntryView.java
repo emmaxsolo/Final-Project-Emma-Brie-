@@ -168,7 +168,6 @@ public class EntryView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLibrarianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLibrarianActionPerformed
-        
         LibrarianController librarianController = new LibrarianController(); // Create a new instance of the controller
         LibrarianLoginView librarianLoginView = new LibrarianLoginView(librarianController); // Pass it to the login view
         librarianLoginView.setVisible(true);
@@ -176,7 +175,6 @@ public class EntryView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLibrarianActionPerformed
 
     private void btnStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudentActionPerformed
-        
         StudentController studentController = new StudentController();
         StudentLoginView studentLoginView = new StudentLoginView(studentController);
         studentLoginView.setVisible(true);

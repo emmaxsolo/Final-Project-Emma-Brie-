@@ -61,6 +61,7 @@ public class DatabaseInitializer {
                     "username TEXT, " +
                     "password TEXT, " +
                     "added_by_librarian INTEGER, " +
+                    "is_approved_by_librarian BOOLEAN, " +
                     "FOREIGN KEY (added_by_librarian) REFERENCES Librarians(librarian_id));");
 
             stmt.execute("CREATE TABLE IF NOT EXISTS Books (" +

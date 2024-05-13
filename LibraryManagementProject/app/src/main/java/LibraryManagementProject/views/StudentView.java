@@ -181,7 +181,7 @@ public class StudentView extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(enterReturnBookTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(returnBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(68, 68, 68))))
         );
@@ -206,7 +206,7 @@ public class StudentView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(returnBookButton))
                     .addComponent(jLabel1))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         mainPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {enterReturnBookTextField, returnBookButton});
@@ -239,9 +239,7 @@ public class StudentView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(logOutButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(sidePanelLayout.createSequentialGroup()
-                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+            .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -317,26 +315,21 @@ public class StudentView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addBookButton;
-    private javax.swing.JButton addStudentButton;
     private javax.swing.JLabel booksBorrowedLabel;
     private javax.swing.JTextArea booksBorrowedTextArea;
     private javax.swing.JButton borrowBookButton;
     private javax.swing.JLabel dateTime;
     private javax.swing.JLabel enterReturnBookLabel;
     private javax.swing.JTextField enterReturnBookTextField;
-    private javax.swing.JButton issuedBooksButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logOutButton;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JButton returnBookButton;
     private javax.swing.JButton searchBooksButton;
-    private javax.swing.JPanel sideActionPanel;
     private javax.swing.JPanel sideActionPanel1;
     private javax.swing.JPanel sidePanel;
     private javax.swing.JLabel studentTitleLabel;
-    private javax.swing.JButton viewCatalogButton;
     private javax.swing.JButton viewCatalogButton1;
     // End of variables declaration//GEN-END:variables
 }

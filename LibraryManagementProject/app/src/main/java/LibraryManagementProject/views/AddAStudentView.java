@@ -17,9 +17,6 @@ public class AddAStudentView extends javax.swing.JFrame {
 
     private LibrarianController librarianController;
 
-    /**
-     * Creates new form AddAStudentView
-     */
     public AddAStudentView(LibrarianController librarianController) {
         this.librarianController = librarianController;
         initComponents();

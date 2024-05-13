@@ -53,7 +53,7 @@ public class LibrarianController {
                         rs.getString("password")
                 );
                 Session.setCurrentLibrarian(loggedInLibrarian); // Set the current librarian in session
-                System.out.println("Successful login for student ID: " + loggedInLibrarian.getLibrarianID());
+                System.out.println("Successful login for librarian ID: " + loggedInLibrarian.getLibrarianID());
                 return true;
             }
             System.out.println("Login failed for username: " + username);

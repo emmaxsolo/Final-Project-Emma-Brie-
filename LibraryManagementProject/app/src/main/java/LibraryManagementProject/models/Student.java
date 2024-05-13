@@ -7,7 +7,7 @@ package LibraryManagementProject.models;
 
 /**
  *
- * @author bridj
+ * @author bridj,emmas
  */
 public class Student {
     private int studentID;

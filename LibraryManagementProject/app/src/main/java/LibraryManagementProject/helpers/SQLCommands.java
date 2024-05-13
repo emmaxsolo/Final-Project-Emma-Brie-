@@ -6,7 +6,7 @@ package LibraryManagementProject.helpers;
 
 /**
  *
- * @author bridj
+ * @author bridj,emmas
  */
 public class SQLCommands {
     // TBA query commands

@@ -4,36 +4,39 @@
 package LibraryManagementProject;
 
 import LibraryManagementProject.controllers.LibrarianController;
+import LibraryManagementProject.controllers.MainController;
+import LibraryManagementProject.views.EntryView;
 import LibraryManagementProject.views.LibrarianLoginView;
 import LibraryManagementProject.views.LibrarianSignUpView;
-    import java.sql.Connection;
-    import java.sql.DriverManager;
-    import java.sql.ResultSet;
-    import java.sql.SQLException;
-    import java.sql.Statement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class App {
-   
 
     public static void main(String[] args) {
-//        LibrarianController librarianController = new LibrarianController();
-//
-//        java.awt.EventQueue.invokeLater(() -> {
-//            new LibrarianSignUpView(librarianController).setVisible(true);
-//            new LibrarianLoginView(librarianController).setVisible(true);
-//        });
+        DatabaseInitializer.getInstance();
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                MainController mainController = MainController.getInstance();
+                new EntryView(mainController).setVisible(true);
+            }
+        });
     }
 }
 /*
 
 Testing 2
 
-*/
-/*
+ */
+ /*
 
 HEY EM! THIS IS A TEST TO SHOW HOW TO CREATE AND MERGE TO MAIN BRANCH
 
-*/
+ */
 /*
 
 

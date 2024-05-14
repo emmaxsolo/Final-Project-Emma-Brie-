@@ -4,6 +4,7 @@
  */
 package LibraryManagementProject.views;
 
+import LibraryManagementProject.controllers.MainController;
 import LibraryManagementProject.models.*;
 import LibraryManagementProject.controllers.StudentController;
 import java.time.LocalDateTime;
@@ -14,10 +15,10 @@ import java.time.format.DateTimeFormatter;
  * @author emmas
  */
 public class StudentView extends javax.swing.JFrame {
-    private StudentController studentController;
+    private MainController mainController;
 
-    public StudentView(StudentController studentController) {
-        this.studentController = studentController;
+    public StudentView(MainController mainController) {
+        this.mainController = mainController;
         initComponents();
         currentDateTime();
     }
@@ -266,8 +267,8 @@ public class StudentView extends javax.swing.JFrame {
     }//GEN-LAST:event_returnBookFieldActionPerformed
 
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
-        studentController.logout();
-        EntryView entryView = new EntryView();
+        mainController.getStudentController().logout();
+        EntryView entryView = new EntryView(mainController);
         entryView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_logOutButtonActionPerformed

@@ -1,6 +1,7 @@
 package LibraryManagementProject.views;
 
 import LibraryManagementProject.controllers.LibrarianController;
+import LibraryManagementProject.controllers.MainController;
 import javax.swing.JOptionPane;
 
 /**
@@ -9,10 +10,12 @@ import javax.swing.JOptionPane;
  */
 public class LibrarianSignUpView extends javax.swing.JFrame {
 
+    private MainController mainController;
     private LibrarianController librarianController;
 
-    public LibrarianSignUpView(LibrarianController controller) {
-        this.librarianController = controller;
+    public LibrarianSignUpView(MainController mainController) {
+        this.mainController = mainController;
+        this.librarianController = mainController.getLibrarianController();
         initComponents();
     }
 
@@ -175,6 +178,7 @@ public class LibrarianSignUpView extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupActionPerformed
@@ -190,7 +194,7 @@ public class LibrarianSignUpView extends javax.swing.JFrame {
             boolean result = librarianController.registerLibrarian(username, password);
             if (result) {
                 JOptionPane.showMessageDialog(this, "Librarian registered successfully!");
-                LibrarianLoginView librarianLoginView = new LibrarianLoginView(librarianController);
+                LibrarianLoginView librarianLoginView = new LibrarianLoginView(mainController);
                 librarianLoginView.setVisible(true);
                 this.dispose();
             }
@@ -200,8 +204,7 @@ public class LibrarianSignUpView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSignupActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-
-        LibrarianLoginView librarianLoginView = new LibrarianLoginView(librarianController);
+        LibrarianLoginView librarianLoginView = new LibrarianLoginView(mainController);
         librarianLoginView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed

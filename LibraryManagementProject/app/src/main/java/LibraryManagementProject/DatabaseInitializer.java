@@ -2,6 +2,7 @@ package LibraryManagementProject;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -36,7 +37,6 @@ public class DatabaseInitializer {
 
     public Connection getConnection() {
         try {
-            // Check connection and reconnect if necessary
             if (connection == null || connection.isClosed()) {
                 establishConnection();
             }
@@ -48,7 +48,7 @@ public class DatabaseInitializer {
 
     private void initializeDatabase() {
         try (Statement stmt = connection.createStatement()) {
-            // Create tables if they do not exist
+            
             stmt.execute("CREATE TABLE IF NOT EXISTS Librarians (" +
                     "librarian_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "username TEXT NOT NULL UNIQUE, " +
@@ -72,7 +72,8 @@ public class DatabaseInitializer {
                     "price REAL NOT NULL, " +
                     "quantity INTEGER NOT NULL, " +
                     "issued INTEGER NOT NULL DEFAULT 0, " +
-                    "addedDate TEXT NOT NULL);");
+                    "addedDate TEXT NOT NULL, " +
+                    "type CHAR(1) NOT NULL);");
 
             stmt.execute("CREATE TABLE IF NOT EXISTS IssuedBooks (" +
                     "id INTEGER PRIMARY KEY AUTOINCREMENT, " +

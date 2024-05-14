@@ -4,23 +4,23 @@
  */
 package LibraryManagementProject;
 
-import LibraryManagementProject.models.Book;
-import java.util.List;
+//import LibraryManagementProject.models.Book;
+//import java.util.List;
 
 /**
  *
  * @author emmas
  */
 public class Library {
-    List<Book> books;
-
-    public Library(List<Book> books) {
-        this.books = books;
-    }
-    
-    private void connectDataBase(){
-        
-    }
+//    List<Book> books;
+//
+//    public Library(List<Book> books) {
+//        this.books = books;
+//    }
+//    
+//    private void connectDataBase(){
+//        
+//    }
     
     
 }

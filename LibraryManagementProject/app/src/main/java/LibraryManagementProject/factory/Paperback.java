@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package LibraryManagementProject.factory;
 
 /**
@@ -9,38 +5,38 @@ package LibraryManagementProject.factory;
  * @author 1982228,emmas
  */
 public class Paperback implements Book {
-     private int sN;
+     private String sn;
     private String title;
     private String author;
     private String publisher;
     private double price;
-    private int qte;
-    private int qteIssued;
-    
+    private int quantity;
+    private int issued;
+    private String addedDate;
+
     @Override
     public String getType() {
-        return "PaperBack";
+        return "Paperback";
     }
 
     public Paperback() {
+        
     }
 
-    public Paperback(int sN, String title, String author, String publisher, double price,int qte, int qteIssued) {
-        this.sN = sN;
+    public Paperback(String sn, String title, String author, String publisher, double price, int quantity, int issued, String addedDate) {
+        this.sn = sn;
         this.title = title;
         this.author = author;
         this.publisher = publisher;
         this.price = price;
-        this.qte = qte;
-        this.qteIssued = qteIssued;
+        this.quantity = quantity;
+        this.issued = issued;
+        this.addedDate = addedDate;
     }
 
-   
-
-     
     @Override
-    public int getSN() {
-        return sN;
+    public String getSN() {
+        return sn;
     }
 
     @Override
@@ -53,15 +49,14 @@ public class Paperback implements Book {
         return publisher;
     }
 
-
     @Override
     public int getQte() {
-        return qte;
+        return quantity;
     }
 
     @Override
     public int getQteIssued() {
-        return qteIssued;
+        return issued;
     }
 
     @Override
@@ -73,6 +68,10 @@ public class Paperback implements Book {
     public String getAuthor() {
         return author;
     }
-    
+
+    @Override
+    public String getAddedDate() {
+        return addedDate;
+    }
     
 }

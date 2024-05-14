@@ -1,21 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package LibraryManagementProject.views;
 
 import LibraryManagementProject.DatabaseInitializer;
-import LibraryManagementProject.controllers.LibrarianController;
-import LibraryManagementProject.controllers.StudentController;
+import LibraryManagementProject.controllers.MainController;
 
-/**
- *
- * @author bridj
- */
 public class EntryView extends javax.swing.JFrame {
-
-    public EntryView() {
-
+    private MainController mainController;
+    
+    public EntryView(MainController mainController) {
+        this.mainController = mainController;
         initComponents();
     }
 
@@ -91,11 +83,13 @@ public class EntryView extends javax.swing.JFrame {
             }
         });
 
+        frenchButton.setBackground(new java.awt.Color(202, 233, 255));
         buttonGroup1.add(frenchButton);
         frenchButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         frenchButton.setForeground(new java.awt.Color(27, 73, 101));
         frenchButton.setText("French");
 
+        englishButton.setBackground(new java.awt.Color(202, 233, 255));
         englishButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         englishButton.setForeground(new java.awt.Color(27, 73, 101));
         englishButton.setText("English");
@@ -169,15 +163,13 @@ public class EntryView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLibrarianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLibrarianActionPerformed
-        LibrarianController librarianController = new LibrarianController(); // Create a new instance of the controller
-        LibrarianLoginView librarianLoginView = new LibrarianLoginView(librarianController); // Pass it to the login view
+        LibrarianLoginView librarianLoginView = new LibrarianLoginView(mainController);
         librarianLoginView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnLibrarianActionPerformed
 
     private void btnStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudentActionPerformed
-        StudentController studentController = new StudentController();
-        StudentLoginView studentLoginView = new StudentLoginView(studentController);
+        StudentLoginView studentLoginView = new StudentLoginView(mainController);
         studentLoginView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnStudentActionPerformed
@@ -213,7 +205,8 @@ public class EntryView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EntryView().setVisible(true);
+                MainController mainController = MainController.getInstance();
+                new EntryView(mainController).setVisible(true);
             }
         });
     }

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package LibraryManagementProject.views;
 
 import LibraryManagementProject.controllers.LibrarianController;
@@ -15,16 +11,11 @@ import javax.swing.JOptionPane;
  * @author bridj
  */
 public class AddAStudentView extends javax.swing.JFrame {
-
     private LibrarianController librarianController;
-    private MainController main;
+    private MainController mainController;
 
-    /**
-     * Creates new form AddAStudentView
-     */
-    public AddAStudentView(MainController main, LibrarianController librarianController) {
-        this.main = main;
-        this.librarianController = librarianController;
+    public AddAStudentView(MainController mainController) {
+        this.mainController = mainController;
         initComponents();
     }
 
@@ -211,6 +202,7 @@ public class AddAStudentView extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveStudentButtonActionPerformed
@@ -227,27 +219,27 @@ public class AddAStudentView extends javax.swing.JFrame {
             String contactNumber = contactNumberField.getText().trim();
 
             if (studentName.isEmpty() || contactNumber.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please input all fields.", "Input Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
             if (librarianController.addStudent(studentId, studentName, contactNumber, librarianId)) {
                 JOptionPane.showMessageDialog(this, "Student added successfully!");
-                LibrarianView librarianView = new LibrarianView(main,librarianController);
+                LibrarianView librarianView = new LibrarianView(mainController);
                 librarianView.setVisible(true);
                 this.dispose();
             } else {
-                JOptionPane.showMessageDialog(this, "Failed to add student! The student ID already exists.", "Database Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Student ID already exists in the system.", "DB Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (NumberFormatException nfe) {
-            JOptionPane.showMessageDialog(this, "Invalid Student ID. Please enter number in number format.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please enter the student ID in number format.", "INPUT Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "An unexpected error occurred: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "ERROR: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_saveStudentButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        LibrarianView librarianView = new LibrarianView(main,librarianController);
+        LibrarianView librarianView = new LibrarianView(mainController);
         librarianView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed

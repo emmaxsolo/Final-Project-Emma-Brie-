@@ -12,8 +12,9 @@ public interface Book {
     int getSN();
     String getTitle();
     String getPublisher();
-    boolean isAvailable();
+    double getPrice();
     String getType();
     int getQte();
     int getQteIssued();
+    String getAuthor();
 }

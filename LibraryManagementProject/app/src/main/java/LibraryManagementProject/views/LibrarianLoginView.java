@@ -1,6 +1,7 @@
 package LibraryManagementProject.views;
 
 import LibraryManagementProject.controllers.LibrarianController;
+import LibraryManagementProject.controllers.MainController;
 import LibraryManagementProject.views.*;
 import javax.swing.*;
 
@@ -9,7 +10,7 @@ import javax.swing.*;
  * @author bridj
  */
 public class LibrarianLoginView extends javax.swing.JFrame {
-
+    private MainController main;
     private LibrarianController librarianController;
     private LibrarianSignUpView librarianSignUpView;
     private LibrarianView librarianView;
@@ -206,7 +207,7 @@ public class LibrarianLoginView extends javax.swing.JFrame {
         String password = new String(passwordField.getPassword());
         if (librarianController.logInLibrarian(username, password)) {
             JOptionPane.showMessageDialog(this, "Login Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
-            LibrarianView librarianView = new LibrarianView(librarianController);
+            LibrarianView librarianView = new LibrarianView(main,librarianController);
             librarianView.setVisible(true);
             this.dispose(); 
         } else {

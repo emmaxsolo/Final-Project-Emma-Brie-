@@ -9,12 +9,16 @@ import LibraryManagementProject.models.*;
 import LibraryManagementProject.*;
 import LibraryManagementProject.models.Librarian;
 import LibraryManagementProject.DatabaseInitializer;
+import LibraryManagementProject.factory.Book;
+import LibraryManagementProject.factory.BookFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -111,8 +115,8 @@ public class LibrarianController {
         }
         return false; // Default return value if an error occurs
     }
-    
-    //Method do check if book title exists in the new book table
+
+    //Method do check if book title exists in the book table
     public boolean bookExistsInBooks(String bookTitle) {
         String query = SQLCommands.checkBookExists;
 
@@ -129,69 +133,101 @@ public class LibrarianController {
         return false; // Default return value if an error occurs
     }
 
-    public void addBookToBooks(String bookTitle) {
-    String selectQuery = "SELECT * FROM newBooks WHERE title = ?";
-    String insertQuery = "INSERT INTO books (sn, title, author, publisher, price, quantity, issued, addedDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    public void addBooktoNewBooks(Book newBook) {
+    String insertQuery = "INSERT INTO NEWBOOKS (SN,TITLE,AUTHOR,PUBLISHER,PRICE,QUANTITY,ISSUED) VALUES (?,?,?,?,?,?,?)";
 
     try (Connection conn = DatabaseInitializer.getInstance().getConnection();
-         PreparedStatement selectStmt = conn.prepareStatement(selectQuery);
          PreparedStatement insertStmt = conn.prepareStatement(insertQuery)) {
-
-        selectStmt.setString(1, bookTitle);
-
-        ResultSet rs = selectStmt.executeQuery();
-        // Check if a record with the given title exists in newBooks table
-        if (rs.next()) {
-            // Get the book details from the newBooks table
-            String title = rs.getString("title");
-            String author = rs.getString("author");
-            String publisher = rs.getString("publisher");
-            double price = rs.getDouble("price");
-            int qte = rs.getInt("quantity");
-            int issuedQte = rs.getInt("issued");
-            LocalDateTime currentDate = LocalDateTime.now();
-            Timestamp timestamp = Timestamp.valueOf(currentDate);
-
+        if (bookExistsInNewBooks(newBook.getTitle())) {
+            updateBookQuantityByOne(newBook.getTitle());
+        } else {
             // Set parameters for the insert statement
-            insertStmt.setString(1, rs.getString("sn"));
-            insertStmt.setString(2, title);
-            insertStmt.setString(3, author);
-            insertStmt.setString(4, publisher);
-            insertStmt.setDouble(5, price);
-            insertStmt.setInt(6, qte);
-            insertStmt.setInt(7, issuedQte);
-            insertStmt.setTimestamp(8, timestamp);
+            insertStmt.setInt(1, newBook.getSN());
+            insertStmt.setString(2, newBook.getTitle());
+            insertStmt.setString(3, newBook.getAuthor());
+            insertStmt.setString(4, newBook.getPublisher());
+            insertStmt.setDouble(5, (double) newBook.getPrice());
+            insertStmt.setInt(6, newBook.getQte());
+            insertStmt.setInt(7, newBook.getQteIssued());
 
-            // Execute the insert query
+            // Execute the insert statement
             int rowsInserted = insertStmt.executeUpdate();
             if (rowsInserted > 0) {
-                System.out.println("Book '" + title + "' added to books table with addedDate: " + currentDate);
+                System.out.println("Book added to newBooks table.");
             } else {
-                System.out.println("Failed to add book to books table.");
+                System.out.println("Failed to add book to newBooks table.");
             }
-        } else {
-            System.out.println("Book with title '" + bookTitle + "' not found in newBooks table.");
         }
-    } catch (SQLException e) {
-        System.err.println("Error adding book to books table: " + e.getMessage());
+    } catch (SQLException ex) {
+        System.out.println("Cannot add to newBooks: " + ex.getMessage());
     }
 }
 
+    //add book form newBooks to the library(books)
+    public void addBookToBooks(String bookTitle) {
+        String selectQuery = "SELECT * FROM newBooks WHERE title = ?";
+        String insertQuery = "INSERT INTO books (sn, title, author, publisher, price, quantity, issued, addedDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-    
-       //ill fix this tmr
-    public void updateBookQuantityByOne(String bookTitle) {
-        String query = "UPDATE BOOKS SET QUANTITY = QUANTITY + 1 WHERE TITLE = ?";
+        try ( Connection conn = DatabaseInitializer.getInstance().getConnection();  PreparedStatement selectStmt = conn.prepareStatement(selectQuery);  PreparedStatement insertStmt = conn.prepareStatement(insertQuery)) {
 
-        try ( Connection conn = DatabaseInitializer.getInstance().getConnection();  PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setString(1, bookTitle);
-            ResultSet rs = pstmt.executeQuery();
-            System.out.println("Quantity Updated");
+            selectStmt.setString(1, bookTitle);
+
+            ResultSet rs = selectStmt.executeQuery();
+            // Check if a record with the given title exists in newBooks table
+            if (rs.next()) {
+                // Get the book details from the newBooks table
+                String title = rs.getString("title");
+                String author = rs.getString("author");
+                String publisher = rs.getString("publisher");
+                double price = rs.getDouble("price");
+                int qte = rs.getInt("quantity");
+                int issuedQte = rs.getInt("issued");
+                LocalDateTime currentDate = LocalDateTime.now();
+                Timestamp timestamp = Timestamp.valueOf(currentDate);
+
+                // Set parameters for the insert statement
+                insertStmt.setString(1, rs.getString("sn"));
+                insertStmt.setString(2, title);
+                insertStmt.setString(3, author);
+                insertStmt.setString(4, publisher);
+                insertStmt.setDouble(5, price);
+                insertStmt.setInt(6, qte);
+                insertStmt.setInt(7, issuedQte);
+                insertStmt.setTimestamp(8, timestamp);
+
+                // Execute the insert query
+                int rowsInserted = insertStmt.executeUpdate();
+                if (rowsInserted > 0) {
+                    System.out.println("Book '" + title + "' added to books table with addedDate: " + currentDate);
+                } else {
+                    System.out.println("Failed to add book to books table.");
+                }
+            } else {
+                System.out.println("Book with title '" + bookTitle + "' not found in newBooks table.");
+            }
         } catch (SQLException e) {
-            System.out.println("ERROR");
+            System.err.println("Error adding book to books table: " + e.getMessage());
         }
-
     }
+
+    //ill fix this tmr
+    public void updateBookQuantityByOne(String bookTitle) {
+    String query = "UPDATE BOOKS SET QUANTITY = QUANTITY + 1 WHERE TITLE = ?";
+    
+    try (Connection conn = DatabaseInitializer.getInstance().getConnection();
+         PreparedStatement pstmt = conn.prepareStatement(query)) {
+        pstmt.setString(1, bookTitle);
+        int rowsUpdated = pstmt.executeUpdate();
+        if (rowsUpdated > 0) {
+            System.out.println("Quantity Updated");
+        } else {
+            System.out.println("No book found with title: " + bookTitle);
+        }
+    } catch (SQLException e) {
+        System.err.println("Error updating book quantity: " + e.getMessage());
+    }
+}
+
 
     public void removeBookFromNewBooks(String bookTitle) {
         String query = "DELETE FROM newBooks WHERE title = ?";

@@ -9,12 +9,13 @@ package LibraryManagementProject.factory;
  * @author 1982228,emmas
  */
 public class EBook implements Book {
-    private int sN;
+    private int sn;
     private String title;
+    private String author;
     private String publisher;
-    private boolean isBookAvailable;
-    private int qte;
-    private int qteIssued;
+    private double price;
+    private int quantity;
+    private int issued;
     
     @Override
     public String getType() {
@@ -24,19 +25,20 @@ public class EBook implements Book {
     public EBook() {
     }
 
-    public EBook(int sN, String title, String publisher, boolean isBookAvailable,int qte, int qteIssued) {
-        this.sN = sN;
+    public EBook(int sn,String title,String author,String publisher, double price, int quantity, int issued) {
+        this.sn = sn;
         this.title = title;
+        this.author = author;
         this.publisher = publisher;
-        this.isBookAvailable = isBookAvailable;
-        this.qte = qte;
-        this.qteIssued = qteIssued;
+        this.price = price;
+        this.quantity = quantity;
+        this.issued = issued;
     }
 
    
     @Override
     public int getSN() {
-        return sN;
+        return sn;
     }
 
     @Override
@@ -49,19 +51,26 @@ public class EBook implements Book {
         return publisher;
     }
 
-    @Override
-    public boolean isAvailable() {
-        return isBookAvailable;
-    }
+    
 
     @Override
     public int getQte() {
-        return qte;
+        return quantity;
     }
 
     @Override
     public int getQteIssued() {
-        return qteIssued;
+        return issued;
+    }
+
+    @Override
+    public double getPrice() {
+        return price;
+    }
+
+    @Override
+    public String getAuthor() {
+       return author;
     }
     
 }

@@ -9,10 +9,11 @@ package LibraryManagementProject.factory;
  * @author 1982228,emmas
  */
 public class HardCover implements Book{
-      private int sN;
+    private int sN;
     private String title;
+    private String author;
     private String publisher;
-    private boolean isBookAvailable;
+    private double price;
     private int qte;
     private int qteIssued;
     
@@ -25,11 +26,12 @@ public class HardCover implements Book{
     public HardCover() {
     }
 
-    public HardCover(int sN, String title, String publisher, boolean isBookAvailable, int qte, int qteIssued) {
-        this.sN = sN;
+    public HardCover(int sn,String title,String author,String publisher, double price, int qte, int qteIssued) {
+        this.sN = sn;
         this.title = title;
+        this.author = author;
         this.publisher = publisher;
-        this.isBookAvailable = isBookAvailable;
+        this.price = price;
         this.qte = qte;
         this.qteIssued = qteIssued;
     }
@@ -50,12 +52,6 @@ public class HardCover implements Book{
     public String getPublisher() {
         return publisher;
     }
-
-    @Override
-    public boolean isAvailable() {
-        return isBookAvailable;
-    }
-
     @Override
     public int getQte() {
         return qte;
@@ -64,6 +60,16 @@ public class HardCover implements Book{
     @Override
     public int getQteIssued() {
         return qteIssued;
+    }
+
+    @Override
+    public double getPrice() {
+        return price;
+    }
+
+    @Override
+    public String getAuthor() {
+        return author;
     }
     
 }

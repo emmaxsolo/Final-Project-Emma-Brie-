@@ -31,26 +31,121 @@ public class StudentView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        sidePanel = new javax.swing.JPanel();
-        logOutButton = new javax.swing.JButton();
-        dateTime = new javax.swing.JLabel();
-        sideActionPanel1 = new javax.swing.JPanel();
-        viewCatalogButton1 = new javax.swing.JButton();
-        searchBooksButton = new javax.swing.JButton();
-        borrowBookButton = new javax.swing.JButton();
         mainPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         booksBorrowedTextArea = new javax.swing.JTextArea();
         booksBorrowedLabel = new javax.swing.JLabel();
         returnBookButton = new javax.swing.JButton();
-        enterReturnBookTextField = new javax.swing.JTextField();
-        enterReturnBookLabel = new javax.swing.JLabel();
+        returnBookField = new javax.swing.JTextField();
+        returnBookLabel = new javax.swing.JLabel();
         studentTitleLabel = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        sidePanel = new javax.swing.JPanel();
+        logOutButton = new javax.swing.JButton();
+        dateTime = new javax.swing.JLabel();
+        sideActionPanel1 = new javax.swing.JPanel();
+        viewCatalogButton = new javax.swing.JButton();
+        searchBooksButton = new javax.swing.JButton();
+        borrowBookButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(194, 228, 255));
+        setPreferredSize(new java.awt.Dimension(1000, 600));
+        setSize(new java.awt.Dimension(1000, 600));
+
+        mainPanel.setBackground(new java.awt.Color(194, 228, 255));
+        mainPanel.setPreferredSize(new java.awt.Dimension(700, 600));
+
+        booksBorrowedTextArea.setColumns(20);
+        booksBorrowedTextArea.setRows(5);
+        jScrollPane1.setViewportView(booksBorrowedTextArea);
+
+        booksBorrowedLabel.setFont(new java.awt.Font("Century Gothic", 1, 30)); // NOI18N
+        booksBorrowedLabel.setForeground(new java.awt.Color(27, 73, 101));
+        booksBorrowedLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        booksBorrowedLabel.setText("BOOKS BORROWED");
+        booksBorrowedLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        returnBookButton.setBackground(new java.awt.Color(95, 168, 211));
+        returnBookButton.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        returnBookButton.setForeground(new java.awt.Color(27, 73, 101));
+        returnBookButton.setText("Return Book");
+
+        returnBookField.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        returnBookField.setForeground(new java.awt.Color(27, 73, 101));
+        returnBookField.setCaretColor(new java.awt.Color(202, 233, 255));
+        returnBookField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                returnBookFieldActionPerformed(evt);
+            }
+        });
+
+        returnBookLabel.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        returnBookLabel.setForeground(new java.awt.Color(27, 73, 101));
+        returnBookLabel.setText("Enter book number:");
+
+        studentTitleLabel.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
+        studentTitleLabel.setForeground(new java.awt.Color(27, 73, 101));
+        studentTitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        studentTitleLabel.setText("Student");
+        studentTitleLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/illustrations/libraryDesign4.png"))); // NOI18N
+
+        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
+        mainPanel.setLayout(mainPanelLayout);
+        mainPanelLayout.setHorizontalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainPanelLayout.createSequentialGroup()
+                .addGap(319, 319, 319)
+                .addComponent(studentTitleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+                .addGap(310, 310, 310))
+            .addGroup(mainPanelLayout.createSequentialGroup()
+                .addGap(240, 240, 240)
+                .addComponent(booksBorrowedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(239, 239, 239))
+            .addGroup(mainPanelLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(returnBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                                .addComponent(returnBookLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(returnBookField, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1))
+                .addGap(20, 20, 20))
+        );
+        mainPanelLayout.setVerticalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainPanelLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(studentTitleLabel)
+                .addGap(4, 4, 4)
+                .addComponent(booksBorrowedLabel)
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane1)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(returnBookField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(returnBookLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(returnBookButton))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
 
         sidePanel.setBackground(new java.awt.Color(189, 224, 254));
+        sidePanel.setPreferredSize(new java.awt.Dimension(100, 600));
 
         logOutButton.setBackground(new java.awt.Color(95, 168, 211));
         logOutButton.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
@@ -71,11 +166,11 @@ public class StudentView extends javax.swing.JFrame {
         sideActionPanel1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         sideActionPanel1.setOpaque(false);
 
-        viewCatalogButton1.setBackground(new java.awt.Color(95, 168, 211));
-        viewCatalogButton1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        viewCatalogButton1.setForeground(new java.awt.Color(27, 73, 101));
-        viewCatalogButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/viewCatalogIcon.png"))); // NOI18N
-        viewCatalogButton1.setText("View Catalog");
+        viewCatalogButton.setBackground(new java.awt.Color(95, 168, 211));
+        viewCatalogButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        viewCatalogButton.setForeground(new java.awt.Color(27, 73, 101));
+        viewCatalogButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/viewCatalogIcon.png"))); // NOI18N
+        viewCatalogButton.setText("View Catalog");
 
         searchBooksButton.setBackground(new java.awt.Color(95, 168, 211));
         searchBooksButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -101,115 +196,22 @@ public class StudentView extends javax.swing.JFrame {
             .addGroup(sideActionPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(sideActionPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(viewCatalogButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchBooksButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(borrowBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(viewCatalogButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(searchBooksButton, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                    .addComponent(borrowBookButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-
-        sideActionPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {borrowBookButton, searchBooksButton, viewCatalogButton1});
-
         sideActionPanel1Layout.setVerticalGroup(
             sideActionPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sideActionPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(viewCatalogButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(viewCatalogButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(searchBooksButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(searchBooksButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(borrowBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addComponent(borrowBookButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
-
-        sideActionPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {borrowBookButton, viewCatalogButton1});
-
-        mainPanel.setBackground(new java.awt.Color(194, 228, 255));
-
-        booksBorrowedTextArea.setColumns(20);
-        booksBorrowedTextArea.setRows(5);
-        jScrollPane1.setViewportView(booksBorrowedTextArea);
-
-        booksBorrowedLabel.setFont(new java.awt.Font("Century Gothic", 1, 30)); // NOI18N
-        booksBorrowedLabel.setForeground(new java.awt.Color(27, 73, 101));
-        booksBorrowedLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        booksBorrowedLabel.setText("BOOKS BORROWED");
-        booksBorrowedLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        returnBookButton.setBackground(new java.awt.Color(95, 168, 211));
-        returnBookButton.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        returnBookButton.setForeground(new java.awt.Color(27, 73, 101));
-        returnBookButton.setText("Return Book");
-
-        enterReturnBookTextField.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        enterReturnBookTextField.setForeground(new java.awt.Color(27, 73, 101));
-        enterReturnBookTextField.setCaretColor(new java.awt.Color(202, 233, 255));
-        enterReturnBookTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enterReturnBookTextFieldActionPerformed(evt);
-            }
-        });
-
-        enterReturnBookLabel.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
-        enterReturnBookLabel.setForeground(new java.awt.Color(27, 73, 101));
-        enterReturnBookLabel.setText("Enter book number:");
-
-        studentTitleLabel.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
-        studentTitleLabel.setForeground(new java.awt.Color(27, 73, 101));
-        studentTitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        studentTitleLabel.setText("Student");
-        studentTitleLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/entrylibrary.png"))); // NOI18N
-
-        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
-        mainPanel.setLayout(mainPanelLayout);
-        mainPanelLayout.setHorizontalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(booksBorrowedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1)
-                            .addComponent(studentTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(63, 63, 63))
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(mainPanelLayout.createSequentialGroup()
-                                .addComponent(enterReturnBookLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(enterReturnBookTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(returnBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(68, 68, 68))))
-        );
-
-        mainPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {enterReturnBookTextField, returnBookButton});
-
-        mainPanelLayout.setVerticalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(studentTitleLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(booksBorrowedLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(enterReturnBookLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(enterReturnBookTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(returnBookButton))
-                    .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        mainPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {enterReturnBookTextField, returnBookButton});
 
         javax.swing.GroupLayout sidePanelLayout = new javax.swing.GroupLayout(sidePanel);
         sidePanel.setLayout(sidePanelLayout);
@@ -217,50 +219,51 @@ public class StudentView extends javax.swing.JFrame {
             sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sidePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(sidePanelLayout.createSequentialGroup()
-                        .addGroup(sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(logOutButton)
-                            .addComponent(sideActionPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, 0)
-                        .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(sidePanelLayout.createSequentialGroup()
-                        .addComponent(dateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addComponent(dateTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(sideActionPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(sidePanelLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(logOutButton)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         sidePanelLayout.setVerticalGroup(
             sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sidePanelLayout.createSequentialGroup()
-                .addGap(56, 56, 56)
+            .addGroup(sidePanelLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
                 .addComponent(dateTime)
-                .addGap(118, 118, 118)
-                .addComponent(sideActionPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(103, 103, 103)
+                .addComponent(sideActionPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(logOutButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(213, 213, 213))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(sidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(sidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(sidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void enterReturnBookTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterReturnBookTextFieldActionPerformed
+    private void returnBookFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBookFieldActionPerformed
 
-    }//GEN-LAST:event_enterReturnBookTextFieldActionPerformed
+    }//GEN-LAST:event_returnBookFieldActionPerformed
 
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
         studentController.logout();
@@ -319,17 +322,17 @@ public class StudentView extends javax.swing.JFrame {
     private javax.swing.JTextArea booksBorrowedTextArea;
     private javax.swing.JButton borrowBookButton;
     private javax.swing.JLabel dateTime;
-    private javax.swing.JLabel enterReturnBookLabel;
-    private javax.swing.JTextField enterReturnBookTextField;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logOutButton;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JButton returnBookButton;
+    private javax.swing.JTextField returnBookField;
+    private javax.swing.JLabel returnBookLabel;
     private javax.swing.JButton searchBooksButton;
     private javax.swing.JPanel sideActionPanel1;
     private javax.swing.JPanel sidePanel;
     private javax.swing.JLabel studentTitleLabel;
-    private javax.swing.JButton viewCatalogButton1;
+    private javax.swing.JButton viewCatalogButton;
     // End of variables declaration//GEN-END:variables
 }

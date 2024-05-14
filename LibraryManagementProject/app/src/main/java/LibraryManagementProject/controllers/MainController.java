@@ -4,6 +4,8 @@
  */
 package LibraryManagementProject.controllers;
 
+import LibraryManagementProject.factory.Book;
+import LibraryManagementProject.factory.BookFactory;
 import java.util.HashMap;
 
 /**
@@ -12,16 +14,16 @@ import java.util.HashMap;
  */
 public class MainController {
 
-    LibrarianController librarianController = new LibrarianController();
-    StudentController studentController = new StudentController();
-    MainController main;
+    private LibrarianController librarianController = new LibrarianController();
+    private StudentController studentController = new StudentController();
+    private static MainController main;
 
-   public MainController() {
+   public  MainController() {
         this.librarianController = new LibrarianController();
         this.studentController = new StudentController();
     }
 
-    public MainController getInstance() {
+    public static MainController getInstance() {
         if (main == null) {
             main = new MainController();
         }
@@ -43,5 +45,13 @@ public class MainController {
             System.out.println("Book Does not Exist");
         }
         
+    }
+    
+   //method to order Books
+    //ORDER BOOKS (create books)
+    public void orderBook(char c, int sn,String title,String author,String publisher, double price, int quantity, int issued){
+        BookFactory factory = new BookFactory();
+        Book book = (Book) factory.createBook(c,sn, title, author, publisher, price, quantity, issued);
+        librarianController.addBooktoNewBooks(book);
     }
 }

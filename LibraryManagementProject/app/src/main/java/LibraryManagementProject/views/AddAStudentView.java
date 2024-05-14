@@ -5,6 +5,7 @@
 package LibraryManagementProject.views;
 
 import LibraryManagementProject.controllers.LibrarianController;
+import LibraryManagementProject.controllers.MainController;
 import LibraryManagementProject.models.Librarian;
 import LibraryManagementProject.models.Session;
 import javax.swing.JOptionPane;
@@ -16,11 +17,13 @@ import javax.swing.JOptionPane;
 public class AddAStudentView extends javax.swing.JFrame {
 
     private LibrarianController librarianController;
+    private MainController main;
 
     /**
      * Creates new form AddAStudentView
      */
-    public AddAStudentView(LibrarianController librarianController) {
+    public AddAStudentView(MainController main, LibrarianController librarianController) {
+        this.main = main;
         this.librarianController = librarianController;
         initComponents();
     }
@@ -230,7 +233,7 @@ public class AddAStudentView extends javax.swing.JFrame {
 
             if (librarianController.addStudent(studentId, studentName, contactNumber, librarianId)) {
                 JOptionPane.showMessageDialog(this, "Student added successfully!");
-                LibrarianView librarianView = new LibrarianView(librarianController);
+                LibrarianView librarianView = new LibrarianView(main,librarianController);
                 librarianView.setVisible(true);
                 this.dispose();
             } else {
@@ -244,7 +247,7 @@ public class AddAStudentView extends javax.swing.JFrame {
     }//GEN-LAST:event_saveStudentButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        LibrarianView librarianView = new LibrarianView(librarianController);
+        LibrarianView librarianView = new LibrarianView(main,librarianController);
         librarianView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed

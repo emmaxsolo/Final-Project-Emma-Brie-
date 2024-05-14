@@ -11,10 +11,12 @@ import java.time.format.DateTimeFormatter;
  * @author emmas
  */
 public class LibrarianView extends javax.swing.JFrame {
+    private MainController main;
     private LibrarianController librarianController;
 
     
-    public LibrarianView(LibrarianController librarianController) {
+    public LibrarianView(MainController main, LibrarianController librarianController) {
+        this.main = main;
         this.librarianController = librarianController;
         initComponents();
         currentDateTime();
@@ -86,6 +88,7 @@ public class LibrarianView extends javax.swing.JFrame {
         viewCatalogButton = new javax.swing.JButton();
         addStudentButton = new javax.swing.JButton();
         issuedBooksButton = new javax.swing.JButton();
+        orderBook = new javax.swing.JButton();
 
         booksBorrowedTextArea1.setColumns(20);
         booksBorrowedTextArea1.setRows(5);
@@ -352,6 +355,16 @@ public class LibrarianView extends javax.swing.JFrame {
         issuedBooksButton.setForeground(new java.awt.Color(27, 73, 101));
         issuedBooksButton.setText("Issued Books");
 
+        orderBook.setBackground(new java.awt.Color(95, 168, 211));
+        orderBook.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        orderBook.setForeground(new java.awt.Color(27, 73, 101));
+        orderBook.setText("Order a book");
+        orderBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orderBookActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout sideActionPanelLayout = new javax.swing.GroupLayout(sideActionPanel);
         sideActionPanel.setLayout(sideActionPanelLayout);
         sideActionPanelLayout.setHorizontalGroup(
@@ -359,24 +372,26 @@ public class LibrarianView extends javax.swing.JFrame {
             .addGroup(sideActionPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(sideActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(addStudentButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addStudentButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
                     .addComponent(issuedBooksButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(addBookButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(viewCatalogButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(viewCatalogButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(orderBook, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         sideActionPanelLayout.setVerticalGroup(
             sideActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sideActionPanelLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(viewCatalogButton, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(addBookButton, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(issuedBooksButton, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(addStudentButton, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                .addGap(26, 26, 26))
+                .addComponent(viewCatalogButton, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(orderBook, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                .addGap(12, 12, 12)
+                .addComponent(addBookButton, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(issuedBooksButton, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(addStudentButton, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout sidePanelLayout = new javax.swing.GroupLayout(sidePanel);
@@ -401,9 +416,9 @@ public class LibrarianView extends javax.swing.JFrame {
             .addGroup(sidePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(dateTime)
-                .addGap(174, 174, 174)
+                .addGap(98, 98, 98)
                 .addComponent(sideActionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(logOutButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -428,7 +443,7 @@ public class LibrarianView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentButtonActionPerformed
-        AddAStudentView addAStudentView = new AddAStudentView(librarianController);
+        AddAStudentView addAStudentView = new AddAStudentView(main,librarianController);
         addAStudentView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_addStudentButtonActionPerformed
@@ -441,11 +456,16 @@ public class LibrarianView extends javax.swing.JFrame {
     }//GEN-LAST:event_logOutButtonActionPerformed
 
     private void addBookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookButtonActionPerformed
-        MainController main = new MainController();
-        AddBookView addBook = new AddBookView(main.getInstance());
+        AddBookView addBook = new AddBookView(main,librarianController);
         addBook.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_addBookButtonActionPerformed
+
+    private void orderBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderBookActionPerformed
+       OrderNewBooksView orderBooks = new OrderNewBooksView(main,librarianController);
+       orderBooks.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_orderBookActionPerformed
 
     public void currentDateTime() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("YYYY/MM/dd HH:mm:ss");
@@ -480,11 +500,13 @@ public class LibrarianView extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new LibrarianView().setVisible(true);
-//            }
-//        });
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                MainController main = new MainController();
+                LibrarianController libCntrl = new LibrarianController();
+                new LibrarianView(main,libCntrl).setVisible(true);
+            }
+       });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -533,6 +555,7 @@ public class LibrarianView extends javax.swing.JFrame {
     private javax.swing.JLabel librarianTitleLabel;
     private javax.swing.JButton logOutButton;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JButton orderBook;
     private javax.swing.JButton returnButton;
     private javax.swing.JButton returnButton1;
     private javax.swing.JPanel sideActionPanel;

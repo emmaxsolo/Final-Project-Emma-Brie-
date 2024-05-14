@@ -9,10 +9,11 @@ package LibraryManagementProject.factory;
  * @author 1982228,emmas
  */
 public class Paperback implements Book {
-    private int sN;
+     private int sN;
     private String title;
+    private String author;
     private String publisher;
-    private boolean isBookAvailable;
+    private double price;
     private int qte;
     private int qteIssued;
     
@@ -24,11 +25,12 @@ public class Paperback implements Book {
     public Paperback() {
     }
 
-    public Paperback(int sN, String title, String publisher, boolean isBookAvailable, int qte, int qteIssued) {
+    public Paperback(int sN, String title, String author, String publisher, double price,int qte, int qteIssued) {
         this.sN = sN;
         this.title = title;
+        this.author = author;
         this.publisher = publisher;
-        this.isBookAvailable = isBookAvailable;
+        this.price = price;
         this.qte = qte;
         this.qteIssued = qteIssued;
     }
@@ -51,10 +53,6 @@ public class Paperback implements Book {
         return publisher;
     }
 
-    @Override
-    public boolean isAvailable() {
-        return isBookAvailable;
-    }
 
     @Override
     public int getQte() {
@@ -64,6 +62,16 @@ public class Paperback implements Book {
     @Override
     public int getQteIssued() {
         return qteIssued;
+    }
+
+    @Override
+    public double getPrice() {
+        return price;
+    }
+
+    @Override
+    public String getAuthor() {
+        return author;
     }
     
     

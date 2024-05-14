@@ -4,6 +4,7 @@
  */
 package LibraryManagementProject.views;
 
+import LibraryManagementProject.controllers.LibrarianController;
 import LibraryManagementProject.controllers.MainController;
 import javax.swing.JOptionPane;
 
@@ -14,11 +15,13 @@ import javax.swing.JOptionPane;
 public class AddBookView extends javax.swing.JFrame {
 
     private MainController main;
+    private LibrarianController libcntrl;
     /**
      * Creates new form AddBookView
      */
-    public AddBookView(MainController main) {
+    public AddBookView(MainController main,LibrarianController libcntrl) {
         this.main = main;
+        this.libcntrl=libcntrl;
         initComponents();
     }
 
@@ -64,6 +67,11 @@ public class AddBookView extends javax.swing.JFrame {
         backButton.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         backButton.setForeground(new java.awt.Color(27, 73, 101));
         backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -131,6 +139,12 @@ public class AddBookView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_addBookButtonActionPerformed
 
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        LibrarianView view = new LibrarianView(main,libcntrl);
+        view.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_backButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -162,7 +176,8 @@ public class AddBookView extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                  MainController mainController = new MainController();
-                new AddBookView(mainController).setVisible(true);
+                 LibrarianController lib = new LibrarianController();
+                new AddBookView(mainController,lib).setVisible(true);
             }
         });
     }

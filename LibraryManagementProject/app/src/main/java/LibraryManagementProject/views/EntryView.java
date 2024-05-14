@@ -2,13 +2,20 @@ package LibraryManagementProject.views;
 
 import LibraryManagementProject.DatabaseInitializer;
 import LibraryManagementProject.controllers.MainController;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class EntryView extends javax.swing.JFrame {
     private MainController mainController;
+    private ResourceBundle bundle;
+    private ResourceBundle bundleFR;
     
     public EntryView(MainController mainController) {
         this.mainController = mainController;
         initComponents();
+        bundle = ResourceBundle.getBundle("EntryView");
+        bundleFR = ResourceBundle.getBundle("EntryView_fr_FR", Locale.FRANCE);
+   
     }
 
     /**
@@ -88,11 +95,22 @@ public class EntryView extends javax.swing.JFrame {
         frenchButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         frenchButton.setForeground(new java.awt.Color(27, 73, 101));
         frenchButton.setText("French");
+        frenchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frenchButtonActionPerformed(evt);
+            }
+        });
 
         englishButton.setBackground(new java.awt.Color(202, 233, 255));
+        buttonGroup1.add(englishButton);
         englishButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         englishButton.setForeground(new java.awt.Color(27, 73, 101));
         englishButton.setText("English");
+        englishButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                englishButtonActionPerformed(evt);
+            }
+        });
 
         titleLabel.setFont(new java.awt.Font("Century Gothic", 1, 30)); // NOI18N
         titleLabel.setForeground(new java.awt.Color(27, 73, 101));
@@ -104,7 +122,7 @@ public class EntryView extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -125,8 +143,8 @@ public class EntryView extends javax.swing.JFrame {
                         .addComponent(subtitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(223, 223, 223))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58))))
+                        .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48))))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnLibrarian, btnStudent});
@@ -173,6 +191,20 @@ public class EntryView extends javax.swing.JFrame {
         studentLoginView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnStudentActionPerformed
+
+    private void frenchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frenchButtonActionPerformed
+        titleLabel.setText(bundleFR.getString("Title"));
+        subtitleLabel.setText(bundleFR.getString("Iam"));
+        btnLibrarian.setText(bundleFR.getString("Librarian"));
+        btnStudent.setText(bundleFR.getString("Student"));
+    }//GEN-LAST:event_frenchButtonActionPerformed
+
+    private void englishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_englishButtonActionPerformed
+        titleLabel.setText(bundle.getString("Title"));
+        subtitleLabel.setText(bundle.getString("Iam"));
+        btnLibrarian.setText(bundle.getString("Librarian"));
+        btnStudent.setText(bundle.getString("Student"));
+    }//GEN-LAST:event_englishButtonActionPerformed
 
     /**
      * @param args the command line arguments

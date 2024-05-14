@@ -65,7 +65,10 @@ public class CatalogViewLibrarian extends javax.swing.JFrame {
             }
         });
 
+        bookTextArea.setEditable(false);
+        bookTextArea.setBackground(new java.awt.Color(214, 237, 255));
         bookTextArea.setColumns(20);
+        bookTextArea.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         bookTextArea.setRows(5);
         catalogScrollPane.setViewportView(bookTextArea);
 

@@ -82,7 +82,7 @@ public class DatabaseInitializer {
                     "FOREIGN KEY (SN) REFERENCES Books(SN), " +
                     "FOREIGN KEY (StId) REFERENCES Students(student_id));");
 
-            System.out.println("Tables created successfully.");
+            System.out.println("Tables initialized successfully.");
         } catch (SQLException e) {
             System.err.println("Error creating tables: " + e.getMessage());
         }

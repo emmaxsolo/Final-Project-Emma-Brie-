@@ -10,15 +10,13 @@ import javax.swing.*;
  * @author bridj
  */
 public class LibrarianLoginView extends javax.swing.JFrame {
-    private MainController main;
+    private MainController mainController;
     private LibrarianController librarianController;
-    private LibrarianSignUpView librarianSignUpView;
-    private LibrarianView librarianView;
 
-    public LibrarianLoginView(LibrarianController librarianController) {
-        this.librarianController = librarianController;
-        this.librarianSignUpView = librarianSignUpView;
-        this.librarianView = librarianView;
+
+    public LibrarianLoginView(MainController mainController) {
+        this.mainController = mainController;
+        this.librarianController = mainController.getLibrarianController();
         initComponents();
     }
 
@@ -194,10 +192,11 @@ public class LibrarianLoginView extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        EntryView entryView = new EntryView();
+        EntryView entryView = new EntryView(mainController);
         entryView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
@@ -207,17 +206,16 @@ public class LibrarianLoginView extends javax.swing.JFrame {
         String password = new String(passwordField.getPassword());
         if (librarianController.logInLibrarian(username, password)) {
             JOptionPane.showMessageDialog(this, "Login Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
-            LibrarianView librarianView = new LibrarianView(main,librarianController);
+            LibrarianView librarianView = new LibrarianView(mainController);
             librarianView.setVisible(true);
-            this.dispose(); 
+            this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Invalid credentials.", "Login Failed", JOptionPane.ERROR_MESSAGE);
         }
-
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void labelSignUpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSignUpMouseClicked
-        LibrarianSignUpView librarianSignUpView = new LibrarianSignUpView(librarianController);
+        LibrarianSignUpView librarianSignUpView = new LibrarianSignUpView(mainController);
         librarianSignUpView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_labelSignUpMouseClicked

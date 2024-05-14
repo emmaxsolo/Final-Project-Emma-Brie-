@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
+
 package LibraryManagementProject.factory;
 
 /**
@@ -9,7 +6,7 @@ package LibraryManagementProject.factory;
  * @author 1982228,emmas
  */
 public interface Book {
-    int getSN();
+    String getSN();
     String getTitle();
     String getPublisher();
     double getPrice();
@@ -17,4 +14,5 @@ public interface Book {
     int getQte();
     int getQteIssued();
     String getAuthor();
+    String getAddedDate();
 }

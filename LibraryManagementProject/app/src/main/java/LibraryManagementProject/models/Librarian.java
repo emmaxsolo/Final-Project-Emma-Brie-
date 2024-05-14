@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package LibraryManagementProject.models;
 
-/**
- *
- * @author bridj
- */
 public class Librarian {
     private int librarianID;
     private String username;
@@ -42,6 +34,5 @@ public class Librarian {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
 }

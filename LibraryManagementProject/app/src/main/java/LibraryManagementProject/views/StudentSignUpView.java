@@ -4,6 +4,7 @@
  */
 package LibraryManagementProject.views;
 
+import LibraryManagementProject.controllers.MainController;
 import LibraryManagementProject.controllers.StudentController;
 import javax.swing.JOptionPane;
 
@@ -13,13 +14,15 @@ import javax.swing.JOptionPane;
  */
 public class StudentSignUpView extends javax.swing.JFrame {
 
+    private MainController mainController;
     private StudentController studentController;
 
     /**
      * Creates new form StudentSignUpView
      */
-    public StudentSignUpView(StudentController studentController) {
-        this.studentController = new StudentController();  // Ensure the controller is initialized properly
+    public StudentSignUpView(MainController mainController) {
+        this.mainController = mainController;
+        this.studentController = mainController.getStudentController();
         initComponents();
     }
 
@@ -204,10 +207,11 @@ public class StudentSignUpView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupActionPerformed
@@ -223,7 +227,7 @@ public class StudentSignUpView extends javax.swing.JFrame {
 
             if (studentController.registerStudent(studentId, username, password)) {
                 JOptionPane.showMessageDialog(this, "Sign up successful!");
-                StudentLoginView studentLoginView = new StudentLoginView(studentController);
+                StudentLoginView studentLoginView = new StudentLoginView(mainController);
                 studentLoginView.setVisible(true);
                 this.dispose();
             } else {
@@ -237,9 +241,8 @@ public class StudentSignUpView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSignupActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-
-        StudentLoginView studentLoginView = new StudentLoginView(studentController);
-        studentLoginView.setVisible(true);
+        EntryView entryView = new EntryView(mainController);
+        entryView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 

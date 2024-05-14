@@ -4,6 +4,7 @@
  */
 package LibraryManagementProject.views;
 
+import LibraryManagementProject.controllers.MainController;
 import LibraryManagementProject.controllers.StudentController;
 import LibraryManagementProject.views.StudentView;
 import javax.swing.JOptionPane;
@@ -13,18 +14,16 @@ import javax.swing.JOptionPane;
  * @author emmas
  */
 public class StudentLoginView extends javax.swing.JFrame {
-
+    private MainController mainController;
     private StudentController studentController;
-    private StudentSignUpView studentSignUpView;
-    private StudentView studentView;
+
 
     /**
      * Creates new form StudentLoginView
      */
-    public StudentLoginView(StudentController studentController) {
-        this.studentController = studentController;
-        this.studentSignUpView = studentSignUpView;
-        this.studentView = studentView;
+    public StudentLoginView(MainController mainController) {
+        this.mainController = mainController;
+        this.studentController = mainController.getStudentController();
         initComponents();
     }
 
@@ -197,6 +196,7 @@ public class StudentLoginView extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
@@ -212,20 +212,20 @@ public class StudentLoginView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Invalid username or password.", "Login Failed", JOptionPane.ERROR_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, "Login Successful!", "Login Success", JOptionPane.INFORMATION_MESSAGE);
-            StudentView studentView = new StudentView(studentController);
+            StudentView studentView = new StudentView(mainController);
             studentView.setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        EntryView entryView = new EntryView();
+        EntryView entryView = new EntryView(mainController);
         entryView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void labelSignUpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSignUpMouseClicked
-        StudentSignUpView studentSignUpView = new StudentSignUpView(studentController);
+        StudentSignUpView studentSignUpView = new StudentSignUpView(mainController);
         studentSignUpView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_labelSignUpMouseClicked

@@ -4,17 +4,22 @@
  */
 package LibraryManagementProject.views;
 
+import LibraryManagementProject.controllers.LibrarianController;
+import LibraryManagementProject.controllers.MainController;
+import LibraryManagementProject.factory.Book;
+import java.util.Map;
+
 /**
  *
  * @author emmas
  */
 public class CatalogViewLibrarian extends javax.swing.JFrame {
-
     /**
      * Creates new form CatalogViewLibrarian
      */
     public CatalogViewLibrarian() {
         initComponents();
+        displayBooks();
     }
 
     /**
@@ -28,9 +33,9 @@ public class CatalogViewLibrarian extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         catalogLabel = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        librarianCatalogTextArea = new javax.swing.JTextArea();
         backButton = new javax.swing.JButton();
+        catalogScrollPane = new javax.swing.JScrollPane();
+        bookTextArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,16 +51,12 @@ public class CatalogViewLibrarian extends javax.swing.JFrame {
         });
 
         catalogLabel.setBackground(new java.awt.Color(27, 73, 101));
-        catalogLabel.setFont(new java.awt.Font("Modern No. 20", 1, 36)); // NOI18N
+        catalogLabel.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         catalogLabel.setForeground(new java.awt.Color(27, 73, 101));
         catalogLabel.setText("Book Catalog");
 
-        librarianCatalogTextArea.setColumns(20);
-        librarianCatalogTextArea.setRows(5);
-        jScrollPane1.setViewportView(librarianCatalogTextArea);
-
         backButton.setBackground(new java.awt.Color(95, 168, 211));
-        backButton.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
+        backButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         backButton.setForeground(new java.awt.Color(27, 73, 101));
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -63,6 +64,10 @@ public class CatalogViewLibrarian extends javax.swing.JFrame {
                 backButtonActionPerformed(evt);
             }
         });
+
+        bookTextArea.setColumns(20);
+        bookTextArea.setRows(5);
+        catalogScrollPane.setViewportView(bookTextArea);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -77,20 +82,20 @@ public class CatalogViewLibrarian extends javax.swing.JFrame {
                         .addGap(15, 15, 15)
                         .addComponent(backButton))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                        .addGap(33, 33, 33)
+                        .addComponent(catalogScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(catalogLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(catalogScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(backButton)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -112,9 +117,27 @@ public class CatalogViewLibrarian extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1AncestorMoved
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
+        MainController mainController = new MainController();
+        LibrarianView librarianView = new LibrarianView(mainController);
+        librarianView.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
+  // Method to fetch and display books
+    private void displayBooks() {
+      MainController mainController = MainController.getInstance();
+        Map<String, Book> bookCatalog = mainController.getBookCatalog();
 
+        StringBuilder catalogText = new StringBuilder();
+        for (Book book : bookCatalog.values()) {
+            catalogText.append("Title: ").append(book.getTitle()).append("\n")
+                    .append("Author: ").append(book.getAuthor()).append("\n")
+                    .append("Publisher: ").append(book.getPublisher()).append("\n")
+                    .append("Price: ").append(book.getPrice()).append("\n")
+                    .append("Quantity: ").append(book.getQte()).append("\n\n");
+        }
+
+        bookTextArea.setText(catalogText.toString());
+    }
     /**
      * @param args the command line arguments
      */
@@ -152,9 +175,9 @@ public class CatalogViewLibrarian extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
+    private javax.swing.JTextArea bookTextArea;
     private javax.swing.JLabel catalogLabel;
+    private javax.swing.JScrollPane catalogScrollPane;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea librarianCatalogTextArea;
     // End of variables declaration//GEN-END:variables
 }

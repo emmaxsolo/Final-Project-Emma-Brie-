@@ -342,6 +342,11 @@ public class LibrarianView extends javax.swing.JFrame {
         viewCatalogButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         viewCatalogButton.setForeground(new java.awt.Color(27, 73, 101));
         viewCatalogButton.setText("View Catalog");
+        viewCatalogButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewCatalogButtonActionPerformed(evt);
+            }
+        });
 
         addStudentButton.setBackground(new java.awt.Color(95, 168, 211));
         addStudentButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -462,6 +467,12 @@ public class LibrarianView extends javax.swing.JFrame {
         addBookView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_addBookButtonActionPerformed
+
+    private void viewCatalogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCatalogButtonActionPerformed
+        CatalogViewLibrarian view = new CatalogViewLibrarian();
+        view.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_viewCatalogButtonActionPerformed
 
     public void currentDateTime() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("YYYY/MM/dd HH:mm:ss");

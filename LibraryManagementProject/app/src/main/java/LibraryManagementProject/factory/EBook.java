@@ -17,7 +17,7 @@ public class EBook implements Book {
 
     @Override
     public String getType() {
-        return "E";
+        return "Ebook";
     }
 
     public EBook() {
@@ -32,6 +32,15 @@ public class EBook implements Book {
         this.quantity = quantity;
         this.issued = issued;
         this.addedDate = addedDate;
+    }
+    
+    public EBook(String sn, String title, String author, String publisher, double price, int quantity) {
+        this.sn = sn;
+        this.title = title;
+        this.author = author;
+        this.publisher = publisher;
+        this.price = price;
+        this.quantity = quantity;
     }
 
     @Override

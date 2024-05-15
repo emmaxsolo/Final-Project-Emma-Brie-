@@ -90,7 +90,7 @@ public class AddBookView extends javax.swing.JFrame {
         });
 
         addBookInputPanel.setBackground(new java.awt.Color(214, 237, 255));
-        addBookInputPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        addBookInputPanel.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         snLabel.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         snLabel.setForeground(new java.awt.Color(27, 73, 101));
@@ -136,11 +136,11 @@ public class AddBookView extends javax.swing.JFrame {
 
         snTextField.setBackground(new java.awt.Color(214, 237, 255));
         snTextField.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        snTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        snTextField.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         titleTextField.setBackground(new java.awt.Color(214, 237, 255));
         titleTextField.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        titleTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        titleTextField.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         titleTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 titleTextFieldActionPerformed(evt);
@@ -149,23 +149,23 @@ public class AddBookView extends javax.swing.JFrame {
 
         authorTextField.setBackground(new java.awt.Color(214, 237, 255));
         authorTextField.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        authorTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        authorTextField.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         publisherTextField.setBackground(new java.awt.Color(214, 237, 255));
         publisherTextField.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        publisherTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        publisherTextField.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         priceTextField.setBackground(new java.awt.Color(214, 237, 255));
         priceTextField.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        priceTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        priceTextField.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         qteTextField.setBackground(new java.awt.Color(214, 237, 255));
         qteTextField.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        qteTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        qteTextField.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         typeTextField.setBackground(new java.awt.Color(214, 237, 255));
         typeTextField.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        typeTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        typeTextField.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         javax.swing.GroupLayout addBookInputPanelLayout = new javax.swing.GroupLayout(addBookInputPanel);
         addBookInputPanel.setLayout(addBookInputPanelLayout);
@@ -279,7 +279,7 @@ public class AddBookView extends javax.swing.JFrame {
         clearFieldsButton.setText("Clear");
 
         addedBooksTable.setBackground(new java.awt.Color(214, 237, 255));
-        addedBooksTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        addedBooksTable.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         addedBooksTable.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         addedBooksTable.setForeground(new java.awt.Color(27, 73, 101));
         addedBooksTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -345,12 +345,12 @@ public class AddBookView extends javax.swing.JFrame {
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addComponent(addBookInputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(mainPanelLayout.createSequentialGroup()
                                 .addGap(8, 8, 8)
                                 .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(addBookButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(clearFieldsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(clearFieldsButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(addBookButton)))
                     .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(41, 41, 41))
         );
@@ -425,7 +425,7 @@ public class AddBookView extends javax.swing.JFrame {
         DefaultTableModel tableModel = (DefaultTableModel) addedBooksTable.getModel();
         tableModel.setRowCount(0); 
 
-        Map<String, Book> bookCatalog = mainController.getBookCatalog();
+        Map<String, Book> bookCatalog = mainController.getBookCatalogLibarian();
         for (Book book : bookCatalog.values()) {
             tableModel.addRow(new Object[]{
                     book.getSN(),

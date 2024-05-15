@@ -9,6 +9,10 @@ import LibraryManagementProject.models.*;
 import LibraryManagementProject.controllers.StudentController;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import LibraryManagementProject.factory.Book;
+import java.util.Map;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -163,8 +167,6 @@ public class StudentView extends javax.swing.JFrame {
         dateTime.setText("jLabel1");
         dateTime.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(27, 73, 101)));
 
-        sideActionPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Actions", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 1, 14), new java.awt.Color(27, 73, 101))); // NOI18N
-        sideActionPanel1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         sideActionPanel1.setOpaque(false);
 
         viewCatalogButton.setBackground(new java.awt.Color(95, 168, 211));
@@ -172,6 +174,11 @@ public class StudentView extends javax.swing.JFrame {
         viewCatalogButton.setForeground(new java.awt.Color(27, 73, 101));
         viewCatalogButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/viewCatalogIcon.png"))); // NOI18N
         viewCatalogButton.setText("View Catalog");
+        viewCatalogButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewCatalogButtonActionPerformed(evt);
+            }
+        });
 
         searchBooksButton.setBackground(new java.awt.Color(95, 168, 211));
         searchBooksButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -198,7 +205,7 @@ public class StudentView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(sideActionPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(viewCatalogButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(searchBooksButton, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                    .addComponent(searchBooksButton, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
                     .addComponent(borrowBookButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -206,11 +213,11 @@ public class StudentView extends javax.swing.JFrame {
             sideActionPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sideActionPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(viewCatalogButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(viewCatalogButton, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(searchBooksButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(searchBooksButton, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(borrowBookButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(borrowBookButton, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -276,6 +283,12 @@ public class StudentView extends javax.swing.JFrame {
     private void searchBooksButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBooksButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_searchBooksButtonActionPerformed
+
+    private void viewCatalogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCatalogButtonActionPerformed
+        CatalogViewStudent catalogViewStudent = new CatalogViewStudent(mainController);
+        catalogViewStudent.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_viewCatalogButtonActionPerformed
 
     public void currentDateTime() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("YYYY/MM/dd HH:mm:ss");

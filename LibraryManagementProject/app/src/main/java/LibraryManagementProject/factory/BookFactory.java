@@ -18,5 +18,19 @@ public class BookFactory {
                 throw new IllegalArgumentException("Invalid book type: " + type);
         }
     }
+    
+    public Book viewBook(String sn, String title, String author, String publisher, double price, int quantity, char type) {
+        switch (type) {
+            case 'E':
+                return new EBook(sn, title, author, publisher, price, quantity);
+            case 'H':
+                return new HardCover(sn, title, author, publisher, price, quantity);
+            case 'P':
+                return new Paperback(sn, title, author, publisher, price, quantity);
+            default:
+                throw new IllegalArgumentException("Invalid book type: " + type);
+        }
+    }
+    
 
 }

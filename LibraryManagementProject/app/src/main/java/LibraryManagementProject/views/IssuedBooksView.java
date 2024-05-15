@@ -4,16 +4,19 @@
  */
 package LibraryManagementProject.views;
 
+import LibraryManagementProject.controllers.MainController;
+
 /**
  *
  * @author emmas
  */
 public class IssuedBooksView extends javax.swing.JFrame {
-
+    public MainController mainController;
     /**
      * Creates new form IssuedBooksView
      */
-    public IssuedBooksView() {
+    public IssuedBooksView(MainController mainController) {
+        this.mainController = mainController;
         initComponents();
     }
 
@@ -130,7 +133,8 @@ public class IssuedBooksView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IssuedBooksView().setVisible(true);
+                MainController mainController = new MainController();
+                new IssuedBooksView(mainController).setVisible(true);
             }
         });
     }

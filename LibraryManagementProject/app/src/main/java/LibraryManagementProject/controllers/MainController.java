@@ -40,8 +40,12 @@ public class MainController {
         return librarianController.addBook(book);
     }
 
-    public Map<String, Book> getBookCatalog() {
-        return librarianController.getBookCatalog();
+    public Map<String, Book> getBookCatalogLibarian() {
+        return librarianController.getBookCatalogLibrarian();
+    }
+    
+    public Map<String, Book> getBookCatalogStudent() {
+        return studentController.getBookCatalogStudent();
     }
 }
 //    //method to add book to catalog

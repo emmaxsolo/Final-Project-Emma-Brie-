@@ -1,12 +1,15 @@
 package LibraryManagementProject.controllers;
 
 import LibraryManagementProject.DatabaseInitializer;
+import LibraryManagementProject.factory.Book;
+import LibraryManagementProject.factory.BookFactory;
 import LibraryManagementProject.models.*;
 import LibraryManagementProject.views.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -65,6 +68,32 @@ public class StudentController {
     public void logout() {
         System.out.println("Logging out student: " + (Session.getCurrentStudent() != null ? Session.getCurrentStudent().getStudentName() : "No student logged in"));
         Session.clearCurrentStudent();
+    }
+    
+    /*
+    The getBookCatalog() method provides a function to fetch 
+    */
+    public Map<String, Book> getBookCatalogStudent() {
+        Map<String, Book> books = new HashMap<>(); 
+        String getQuery = "SELECT SN, title, author, publisher, price, quantity, type FROM Books";
+        
+        try (Connection conn = DatabaseInitializer.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(getQuery); ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+                Book book = new BookFactory().viewBook(
+                        rs.getString("SN"),
+                        rs.getString("title"),
+                        rs.getString("author"),
+                        rs.getString("publisher"),
+                        rs.getDouble("price"),
+                        rs.getInt("quantity"),
+                        rs.getString("type").charAt(0)
+                );
+                books.put(rs.getString("SN"), book);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error fetching book catalog: " + e.getMessage());
+        }
+        return books;
     }
 
 }

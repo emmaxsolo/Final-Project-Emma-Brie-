@@ -15,6 +15,8 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -266,8 +268,20 @@ public class LibrarianController {
             return false;
         }
     }
+    
+    public boolean issueBook(Book book) {
+//        String selectQuery = "SELECT * FROM Books where SN == ?";
+//        String insertQuery = "INSERT INTO IssuedBooks (id, SN, StId, IssueDate) VALUES (?,?,?,?)";
+//        try(Connection conn = DatabaseInitializer.getInstance().getConnection()) {
+//            PreparedStatement pstmt = conn.prepareStatement(insertQuery);
+//            pstmt.setString(1, book.);
+//        } catch (SQLException ex) {
+//            System.err.println("Issue book failed: " + e.getMessage());
+//        }
+        return false;
+    }
 
-    public Map<String, Book> getBookCatalog() {
+    public Map<String, Book> getBookCatalogLibrarian() {
         Map<String, Book> books = new HashMap<>();
         String query = "SELECT * FROM Books";
         try (Connection conn = DatabaseInitializer.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query); ResultSet rs = pstmt.executeQuery()) {

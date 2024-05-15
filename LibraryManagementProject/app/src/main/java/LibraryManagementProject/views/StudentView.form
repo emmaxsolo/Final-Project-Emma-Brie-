@@ -298,17 +298,6 @@
         </Component>
         <Container class="javax.swing.JPanel" name="sideActionPanel1">
           <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Actions">
-                  <Font PropertyName="font" name="Century Gothic" size="14" style="1"/>
-                  <Color PropertyName="color" blue="65" green="49" red="1b" type="rgb"/>
-                </TitledBorder>
-              </Border>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Century Gothic" size="14" style="1"/>
-            </Property>
             <Property name="opaque" type="boolean" value="false"/>
           </Properties>
 
@@ -319,8 +308,7 @@
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="viewCatalogButton" alignment="0" max="32767" attributes="0"/>
-                          <Component id="searchBooksButton" pref="178" max="32767" attributes="0"/>
-                          <Component id="borrowBookButton" max="32767" attributes="0"/>
+                          <Component id="searchBooksButton" pref="188" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -330,12 +318,10 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="viewCatalogButton" max="32767" attributes="0"/>
+                      <Component id="viewCatalogButton" pref="38" max="32767" attributes="0"/>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Component id="searchBooksButton" max="32767" attributes="0"/>
-                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Component id="borrowBookButton" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="searchBooksButton" pref="38" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -357,6 +343,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="View Catalog"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewCatalogButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="searchBooksButton">
               <Properties>
@@ -377,23 +366,6 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchBooksButtonActionPerformed"/>
               </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="borrowBookButton">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="d3" green="a8" red="5f" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Century Gothic" size="18" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="65" green="49" red="1b" type="rgb"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icons/borrowBookIcon.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Borrow Books"/>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>

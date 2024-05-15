@@ -51,7 +51,6 @@ public class StudentView extends javax.swing.JFrame {
         sideActionPanel1 = new javax.swing.JPanel();
         viewCatalogButton = new javax.swing.JButton();
         searchBooksButton = new javax.swing.JButton();
-        borrowBookButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(194, 228, 255));
@@ -191,12 +190,6 @@ public class StudentView extends javax.swing.JFrame {
             }
         });
 
-        borrowBookButton.setBackground(new java.awt.Color(95, 168, 211));
-        borrowBookButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        borrowBookButton.setForeground(new java.awt.Color(27, 73, 101));
-        borrowBookButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/borrowBookIcon.png"))); // NOI18N
-        borrowBookButton.setText("Borrow Books");
-
         javax.swing.GroupLayout sideActionPanel1Layout = new javax.swing.GroupLayout(sideActionPanel1);
         sideActionPanel1.setLayout(sideActionPanel1Layout);
         sideActionPanel1Layout.setHorizontalGroup(
@@ -205,8 +198,7 @@ public class StudentView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(sideActionPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(viewCatalogButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(searchBooksButton, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                    .addComponent(borrowBookButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(searchBooksButton, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
                 .addContainerGap())
         );
         sideActionPanel1Layout.setVerticalGroup(
@@ -216,9 +208,7 @@ public class StudentView extends javax.swing.JFrame {
                 .addComponent(viewCatalogButton, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(searchBooksButton, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(borrowBookButton, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(64, 64, 64))
         );
 
         javax.swing.GroupLayout sidePanelLayout = new javax.swing.GroupLayout(sidePanel);
@@ -334,7 +324,6 @@ public class StudentView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel booksBorrowedLabel;
     private javax.swing.JTextArea booksBorrowedTextArea;
-    private javax.swing.JButton borrowBookButton;
     private javax.swing.JLabel dateTime;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

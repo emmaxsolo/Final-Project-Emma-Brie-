@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author emmas
+ * @author 1982228, emmas
  */
 public class StudentSignUpView extends javax.swing.JFrame {
 
@@ -76,17 +76,20 @@ public class StudentSignUpView extends javax.swing.JFrame {
         labelStudentPassword.setForeground(new java.awt.Color(27, 73, 101));
         labelStudentPassword.setText("Password:");
 
-        idField.setBackground(new java.awt.Color(214, 237, 255));
+        idField.setBackground(new java.awt.Color(235, 246, 255));
         idField.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         idField.setForeground(new java.awt.Color(27, 73, 101));
+        idField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        usernameField.setBackground(new java.awt.Color(214, 237, 255));
+        usernameField.setBackground(new java.awt.Color(235, 246, 255));
         usernameField.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         usernameField.setForeground(new java.awt.Color(27, 73, 101));
+        usernameField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        passwordField.setBackground(new java.awt.Color(214, 237, 255));
+        passwordField.setBackground(new java.awt.Color(235, 246, 255));
         passwordField.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         passwordField.setForeground(new java.awt.Color(27, 73, 101));
+        passwordField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         passwordField.setCaretColor(new java.awt.Color(214, 237, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -274,11 +277,12 @@ public class StudentSignUpView extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new StudentSignUpView(studentController).setVisible(true);
-//            }
-//        });
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                MainController mainController = new MainController();
+                new StudentSignUpView(mainController).setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

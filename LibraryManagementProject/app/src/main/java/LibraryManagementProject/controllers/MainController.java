@@ -32,15 +32,16 @@ public class MainController {
     public StudentController getStudentController() {
         return studentController;
     }
-
-    //LIBRARIAN 
+    // LIBRARIAN
     public boolean addBookToCatalog(String sn, String title, String author, String publisher, double price, int quantity, char type) {
         String addedDate = Timestamp.valueOf(LocalDateTime.now()).toString();
         Book book = new BookFactory().createBook(sn, title, author, publisher, price, quantity, 0, addedDate, type);
         return librarianController.addBook(book);
     }
+   
+    
 
-    public Map<String, Book> getBookCatalogLibarian() {
+    public Map<String, Book> getBookCatalogLibrarian() {
         return librarianController.getBookCatalogLibrarian();
     }
     

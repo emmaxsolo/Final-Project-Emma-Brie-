@@ -10,11 +10,11 @@ import javax.swing.JOptionPane;
  *
  * @author bridj
  */
-public class AddAStudentView extends javax.swing.JFrame {
+public class LibrarianAddStudentView extends javax.swing.JFrame {
     private LibrarianController librarianController;
     private MainController mainController;
 
-    public AddAStudentView(MainController mainController) {
+    public LibrarianAddStudentView(MainController mainController) {
         this.mainController = mainController;
         initComponents();
     }
@@ -29,8 +29,8 @@ public class AddAStudentView extends javax.swing.JFrame {
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        addStudentTitleLabel = new javax.swing.JLabel();
+        studentInfoPanel = new javax.swing.JPanel();
         addStudentLabel = new javax.swing.JLabel();
         studentNameLabel = new javax.swing.JLabel();
         studentContactNumberLabel = new javax.swing.JLabel();
@@ -46,14 +46,14 @@ public class AddAStudentView extends javax.swing.JFrame {
         mainPanel.setBackground(new java.awt.Color(194, 228, 255));
         mainPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(27, 73, 101));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Add Student");
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        addStudentTitleLabel.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
+        addStudentTitleLabel.setForeground(new java.awt.Color(27, 73, 101));
+        addStudentTitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        addStudentTitleLabel.setText("Add Student");
+        addStudentTitleLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jPanel1.setBackground(new java.awt.Color(202, 233, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        studentInfoPanel.setBackground(new java.awt.Color(214, 237, 255));
+        studentInfoPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         addStudentLabel.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         addStudentLabel.setForeground(new java.awt.Color(27, 73, 101));
@@ -67,70 +67,70 @@ public class AddAStudentView extends javax.swing.JFrame {
         studentContactNumberLabel.setForeground(new java.awt.Color(27, 73, 101));
         studentContactNumberLabel.setText("Contact Number");
 
-        studentIDField.setBackground(new java.awt.Color(202, 233, 255));
+        studentIDField.setBackground(new java.awt.Color(235, 246, 255));
         studentIDField.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         studentIDField.setForeground(new java.awt.Color(27, 73, 101));
         studentIDField.setCaretColor(new java.awt.Color(202, 233, 255));
 
-        studentNameField.setBackground(new java.awt.Color(202, 233, 255));
+        studentNameField.setBackground(new java.awt.Color(235, 246, 255));
         studentNameField.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         studentNameField.setForeground(new java.awt.Color(27, 73, 101));
         studentNameField.setCaretColor(new java.awt.Color(202, 233, 255));
 
-        contactNumberField.setBackground(new java.awt.Color(202, 233, 255));
+        contactNumberField.setBackground(new java.awt.Color(235, 246, 255));
         contactNumberField.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         contactNumberField.setForeground(new java.awt.Color(27, 73, 101));
         contactNumberField.setCaretColor(new java.awt.Color(202, 233, 255));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout studentInfoPanelLayout = new javax.swing.GroupLayout(studentInfoPanel);
+        studentInfoPanel.setLayout(studentInfoPanelLayout);
+        studentInfoPanelLayout.setHorizontalGroup(
+            studentInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(studentInfoPanelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(studentInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(studentInfoPanelLayout.createSequentialGroup()
                         .addComponent(addStudentLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(studentIDField, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(studentInfoPanelLayout.createSequentialGroup()
+                        .addGroup(studentInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(studentNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(studentContactNumberLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(studentInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(contactNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(studentNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {contactNumberField, studentIDField, studentNameField});
+        studentInfoPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {contactNumberField, studentIDField, studentNameField});
 
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        studentInfoPanelLayout.setVerticalGroup(
+            studentInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(studentInfoPanelLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(studentInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(studentInfoPanelLayout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addComponent(addStudentLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(studentInfoPanelLayout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(studentIDField)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(studentInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(studentInfoPanelLayout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addComponent(studentNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(studentInfoPanelLayout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(studentNameField)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(studentInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(studentInfoPanelLayout.createSequentialGroup()
                         .addGap(3, 3, 3)
-                        .addComponent(studentContactNumberLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(studentContactNumberLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(studentInfoPanelLayout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(contactNumberField)))
                 .addGap(19, 19, 19))
@@ -163,29 +163,29 @@ public class AddAStudentView extends javax.swing.JFrame {
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addStudentTitleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(studentInfoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, mainPanelLayout.createSequentialGroup()
                         .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(404, 404, 404)))
                 .addGap(21, 21, 21))
             .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addComponent(saveStudentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(252, 252, 252))
+                .addGap(225, 225, 225)
+                .addComponent(saveStudentButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                .addComponent(addStudentTitleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(studentInfoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(saveStudentButton, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
-                .addGap(12, 12, 12)
+                .addComponent(saveStudentButton, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -261,14 +261,38 @@ public class AddAStudentView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddAStudentView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LibrarianAddStudentView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddAStudentView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LibrarianAddStudentView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddAStudentView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LibrarianAddStudentView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddAStudentView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LibrarianAddStudentView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new AddAStudentView().setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new AddAStudentView().setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new AddAStudentView().setVisible(true);
+//            }
+//        });
         //</editor-fold>
 
         /* Create and display the form */
@@ -281,14 +305,14 @@ public class AddAStudentView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addStudentLabel;
+    private javax.swing.JLabel addStudentTitleLabel;
     private javax.swing.JButton backButton;
     private javax.swing.JTextField contactNumberField;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JButton saveStudentButton;
     private javax.swing.JLabel studentContactNumberLabel;
     private javax.swing.JTextField studentIDField;
+    private javax.swing.JPanel studentInfoPanel;
     private javax.swing.JTextField studentNameField;
     private javax.swing.JLabel studentNameLabel;
     // End of variables declaration//GEN-END:variables

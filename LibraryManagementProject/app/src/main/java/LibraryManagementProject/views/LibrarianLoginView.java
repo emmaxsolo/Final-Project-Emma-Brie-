@@ -7,7 +7,7 @@ import javax.swing.*;
 
 /**
  *
- * @author bridj
+ * @author 1982228, emmas
  */
 public class LibrarianLoginView extends javax.swing.JFrame {
     private MainController mainController;
@@ -68,13 +68,15 @@ public class LibrarianLoginView extends javax.swing.JFrame {
         labelLibrarianPassword.setForeground(new java.awt.Color(27, 73, 101));
         labelLibrarianPassword.setText("Password:");
 
-        usernameField.setBackground(new java.awt.Color(214, 237, 255));
+        usernameField.setBackground(new java.awt.Color(235, 246, 255));
         usernameField.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         usernameField.setForeground(new java.awt.Color(27, 73, 101));
+        usernameField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        passwordField.setBackground(new java.awt.Color(214, 237, 255));
+        passwordField.setBackground(new java.awt.Color(235, 246, 255));
         passwordField.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         passwordField.setForeground(new java.awt.Color(27, 73, 101));
+        passwordField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         passwordField.setCaretColor(new java.awt.Color(214, 237, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -173,7 +175,7 @@ public class LibrarianLoginView extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLogin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelSignUp, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(backButton, javax.swing.GroupLayout.Alignment.TRAILING))

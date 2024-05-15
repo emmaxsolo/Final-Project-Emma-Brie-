@@ -69,13 +69,10 @@ public class StudentController {
         System.out.println("Logging out student: " + (Session.getCurrentStudent() != null ? Session.getCurrentStudent().getStudentName() : "No student logged in"));
         Session.clearCurrentStudent();
     }
-    
-    /*
-    The getBookCatalog() method provides a function to fetch 
-    */
+
     public Map<String, Book> getBookCatalogStudent() {
         Map<String, Book> books = new HashMap<>(); 
-        String getQuery = "SELECT SN, title, author, publisher, price, quantity, type FROM Books";
+        String getQuery = "SELECT SN, title, author, publisher, price, quantity, type FROM Books ORDER BY SN ASC";
         
         try (Connection conn = DatabaseInitializer.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(getQuery); ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {

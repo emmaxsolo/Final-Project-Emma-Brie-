@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package LibraryManagementProject.views;
 
 import LibraryManagementProject.controllers.MainController;
@@ -11,7 +7,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author emmas
+ * @author 1982228, emmas
  */
 public class StudentLoginView extends javax.swing.JFrame {
     private MainController mainController;
@@ -70,13 +66,15 @@ public class StudentLoginView extends javax.swing.JFrame {
         labelStudentPassword.setForeground(new java.awt.Color(27, 73, 101));
         labelStudentPassword.setText("Password:");
 
-        usernameField.setBackground(new java.awt.Color(214, 237, 255));
+        usernameField.setBackground(new java.awt.Color(235, 246, 255));
         usernameField.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         usernameField.setForeground(new java.awt.Color(27, 73, 101));
+        usernameField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        passwordField.setBackground(new java.awt.Color(214, 237, 255));
+        passwordField.setBackground(new java.awt.Color(235, 246, 255));
         passwordField.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         passwordField.setForeground(new java.awt.Color(27, 73, 101));
+        passwordField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         passwordField.setCaretColor(new java.awt.Color(214, 237, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

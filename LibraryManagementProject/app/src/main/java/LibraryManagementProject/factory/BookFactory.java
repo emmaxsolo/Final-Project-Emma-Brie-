@@ -31,6 +31,5 @@ public class BookFactory {
                 throw new IllegalArgumentException("Invalid book type: " + type);
         }
     }
-    
 
 }

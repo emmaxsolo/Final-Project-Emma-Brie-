@@ -64,7 +64,7 @@
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="398" max="-2" attributes="0"/>
-                  <Component id="labelTitle" max="32767" attributes="0"/>
+                  <Component id="addBookTitleLabel" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="454" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -73,7 +73,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                  <Component id="labelTitle" max="32767" attributes="0"/>
+                  <Component id="addBookTitleLabel" max="32767" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
@@ -93,7 +93,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="labelTitle">
+        <Component class="javax.swing.JLabel" name="addBookTitleLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Century Gothic" size="36" style="1"/>

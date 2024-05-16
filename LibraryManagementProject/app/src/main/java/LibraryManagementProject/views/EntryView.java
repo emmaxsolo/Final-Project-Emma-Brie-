@@ -1,21 +1,26 @@
 package LibraryManagementProject.views;
 
 import LibraryManagementProject.DatabaseInitializer;
+import LibraryManagementProject.LanguageChangeListener;
+import LibraryManagementProject.ResourceManager;
 import LibraryManagementProject.controllers.MainController;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class EntryView extends javax.swing.JFrame {
+// implements LanguageChangeListener 
     private MainController mainController;
+//    private ResourceBundle bundle;
     private ResourceBundle bundle;
     private ResourceBundle bundleFR;
-    
+
     public EntryView(MainController mainController) {
         this.mainController = mainController;
         initComponents();
+//        ResourceManager.addLanguageChangeListener(this);
+//        updateTexts();
         bundle = ResourceBundle.getBundle("EntryView");
         bundleFR = ResourceBundle.getBundle("EntryView_fr_FR", Locale.FRANCE);
-   
     }
 
     /**
@@ -112,7 +117,7 @@ public class EntryView extends javax.swing.JFrame {
             }
         });
 
-        titleLabel.setFont(new java.awt.Font("Century Gothic", 1, 30)); // NOI18N
+        titleLabel.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         titleLabel.setForeground(new java.awt.Color(27, 73, 101));
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleLabel.setText("LIBRARY MANAGEMENT SYSTEM");
@@ -196,6 +201,8 @@ public class EntryView extends javax.swing.JFrame {
         subtitleLabel.setText(bundleFR.getString("Iam"));
         btnLibrarian.setText(bundleFR.getString("Librarian"));
         btnStudent.setText(bundleFR.getString("Student"));
+//        ResourceManager.setLocale(Locale.FRENCH);
+//        updateTexts();
     }//GEN-LAST:event_frenchButtonActionPerformed
 
     private void englishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_englishButtonActionPerformed
@@ -203,7 +210,19 @@ public class EntryView extends javax.swing.JFrame {
         subtitleLabel.setText(bundle.getString("Iam"));
         btnLibrarian.setText(bundle.getString("Librarian"));
         btnStudent.setText(bundle.getString("Student"));
+//        ResourceManager.setLocale(Locale.ENGLISH);
+//        updateTexts();
     }//GEN-LAST:event_englishButtonActionPerformed
+
+    private void updateTexts() {
+//        bundle = ResourceManager.getBundle("EntryView");
+//        titleLabel.setText(bundle.getString("Title"));
+//        subtitleLabel.setText(bundle.getString("Iam"));
+//        btnLibrarian.setText(bundle.getString("Librarian"));
+//        btnStudent.setText(bundle.getString("Student"));
+//        frenchButton.setText(bundle.getString("french"));
+//        englishButton.setText(bundle.getString("english"));
+    }
 
     /**
      * @param args the command line arguments
@@ -254,4 +273,10 @@ public class EntryView extends javax.swing.JFrame {
     private javax.swing.JLabel subtitleLabel;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
+
+
+//    @Override
+//    public void languageChanged() {
+//       updateTexts();
+//    }
 }

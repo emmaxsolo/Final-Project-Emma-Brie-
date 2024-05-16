@@ -3,6 +3,7 @@ package LibraryManagementProject.views;
 import LibraryManagementProject.controllers.MainController;
 import LibraryManagementProject.factory.Book;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -10,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
  * @author bridj
  */
 public class StudentSearchBookView extends javax.swing.JFrame {
+
     private MainController mainController;
 
     public StudentSearchBookView(MainController mainController) {
@@ -27,11 +29,10 @@ public class StudentSearchBookView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        searchButtonGroup = new javax.swing.ButtonGroup();
         mainPanel = new javax.swing.JPanel();
         searchBookTitleLabel = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        bookCatalogStudentTable = new javax.swing.JTable();
         searchPanel = new javax.swing.JPanel();
         searchBookLabel = new javax.swing.JLabel();
         titleRadioButton = new javax.swing.JRadioButton();
@@ -39,12 +40,16 @@ public class StudentSearchBookView extends javax.swing.JFrame {
         publisherRadioButton = new javax.swing.JRadioButton();
         searchBookTextField = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
+        clearButton = new javax.swing.JButton();
+        bookSearchTableScrollPane = new javax.swing.JScrollPane();
+        bookCatalogStudentTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
-        setSize(new java.awt.Dimension(700, 600));
+        setSize(new java.awt.Dimension(800, 600));
 
         mainPanel.setBackground(new java.awt.Color(202, 233, 255));
+        mainPanel.setForeground(new java.awt.Color(214, 237, 255));
         mainPanel.setPreferredSize(new java.awt.Dimension(700, 600));
 
         searchBookTitleLabel.setBackground(new java.awt.Color(27, 73, 101));
@@ -55,12 +60,105 @@ public class StudentSearchBookView extends javax.swing.JFrame {
         backButton.setBackground(new java.awt.Color(95, 168, 211));
         backButton.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         backButton.setForeground(new java.awt.Color(27, 73, 101));
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/bookHome.png"))); // NOI18N
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
         });
+
+        searchPanel.setBackground(new java.awt.Color(214, 237, 255));
+        searchPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search Books", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Century Gothic", 1, 18), new java.awt.Color(21, 57, 81))); // NOI18N
+        searchPanel.setOpaque(false);
+
+        searchBookLabel.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        searchBookLabel.setForeground(new java.awt.Color(27, 73, 101));
+        searchBookLabel.setText("Search book by:");
+
+        searchButtonGroup.add(titleRadioButton);
+        titleRadioButton.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        titleRadioButton.setForeground(new java.awt.Color(27, 73, 101));
+        titleRadioButton.setText("TITLE");
+
+        searchButtonGroup.add(authorRadioButton);
+        authorRadioButton.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        authorRadioButton.setForeground(new java.awt.Color(27, 73, 101));
+        authorRadioButton.setText("AUTHOR");
+
+        searchButtonGroup.add(publisherRadioButton);
+        publisherRadioButton.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        publisherRadioButton.setForeground(new java.awt.Color(27, 73, 101));
+        publisherRadioButton.setText("PUBLISHER");
+
+        searchBookTextField.setBackground(new java.awt.Color(235, 246, 255));
+        searchBookTextField.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        searchBookTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        searchButton.setBackground(new java.awt.Color(95, 168, 211));
+        searchButton.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        searchButton.setForeground(new java.awt.Color(27, 73, 101));
+        searchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/searchbook.png"))); // NOI18N
+        searchButton.setText("Search");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
+
+        clearButton.setBackground(new java.awt.Color(95, 168, 211));
+        clearButton.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        clearButton.setForeground(new java.awt.Color(27, 73, 101));
+        clearButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/clearField.png"))); // NOI18N
+        clearButton.setText("Clear");
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
+        searchPanel.setLayout(searchPanelLayout);
+        searchPanelLayout.setHorizontalGroup(
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(searchPanelLayout.createSequentialGroup()
+                        .addComponent(searchBookLabel)
+                        .addGap(53, 53, 53)
+                        .addComponent(titleRadioButton)
+                        .addGap(48, 48, 48)
+                        .addComponent(authorRadioButton)
+                        .addGap(42, 42, 42)
+                        .addComponent(publisherRadioButton)
+                        .addGap(0, 176, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
+                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(clearButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(searchButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(searchBookTextField))
+                        .addContainerGap())))
+        );
+        searchPanelLayout.setVerticalGroup(
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchBookLabel)
+                    .addComponent(titleRadioButton)
+                    .addComponent(authorRadioButton)
+                    .addComponent(publisherRadioButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(searchBookTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(clearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        bookSearchTableScrollPane.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 
         bookCatalogStudentTable.setBackground(new java.awt.Color(214, 237, 255));
         bookCatalogStudentTable.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -82,132 +180,61 @@ public class StudentSearchBookView extends javax.swing.JFrame {
             }
         });
         bookCatalogStudentTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        bookCatalogStudentTable.setColumnSelectionAllowed(true);
-        bookCatalogStudentTable.setGridColor(new java.awt.Color(27, 73, 101));
-        bookCatalogStudentTable.setIntercellSpacing(new java.awt.Dimension(20, 20));
-        bookCatalogStudentTable.setShowHorizontalLines(true);
-        bookCatalogStudentTable.setShowVerticalLines(true);
-        jScrollPane2.setViewportView(bookCatalogStudentTable);
-        bookCatalogStudentTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        bookCatalogStudentTable.setRowHeight(25);
+        bookCatalogStudentTable.setShowGrid(true);
+        bookSearchTableScrollPane.setViewportView(bookCatalogStudentTable);
         if (bookCatalogStudentTable.getColumnModel().getColumnCount() > 0) {
-            bookCatalogStudentTable.getColumnModel().getColumn(0).setPreferredWidth(100);
-            bookCatalogStudentTable.getColumnModel().getColumn(1).setPreferredWidth(100);
-            bookCatalogStudentTable.getColumnModel().getColumn(2).setPreferredWidth(100);
-            bookCatalogStudentTable.getColumnModel().getColumn(3).setPreferredWidth(100);
-            bookCatalogStudentTable.getColumnModel().getColumn(4).setPreferredWidth(100);
-            bookCatalogStudentTable.getColumnModel().getColumn(5).setPreferredWidth(100);
-            bookCatalogStudentTable.getColumnModel().getColumn(6).setPreferredWidth(100);
+            bookCatalogStudentTable.getColumnModel().getColumn(0).setPreferredWidth(120);
+            bookCatalogStudentTable.getColumnModel().getColumn(1).setPreferredWidth(120);
+            bookCatalogStudentTable.getColumnModel().getColumn(2).setPreferredWidth(120);
+            bookCatalogStudentTable.getColumnModel().getColumn(3).setPreferredWidth(120);
+            bookCatalogStudentTable.getColumnModel().getColumn(4).setPreferredWidth(120);
+            bookCatalogStudentTable.getColumnModel().getColumn(5).setPreferredWidth(120);
+            bookCatalogStudentTable.getColumnModel().getColumn(6).setPreferredWidth(120);
         }
-
-        searchPanel.setBackground(new java.awt.Color(214, 237, 255));
-        searchPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search Books", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Century Gothic", 1, 18), new java.awt.Color(21, 57, 81))); // NOI18N
-        searchPanel.setOpaque(false);
-
-        searchBookLabel.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        searchBookLabel.setForeground(new java.awt.Color(27, 73, 101));
-        searchBookLabel.setText("Search book by:");
-
-        titleRadioButton.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        titleRadioButton.setForeground(new java.awt.Color(27, 73, 101));
-        titleRadioButton.setText("TITLE");
-
-        authorRadioButton.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        authorRadioButton.setForeground(new java.awt.Color(27, 73, 101));
-        authorRadioButton.setText("AUTHOR");
-
-        publisherRadioButton.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        publisherRadioButton.setForeground(new java.awt.Color(27, 73, 101));
-        publisherRadioButton.setText("PUBLISHER");
-
-        searchBookTextField.setBackground(new java.awt.Color(235, 246, 255));
-        searchBookTextField.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        searchBookTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        searchButton.setBackground(new java.awt.Color(95, 168, 211));
-        searchButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        searchButton.setForeground(new java.awt.Color(27, 73, 101));
-        searchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/searchbook.png"))); // NOI18N
-        searchButton.setText("Search");
-
-        javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
-        searchPanel.setLayout(searchPanelLayout);
-        searchPanelLayout.setHorizontalGroup(
-            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(searchPanelLayout.createSequentialGroup()
-                        .addComponent(searchBookLabel)
-                        .addGap(53, 53, 53)
-                        .addComponent(titleRadioButton)
-                        .addGap(48, 48, 48)
-                        .addComponent(authorRadioButton)
-                        .addGap(42, 42, 42)
-                        .addComponent(publisherRadioButton)
-                        .addGap(0, 100, Short.MAX_VALUE))
-                    .addComponent(searchBookTextField)
-                    .addComponent(searchButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        searchPanelLayout.setVerticalGroup(
-            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(searchBookLabel)
-                    .addComponent(titleRadioButton)
-                    .addComponent(authorRadioButton)
-                    .addComponent(publisherRadioButton))
-                .addGap(18, 18, 18)
-                .addComponent(searchBookTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, Short.MAX_VALUE)
-                .addGap(11, 11, 11))
-        );
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
-                .addGap(41, 41, 41))
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(212, 212, 212)
+                        .addGap(270, 270, 270)
                         .addComponent(searchBookTitleLabel))
                     .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(281, 281, 281)
+                        .addGap(41, 41, 41)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(bookSearchTableScrollPane)
+                            .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGap(328, 328, 328)
                         .addComponent(backButton)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addContainerGap()
                 .addComponent(searchBookTitleLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addComponent(bookSearchTableScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(backButton)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addGap(12, 12, 12))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
         );
 
         pack();
@@ -220,24 +247,78 @@ public class StudentSearchBookView extends javax.swing.JFrame {
         studentView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
-    
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        String searchText = searchBookTextField.getText().trim();
+        if (searchText.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter a search context.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String searchCriteria = getSelectedSearchCriteria();
+        if (searchCriteria == null) {
+            JOptionPane.showMessageDialog(this, "Please choose a search criteria.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        Map<String, Book> searchResults = mainController.searchBooks(searchText, searchCriteria);
+        displaySearchResults(searchResults);
+    }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
+        searchBookTextField.setText("");
+        searchButtonGroup.clearSelection();
+        displayBookCatalog();
+    }//GEN-LAST:event_clearButtonActionPerformed
+
+    private String getSelectedSearchCriteria() {
+        if (titleRadioButton.isSelected()) {
+            return "title";
+        } else if (authorRadioButton.isSelected()) {
+            return "author";
+        } else if (publisherRadioButton.isSelected()) {
+            return "publisher";
+        } else {
+            return null;
+        }
+    }
+
     private void displayBookCatalog() {
         DefaultTableModel tableModel = (DefaultTableModel) bookCatalogStudentTable.getModel();
-        tableModel.setRowCount(0); 
+        tableModel.setRowCount(0);
 
-        Map<String, Book> bookCatalogStudent = mainController.getBookCatalogStudent();
+        Map<String, Book> bookCatalogStudent = mainController.getAvailableBooks();
         for (Book book : bookCatalogStudent.values()) {
             tableModel.addRow(new Object[]{
-                    book.getSN(),
-                    book.getTitle(),
-                    book.getAuthor(),
-                    book.getPublisher(),
-                    book.getPrice(),
-                    book.getQte(),
-                    book.getType()
+                book.getSN(),
+                book.getTitle(),
+                book.getAuthor(),
+                book.getPublisher(),
+                book.getPrice(),
+                book.getQte(),
+                book.getType()
             });
         }
     }
+
+    private void displaySearchResults(Map<String, Book> searchResults) {
+        DefaultTableModel tableModel = (DefaultTableModel) bookCatalogStudentTable.getModel();
+        tableModel.setRowCount(0);
+
+        for (Book book : searchResults.values()) {
+            tableModel.addRow(new Object[]{
+                book.getSN(),
+                book.getTitle(),
+                book.getAuthor(),
+                book.getPublisher(),
+                book.getPrice(),
+                book.getQte(),
+                book.getType()
+            });
+        }
+    }
+
+
     /**
      * @param args the command line arguments
      */
@@ -278,13 +359,15 @@ public class StudentSearchBookView extends javax.swing.JFrame {
     private javax.swing.JRadioButton authorRadioButton;
     private javax.swing.JButton backButton;
     private javax.swing.JTable bookCatalogStudentTable;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane bookSearchTableScrollPane;
+    private javax.swing.JButton clearButton;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JRadioButton publisherRadioButton;
     private javax.swing.JLabel searchBookLabel;
     private javax.swing.JTextField searchBookTextField;
     private javax.swing.JLabel searchBookTitleLabel;
     private javax.swing.JButton searchButton;
+    private javax.swing.ButtonGroup searchButtonGroup;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JRadioButton titleRadioButton;
     // End of variables declaration//GEN-END:variables

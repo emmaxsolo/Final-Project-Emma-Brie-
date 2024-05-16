@@ -1,23 +1,27 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package LibraryManagementProject.views;
 
 import LibraryManagementProject.controllers.MainController;
+import LibraryManagementProject.factory.Book;
+import LibraryManagementProject.factory.BookFactory;
+import LibraryManagementProject.models.Session;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author bridj
  */
 public class StudentBorrowBookView extends javax.swing.JFrame {
+
     private MainController mainController;
-    /**
-     * Creates new form BorrowBook
-     */
+
     public StudentBorrowBookView(MainController mainController) {
         this.mainController = mainController;
         initComponents();
+        displayAvailableBooks();
     }
 
     /**
@@ -32,22 +36,18 @@ public class StudentBorrowBookView extends javax.swing.JFrame {
         mainPanel = new javax.swing.JPanel();
         borrowBookTitleLabel = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        bookCatalogStudentTable = new javax.swing.JTable();
         borrowBookPanel = new javax.swing.JPanel();
-        bookIDLabel = new javax.swing.JLabel();
-        studentIDLabel = new javax.swing.JLabel();
-        studentIdTextField = new javax.swing.JTextField();
-        borrowBookTextField = new javax.swing.JTextField();
         bookQuantityTextField = new javax.swing.JTextField();
-        borrowButton = new javax.swing.JButton();
+        borrowBookButton = new javax.swing.JButton();
         bookQuantityLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        availableBooksTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(202, 233, 255));
         setSize(new java.awt.Dimension(622, 675));
 
-        mainPanel.setBackground(new java.awt.Color(202, 233, 255));
+        mainPanel.setBackground(new java.awt.Color(194, 228, 255));
         mainPanel.setPreferredSize(new java.awt.Dimension(800, 600));
 
         borrowBookTitleLabel.setBackground(new java.awt.Color(27, 73, 101));
@@ -65,74 +65,24 @@ public class StudentBorrowBookView extends javax.swing.JFrame {
             }
         });
 
-        bookCatalogStudentTable.setBackground(new java.awt.Color(214, 237, 255));
-        bookCatalogStudentTable.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        bookCatalogStudentTable.setForeground(new java.awt.Color(27, 73, 101));
-        bookCatalogStudentTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "SN", "Title", "Author", "Publisher", "Price", "Quantity", "Type"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        bookCatalogStudentTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        bookCatalogStudentTable.setColumnSelectionAllowed(true);
-        bookCatalogStudentTable.setGridColor(new java.awt.Color(27, 73, 101));
-        bookCatalogStudentTable.setIntercellSpacing(new java.awt.Dimension(20, 20));
-        bookCatalogStudentTable.setShowGrid(true);
-        bookCatalogStudentTable.setShowHorizontalLines(true);
-        bookCatalogStudentTable.setShowVerticalLines(true);
-        jScrollPane2.setViewportView(bookCatalogStudentTable);
-        bookCatalogStudentTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        if (bookCatalogStudentTable.getColumnModel().getColumnCount() > 0) {
-            bookCatalogStudentTable.getColumnModel().getColumn(0).setPreferredWidth(100);
-            bookCatalogStudentTable.getColumnModel().getColumn(1).setPreferredWidth(100);
-            bookCatalogStudentTable.getColumnModel().getColumn(2).setPreferredWidth(100);
-            bookCatalogStudentTable.getColumnModel().getColumn(3).setPreferredWidth(100);
-            bookCatalogStudentTable.getColumnModel().getColumn(4).setPreferredWidth(100);
-            bookCatalogStudentTable.getColumnModel().getColumn(5).setPreferredWidth(100);
-            bookCatalogStudentTable.getColumnModel().getColumn(6).setPreferredWidth(100);
-        }
-
         borrowBookPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Borrow Books", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Century Gothic", 1, 18), new java.awt.Color(21, 57, 81))); // NOI18N
         borrowBookPanel.setOpaque(false);
-
-        bookIDLabel.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        bookIDLabel.setForeground(new java.awt.Color(27, 73, 101));
-        bookIDLabel.setText("Enter book id:");
-
-        studentIDLabel.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        studentIDLabel.setForeground(new java.awt.Color(27, 73, 101));
-        studentIDLabel.setText("Enter student id:");
-
-        studentIdTextField.setBackground(new java.awt.Color(235, 246, 255));
-        studentIdTextField.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        studentIdTextField.setForeground(new java.awt.Color(27, 73, 101));
-        studentIdTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        borrowBookTextField.setBackground(new java.awt.Color(235, 246, 255));
-        borrowBookTextField.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        borrowBookTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         bookQuantityTextField.setBackground(new java.awt.Color(235, 246, 255));
         bookQuantityTextField.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         bookQuantityTextField.setForeground(new java.awt.Color(27, 73, 101));
         bookQuantityTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        borrowButton.setBackground(new java.awt.Color(95, 168, 211));
-        borrowButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        borrowButton.setForeground(new java.awt.Color(27, 73, 101));
-        borrowButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/book4.png"))); // NOI18N
-        borrowButton.setText("Request Borrow");
+        borrowBookButton.setBackground(new java.awt.Color(95, 168, 211));
+        borrowBookButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        borrowBookButton.setForeground(new java.awt.Color(27, 73, 101));
+        borrowBookButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/book4.png"))); // NOI18N
+        borrowBookButton.setText("Borrow Books");
+        borrowBookButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                borrowBookButtonActionPerformed(evt);
+            }
+        });
 
         bookQuantityLabel.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         bookQuantityLabel.setForeground(new java.awt.Color(27, 73, 101));
@@ -142,64 +92,80 @@ public class StudentBorrowBookView extends javax.swing.JFrame {
         borrowBookPanel.setLayout(borrowBookPanelLayout);
         borrowBookPanelLayout.setHorizontalGroup(
             borrowBookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, borrowBookPanelLayout.createSequentialGroup()
+            .addGroup(borrowBookPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(borrowBookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(borrowButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(borrowBookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(borrowBookButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(borrowBookPanelLayout.createSequentialGroup()
-                        .addGroup(borrowBookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bookIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(studentIDLabel)
-                            .addComponent(bookQuantityLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(borrowBookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(borrowBookTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
-                            .addComponent(bookQuantityTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(studentIdTextField))))
-                .addContainerGap())
+                        .addComponent(bookQuantityLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+                        .addComponent(bookQuantityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         borrowBookPanelLayout.setVerticalGroup(
             borrowBookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(borrowBookPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(borrowBookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bookQuantityLabel)
+                    .addComponent(bookQuantityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(borrowBookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(borrowBookPanelLayout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addComponent(bookQuantityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(borrowBookPanelLayout.createSequentialGroup()
-                        .addGroup(borrowBookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(studentIDLabel)
-                            .addComponent(studentIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(borrowBookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(bookIDLabel)
-                            .addComponent(borrowBookTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(bookQuantityLabel)))
-                .addGap(18, 18, 18)
-                .addComponent(borrowButton)
+                .addComponent(borrowBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        availableBooksTable.setBackground(new java.awt.Color(214, 237, 255));
+        availableBooksTable.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        availableBooksTable.setForeground(new java.awt.Color(27, 73, 101));
+        availableBooksTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "SN", "Title", "Author", "Publisher", "Price", "Available Quantity", "Type"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        availableBooksTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        availableBooksTable.setRowHeight(25);
+        availableBooksTable.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        availableBooksTable.setShowGrid(true);
+        jScrollPane1.setViewportView(availableBooksTable);
+        if (availableBooksTable.getColumnModel().getColumnCount() > 0) {
+            availableBooksTable.getColumnModel().getColumn(0).setPreferredWidth(120);
+            availableBooksTable.getColumnModel().getColumn(1).setPreferredWidth(120);
+            availableBooksTable.getColumnModel().getColumn(2).setPreferredWidth(120);
+            availableBooksTable.getColumnModel().getColumn(3).setPreferredWidth(120);
+            availableBooksTable.getColumnModel().getColumn(4).setPreferredWidth(120);
+            availableBooksTable.getColumnModel().getColumn(5).setPreferredWidth(120);
+            availableBooksTable.getColumnModel().getColumn(6).setPreferredWidth(120);
+        }
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
-                .addContainerGap(51, Short.MAX_VALUE)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                        .addComponent(borrowBookTitleLabel)
-                        .addGap(252, 252, 252))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
-                            .addComponent(borrowBookPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(49, 49, 49))))
-            .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(312, 312, 312)
-                .addComponent(backButton)
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGap(313, 313, 313)
+                        .addComponent(backButton))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(borrowBookPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGap(264, 264, 264)
+                        .addComponent(borrowBookTitleLabel)))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,23 +173,23 @@ public class StudentBorrowBookView extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addComponent(borrowBookTitleLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(borrowBookPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
+                .addGap(18, 18, 18)
                 .addComponent(backButton)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 771, Short.MAX_VALUE)
         );
 
         pack();
@@ -236,6 +202,57 @@ public class StudentBorrowBookView extends javax.swing.JFrame {
         studentView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void borrowBookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrowBookButtonActionPerformed
+        int selectedRow = availableBooksTable.getSelectedRow();
+        String sn = (String) availableBooksTable.getValueAt(selectedRow, 0); // gets the sn of the table
+        String quantityText = bookQuantityTextField.getText().trim();
+        int quantity = Integer.parseInt(quantityText);
+
+        if (selectedRow == -1) { // checks if student has chosen a book to borrow
+            JOptionPane.showMessageDialog(this, "Please select a book to borrow.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            quantity = Integer.parseInt(quantityText);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid quantity.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        boolean success = mainController.borrowBook(sn, quantity);
+        if (success) {
+            JOptionPane.showMessageDialog(this, "Book borrowed successfully.");
+            int currentQuantity = (int) availableBooksTable.getValueAt(selectedRow, 5);
+            availableBooksTable.setValueAt(currentQuantity - quantity, selectedRow, 5);
+            if (currentQuantity - quantity <= 0) {
+                ((DefaultTableModel) availableBooksTable.getModel()).removeRow(selectedRow);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Failed to borrow book.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_borrowBookButtonActionPerformed
+
+    private void displayAvailableBooks() {
+        DefaultTableModel tableModel = (DefaultTableModel) availableBooksTable.getModel();
+        tableModel.setRowCount(0);
+
+        Map<String, Book> bookCatalogStudent = mainController.getAvailableBooks();
+        for (Book book : bookCatalogStudent.values()) {
+            if (book.getQte() > book.getQteIssued()) {
+                tableModel.addRow(new Object[]{
+                    book.getSN(),
+                    book.getTitle(),
+                    book.getAuthor(),
+                    book.getPublisher(),
+                    book.getPrice(),
+                    book.getQte() - book.getQteIssued(),
+                    book.getType()
+                });
+            }
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -277,18 +294,14 @@ public class StudentBorrowBookView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable availableBooksTable;
     private javax.swing.JButton backButton;
-    private javax.swing.JTable bookCatalogStudentTable;
-    private javax.swing.JLabel bookIDLabel;
     private javax.swing.JLabel bookQuantityLabel;
     private javax.swing.JTextField bookQuantityTextField;
+    private javax.swing.JButton borrowBookButton;
     private javax.swing.JPanel borrowBookPanel;
-    private javax.swing.JTextField borrowBookTextField;
     private javax.swing.JLabel borrowBookTitleLabel;
-    private javax.swing.JButton borrowButton;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel mainPanel;
-    private javax.swing.JLabel studentIDLabel;
-    private javax.swing.JTextField studentIdTextField;
     // End of variables declaration//GEN-END:variables
 }

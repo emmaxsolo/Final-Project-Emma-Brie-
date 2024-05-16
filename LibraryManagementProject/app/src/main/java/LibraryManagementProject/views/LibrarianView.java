@@ -57,20 +57,12 @@ public class LibrarianView extends javax.swing.JFrame {
         mainPanel = new javax.swing.JPanel();
         librarianTitleLabel = new javax.swing.JLabel();
         bookReturnsPanel = new javax.swing.JPanel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        bookReturnTextArea = new javax.swing.JTextArea();
         booksRequestLabel4 = new javax.swing.JLabel();
         enterReturnLabel1 = new javax.swing.JLabel();
         enterReturnBookTextField1 = new javax.swing.JTextField();
-        returnButton1 = new javax.swing.JButton();
-        bookRequestsPanel = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        bookRequestsTextArea = new javax.swing.JTextArea();
-        enterRequetsBookLabel2 = new javax.swing.JLabel();
-        enterRequestBookTextField2 = new javax.swing.JTextField();
-        allowButton2 = new javax.swing.JButton();
-        denyButton2 = new javax.swing.JButton();
-        booksRequestLabel3 = new javax.swing.JLabel();
+        returnBookButton = new javax.swing.JButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        issuedBooksLibrarianTable = new javax.swing.JTable();
         sidePanel = new javax.swing.JPanel();
         dateTime = new javax.swing.JLabel();
         pictureLabel = new javax.swing.JLabel();
@@ -174,15 +166,9 @@ public class LibrarianView extends javax.swing.JFrame {
         bookReturnsPanel.setBackground(new java.awt.Color(214, 237, 255));
         bookReturnsPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        bookReturnTextArea.setBackground(new java.awt.Color(235, 246, 255));
-        bookReturnTextArea.setColumns(20);
-        bookReturnTextArea.setRows(5);
-        bookReturnTextArea.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jScrollPane6.setViewportView(bookReturnTextArea);
-
-        booksRequestLabel4.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        booksRequestLabel4.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         booksRequestLabel4.setForeground(new java.awt.Color(27, 73, 101));
-        booksRequestLabel4.setText("BOOK RETURNS");
+        booksRequestLabel4.setText("BOOK ISSUED");
 
         enterReturnLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         enterReturnLabel1.setForeground(new java.awt.Color(27, 73, 101));
@@ -194,124 +180,80 @@ public class LibrarianView extends javax.swing.JFrame {
         enterReturnBookTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         enterReturnBookTextField1.setCaretColor(new java.awt.Color(214, 237, 255));
 
-        returnButton1.setBackground(new java.awt.Color(95, 168, 211));
-        returnButton1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        returnButton1.setForeground(new java.awt.Color(27, 73, 101));
-        returnButton1.setText("Return");
+        returnBookButton.setBackground(new java.awt.Color(95, 168, 211));
+        returnBookButton.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        returnBookButton.setForeground(new java.awt.Color(27, 73, 101));
+        returnBookButton.setText("Return Book");
+
+        issuedBooksLibrarianTable.setBackground(new java.awt.Color(194, 228, 255));
+        issuedBooksLibrarianTable.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        issuedBooksLibrarianTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "SN", "Title", "Student ID", "Quantity", "Issued Date"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane7.setViewportView(issuedBooksLibrarianTable);
+        if (issuedBooksLibrarianTable.getColumnModel().getColumnCount() > 0) {
+            issuedBooksLibrarianTable.getColumnModel().getColumn(0).setPreferredWidth(100);
+            issuedBooksLibrarianTable.getColumnModel().getColumn(1).setPreferredWidth(100);
+            issuedBooksLibrarianTable.getColumnModel().getColumn(2).setPreferredWidth(100);
+            issuedBooksLibrarianTable.getColumnModel().getColumn(3).setPreferredWidth(100);
+            issuedBooksLibrarianTable.getColumnModel().getColumn(4).setPreferredWidth(100);
+            issuedBooksLibrarianTable.getColumnModel().getColumn(5).setPreferredWidth(100);
+        }
 
         javax.swing.GroupLayout bookReturnsPanelLayout = new javax.swing.GroupLayout(bookReturnsPanel);
         bookReturnsPanel.setLayout(bookReturnsPanelLayout);
         bookReturnsPanelLayout.setHorizontalGroup(
             bookReturnsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bookReturnsPanelLayout.createSequentialGroup()
+                .addGap(0, 51, Short.MAX_VALUE)
                 .addGroup(bookReturnsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(bookReturnsPanelLayout.createSequentialGroup()
-                        .addGap(169, 169, 169)
-                        .addComponent(returnButton1))
-                    .addGroup(bookReturnsPanelLayout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addComponent(booksRequestLabel4))
-                    .addGroup(bookReturnsPanelLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(bookReturnsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(enterReturnLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(enterReturnBookTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookReturnsPanelLayout.createSequentialGroup()
+                        .addGroup(bookReturnsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(bookReturnsPanelLayout.createSequentialGroup()
+                                .addComponent(enterReturnLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(enterReturnBookTextField1))
+                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(53, 53, 53))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookReturnsPanelLayout.createSequentialGroup()
+                        .addComponent(booksRequestLabel4)
+                        .addGap(279, 279, 279))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookReturnsPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(returnBookButton)
+                .addGap(232, 232, 232))
         );
         bookReturnsPanelLayout.setVerticalGroup(
             bookReturnsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bookReturnsPanelLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addGap(10, 10, 10)
                 .addComponent(booksRequestLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(enterReturnLabel1)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(enterReturnBookTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(returnButton1)
-                .addContainerGap())
+                .addGroup(bookReturnsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(enterReturnBookTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(enterReturnLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(returnBookButton)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
-
-        bookRequestsPanel.setBackground(new java.awt.Color(214, 237, 255));
-        bookRequestsPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        bookRequestsTextArea.setBackground(new java.awt.Color(235, 246, 255));
-        bookRequestsTextArea.setColumns(20);
-        bookRequestsTextArea.setRows(5);
-        bookRequestsTextArea.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jScrollPane5.setViewportView(bookRequestsTextArea);
-
-        enterRequetsBookLabel2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        enterRequetsBookLabel2.setForeground(new java.awt.Color(27, 73, 101));
-        enterRequetsBookLabel2.setText("Enter request number:");
-
-        enterRequestBookTextField2.setBackground(new java.awt.Color(235, 246, 255));
-        enterRequestBookTextField2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        enterRequestBookTextField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        enterRequestBookTextField2.setCaretColor(new java.awt.Color(214, 237, 255));
-
-        allowButton2.setBackground(new java.awt.Color(95, 168, 211));
-        allowButton2.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        allowButton2.setForeground(new java.awt.Color(27, 73, 101));
-        allowButton2.setText("Allow");
-
-        denyButton2.setBackground(new java.awt.Color(95, 168, 211));
-        denyButton2.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        denyButton2.setForeground(new java.awt.Color(27, 73, 101));
-        denyButton2.setText("Deny");
-
-        booksRequestLabel3.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        booksRequestLabel3.setForeground(new java.awt.Color(27, 73, 101));
-        booksRequestLabel3.setText("BOOK REQUEST");
-
-        javax.swing.GroupLayout bookRequestsPanelLayout = new javax.swing.GroupLayout(bookRequestsPanel);
-        bookRequestsPanel.setLayout(bookRequestsPanelLayout);
-        bookRequestsPanelLayout.setHorizontalGroup(
-            bookRequestsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bookRequestsPanelLayout.createSequentialGroup()
-                .addGroup(bookRequestsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(bookRequestsPanelLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(bookRequestsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(enterRequetsBookLabel2)
-                            .addComponent(enterRequestBookTextField2)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)))
-                    .addGroup(bookRequestsPanelLayout.createSequentialGroup()
-                        .addGap(134, 134, 134)
-                        .addComponent(allowButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(denyButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(16, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookRequestsPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(booksRequestLabel3)
-                .addGap(137, 137, 137))
-        );
-
-        bookRequestsPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {allowButton2, denyButton2});
-
-        bookRequestsPanelLayout.setVerticalGroup(
-            bookRequestsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bookRequestsPanelLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(booksRequestLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5)
-                .addGap(24, 24, 24)
-                .addComponent(enterRequetsBookLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(enterRequestBookTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(bookRequestsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(allowButton2)
-                    .addComponent(denyButton2))
-                .addContainerGap())
-        );
-
-        bookRequestsPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {allowButton2, denyButton2});
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -319,25 +261,21 @@ public class LibrarianView extends javax.swing.JFrame {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(bookReturnsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(bookRequestsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
-            .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(261, 261, 261)
+                .addComponent(bookReturnsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(librarianTitleLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(193, 193, 193))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(librarianTitleLabel)
+                .addComponent(librarianTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(bookRequestsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bookReturnsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addComponent(bookReturnsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         sidePanel.setBackground(new java.awt.Color(173, 221, 255));
@@ -464,10 +402,10 @@ public class LibrarianView extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addComponent(pictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(sideActionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(38, 38, 38)
-                .addComponent(logOutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(25, 25, 25))
+                .addComponent(sideActionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(logOutButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -476,14 +414,14 @@ public class LibrarianView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(sidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 982, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 860, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(sidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(sidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
         );
 
         sidePanel.getAccessibleContext().setAccessibleParent(mainPanel);
@@ -564,50 +502,42 @@ public class LibrarianView extends javax.swing.JFrame {
     private javax.swing.JButton addStudentButton;
     private javax.swing.JButton allowButton;
     private javax.swing.JButton allowButton1;
-    private javax.swing.JButton allowButton2;
     private javax.swing.JLabel bookCatalogLabel;
     private javax.swing.JTextArea bookCatalogTextArea;
-    private javax.swing.JPanel bookRequestsPanel;
-    private javax.swing.JTextArea bookRequestsTextArea;
-    private javax.swing.JTextArea bookReturnTextArea;
     private javax.swing.JPanel bookReturnsPanel;
     private javax.swing.JTextArea booksBorrowedTextArea;
     private javax.swing.JTextArea booksBorrowedTextArea1;
     private javax.swing.JLabel booksRequestLabel;
     private javax.swing.JLabel booksRequestLabel1;
     private javax.swing.JLabel booksRequestLabel2;
-    private javax.swing.JLabel booksRequestLabel3;
     private javax.swing.JLabel booksRequestLabel4;
     private javax.swing.JTextArea booksReturnedTextArea;
     private javax.swing.JButton catalogButton;
     private javax.swing.JLabel dateTime;
     private javax.swing.JButton denyButton;
     private javax.swing.JButton denyButton1;
-    private javax.swing.JButton denyButton2;
     private javax.swing.JTextField enterRequestBookTextField;
     private javax.swing.JTextField enterRequestBookTextField1;
-    private javax.swing.JTextField enterRequestBookTextField2;
     private javax.swing.JLabel enterRequetsBookLabel;
     private javax.swing.JLabel enterRequetsBookLabel1;
-    private javax.swing.JLabel enterRequetsBookLabel2;
     private javax.swing.JTextField enterReturnBookTextField;
     private javax.swing.JTextField enterReturnBookTextField1;
     private javax.swing.JLabel enterReturnLabel;
     private javax.swing.JLabel enterReturnLabel1;
     private javax.swing.JButton issuedBookButton;
     private javax.swing.JButton issuedBooksButton;
+    private javax.swing.JTable issuedBooksLibrarianTable;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JLabel librarianTitleLabel;
     private javax.swing.JButton logOutButton;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel pictureLabel;
+    private javax.swing.JButton returnBookButton;
     private javax.swing.JButton returnButton;
-    private javax.swing.JButton returnButton1;
     private javax.swing.JPanel sideActionPanel;
     private javax.swing.JPanel sidePanel;
     private javax.swing.JLabel titleLable;

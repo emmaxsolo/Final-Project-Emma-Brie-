@@ -5,6 +5,7 @@ import LibraryManagementProject.factory.BookFactory;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 
 public class MainController {
@@ -32,22 +33,44 @@ public class MainController {
     public StudentController getStudentController() {
         return studentController;
     }
+    
+    public Map<String, Book> getBookCatalogLibrarian() {
+        return librarianController.getBookCatalogLibrarian();
+    }
+
+//    public Map<String, Book> getBookCatalogStudent() {
+//        return studentController.getBookCatalogStudent();
+//    }
+
+
     // LIBRARIAN
     public boolean addBookToCatalog(String sn, String title, String author, String publisher, double price, int quantity, char type) {
         String addedDate = Timestamp.valueOf(LocalDateTime.now()).toString();
         Book book = new BookFactory().createBook(sn, title, author, publisher, price, quantity, 0, addedDate, type);
         return librarianController.addBook(book);
     }
-   
-    
 
-    public Map<String, Book> getBookCatalogLibrarian() {
-        return librarianController.getBookCatalogLibrarian();
+    // STUDENT
+    public Map<String, Book> getAvailableBooks() {
+        return studentController.getAvailableBooks();
     }
-    
-    public Map<String, Book> getBookCatalogStudent() {
-        return studentController.getBookCatalogStudent();
+
+    public Map<String, Book> searchBooks(String searchText, String searchCriteria) {
+        return studentController.searchBooks(searchText, searchCriteria);
     }
+
+    public boolean borrowBook(String sn, int quantity) {
+        return studentController.borrowBook(sn, quantity);
+    }
+
+    public boolean returnBook(int issuedBookId) {
+        return studentController.returnBook(issuedBookId);
+    }
+
+    public List<Map<String, Object>> getIssuedBooksForStudent() {
+        return studentController.getIssuedBooksForStudent();
+    }
+
 }
 //    //method to add book to catalog
 //    public void addBook(String bookTitle) {

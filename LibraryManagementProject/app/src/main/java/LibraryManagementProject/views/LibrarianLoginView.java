@@ -1,23 +1,29 @@
 package LibraryManagementProject.views;
 
+import LibraryManagementProject.LanguageChangeListener;
+import LibraryManagementProject.ResourceManager;
 import LibraryManagementProject.controllers.LibrarianController;
 import LibraryManagementProject.controllers.MainController;
 import LibraryManagementProject.views.*;
 import javax.swing.*;
+import java.util.ResourceBundle;
 
 /**
  *
  * @author 1982228, emmas
  */
-public class LibrarianLoginView extends javax.swing.JFrame {
+public class LibrarianLoginView extends javax.swing.JFrame implements LanguageChangeListener {
+
     private MainController mainController;
     private LibrarianController librarianController;
-
+    private ResourceBundle bundle;
 
     public LibrarianLoginView(MainController mainController) {
         this.mainController = mainController;
         this.librarianController = mainController.getLibrarianController();
         initComponents();
+        ResourceManager.addLanguageChangeListener(this);
+        updateTexts();
     }
 
     /**
@@ -222,6 +228,16 @@ public class LibrarianLoginView extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_labelSignUpMouseClicked
 
+    private void updateTexts() {
+        bundle = ResourceManager.getBundle("LibrarianLoginView");
+        labelTitle.setText(bundle.getString("librarianLogInTitle"));
+        labelLibrarianUsername.setText(bundle.getString("librarianUsername"));
+        labelLibrarianPassword.setText(bundle.getString("librarianPassword")); // librarianSignUpPrompt
+        labelSignUp.setText(bundle.getString("librarianSignUpPrompt"));
+        btnLogin.setText(bundle.getString("librarianLogIn"));
+        backButton.setText(bundle.getString("librarianBack"));
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -269,4 +285,9 @@ public class LibrarianLoginView extends javax.swing.JFrame {
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void languageChanged() {
+        updateTexts();
+    }
 }

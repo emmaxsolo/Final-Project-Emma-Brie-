@@ -11,8 +11,9 @@ import javax.swing.table.DefaultTableModel;
  * @author 1982228,emmas
  */
 public class StudentBookCatalogView extends javax.swing.JFrame {
+
     private MainController mainController;
-    
+
     public StudentBookCatalogView(MainController mainController) {
         this.mainController = mainController;
         initComponents();
@@ -32,8 +33,8 @@ public class StudentBookCatalogView extends javax.swing.JFrame {
         mainPanel = new javax.swing.JPanel();
         catalogViewTitleLabel = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        studentBookCatalog = new javax.swing.JTable();
+        bookCatalogTableScrollPane = new javax.swing.JScrollPane();
+        studentBookCatalogTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Book Catalog ");
@@ -56,10 +57,10 @@ public class StudentBookCatalogView extends javax.swing.JFrame {
             }
         });
 
-        studentBookCatalog.setBackground(new java.awt.Color(214, 237, 255));
-        studentBookCatalog.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        studentBookCatalog.setForeground(new java.awt.Color(27, 73, 101));
-        studentBookCatalog.setModel(new javax.swing.table.DefaultTableModel(
+        studentBookCatalogTable.setBackground(new java.awt.Color(214, 237, 255));
+        studentBookCatalogTable.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        studentBookCatalogTable.setForeground(new java.awt.Color(27, 73, 101));
+        studentBookCatalogTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -75,21 +76,21 @@ public class StudentBookCatalogView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        studentBookCatalog.setToolTipText("The student book catalog of all available books for students");
-        studentBookCatalog.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        studentBookCatalog.setGridColor(new java.awt.Color(27, 73, 101));
-        studentBookCatalog.setRowHeight(30);
-        studentBookCatalog.setShowGrid(true);
-        studentBookCatalog.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(studentBookCatalog);
-        if (studentBookCatalog.getColumnModel().getColumnCount() > 0) {
-            studentBookCatalog.getColumnModel().getColumn(0).setPreferredWidth(150);
-            studentBookCatalog.getColumnModel().getColumn(1).setPreferredWidth(150);
-            studentBookCatalog.getColumnModel().getColumn(2).setPreferredWidth(150);
-            studentBookCatalog.getColumnModel().getColumn(3).setPreferredWidth(150);
-            studentBookCatalog.getColumnModel().getColumn(4).setPreferredWidth(150);
-            studentBookCatalog.getColumnModel().getColumn(5).setPreferredWidth(150);
-            studentBookCatalog.getColumnModel().getColumn(6).setPreferredWidth(150);
+        studentBookCatalogTable.setToolTipText("The student book catalog of all available books for students");
+        studentBookCatalogTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        studentBookCatalogTable.setGridColor(new java.awt.Color(27, 73, 101));
+        studentBookCatalogTable.setRowHeight(30);
+        studentBookCatalogTable.setShowGrid(true);
+        studentBookCatalogTable.getTableHeader().setReorderingAllowed(false);
+        bookCatalogTableScrollPane.setViewportView(studentBookCatalogTable);
+        if (studentBookCatalogTable.getColumnModel().getColumnCount() > 0) {
+            studentBookCatalogTable.getColumnModel().getColumn(0).setPreferredWidth(150);
+            studentBookCatalogTable.getColumnModel().getColumn(1).setPreferredWidth(150);
+            studentBookCatalogTable.getColumnModel().getColumn(2).setPreferredWidth(150);
+            studentBookCatalogTable.getColumnModel().getColumn(3).setPreferredWidth(150);
+            studentBookCatalogTable.getColumnModel().getColumn(4).setPreferredWidth(150);
+            studentBookCatalogTable.getColumnModel().getColumn(5).setPreferredWidth(150);
+            studentBookCatalogTable.getColumnModel().getColumn(6).setPreferredWidth(150);
         }
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
@@ -104,7 +105,7 @@ public class StudentBookCatalogView extends javax.swing.JFrame {
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGap(38, 38, 38)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(bookCatalogTableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGap(295, 295, 295)
                         .addComponent(backButton)))
@@ -116,7 +117,7 @@ public class StudentBookCatalogView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(catalogViewTitleLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bookCatalogTableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(backButton)
                 .addContainerGap(38, Short.MAX_VALUE))
@@ -143,24 +144,25 @@ public class StudentBookCatalogView extends javax.swing.JFrame {
         studentView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
-    
-    private void displayStudentBookCatalog() {
-        DefaultTableModel tableModel = (DefaultTableModel) studentBookCatalog.getModel();
-        tableModel.setRowCount(0); 
 
-        Map<String, Book> bookCatalogStudent = mainController.getBookCatalogStudent();
+    private void displayStudentBookCatalog() {
+        DefaultTableModel tableModel = (DefaultTableModel) studentBookCatalogTable.getModel();
+        tableModel.setRowCount(0);
+
+        Map<String, Book> bookCatalogStudent = mainController.getAvailableBooks();
         for (Book book : bookCatalogStudent.values()) {
             tableModel.addRow(new Object[]{
-                    book.getSN(),
-                    book.getTitle(),
-                    book.getAuthor(),
-                    book.getPublisher(),
-                    book.getPrice(),
-                    book.getQte(),
-                    book.getType()
+                book.getSN(),
+                book.getTitle(),
+                book.getAuthor(),
+                book.getPublisher(),
+                book.getPrice(),
+                book.getQte(), 
+                book.getType()
             });
         }
     }
+
     /**
      * @param args the command line arguments
      */
@@ -200,10 +202,10 @@ public class StudentBookCatalogView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
+    private javax.swing.JScrollPane bookCatalogTableScrollPane;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel catalogViewTitleLabel;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel mainPanel;
-    private javax.swing.JTable studentBookCatalog;
+    private javax.swing.JTable studentBookCatalogTable;
     // End of variables declaration//GEN-END:variables
 }

@@ -27,21 +27,3 @@ public class App {
         });
     }
 }
-/*
-
-Testing 2
-
- */
- /*
-
-HEY EM! THIS IS A TEST TO SHOW HOW TO CREATE AND MERGE TO MAIN BRANCH
-
- */
-/*
-
-
-    String title = The alchemist
-    String sql = "SELECT TITLE from library where name== title"
-    Book currentBook = statement.executeUpdate(sql);
-    
-*/

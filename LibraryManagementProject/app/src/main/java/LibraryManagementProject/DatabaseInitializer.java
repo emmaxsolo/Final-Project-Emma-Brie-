@@ -9,7 +9,7 @@ import java.sql.Statement;
 public class DatabaseInitializer {
     private static DatabaseInitializer instance;
     private Connection connection;
-    private final String url = "jdbc:sqlite:ourdatabase.db"; // Ensure this path is correctly configured
+    private final String url = "jdbc:sqlite:ourdatabase.db";
 
     private DatabaseInitializer() {
         establishConnection();
@@ -17,7 +17,6 @@ public class DatabaseInitializer {
 
     private void establishConnection() {
         try {
-            // This checks if the connection is null or closed and establishes a new connection if necessary
             if (connection == null || connection.isClosed()) {
                 connection = DriverManager.getConnection(url);
                 initializeDatabase();
@@ -83,7 +82,7 @@ public class DatabaseInitializer {
                     "FOREIGN KEY (SN) REFERENCES Books(SN), " +
                     "FOREIGN KEY (StId) REFERENCES Students(student_id));");
 
-            System.out.println("Tables initialized successfully.");
+            System.out.println("Tables updated.");
         } catch (SQLException e) {
             System.err.println("Error creating tables: " + e.getMessage());
         }

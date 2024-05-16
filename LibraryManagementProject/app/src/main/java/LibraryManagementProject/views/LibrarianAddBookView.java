@@ -1,24 +1,27 @@
 package LibraryManagementProject.views;
 
+import LibraryManagementProject.ResourceManager;
+import LibraryManagementProject.LanguageChangeListener;
 import LibraryManagementProject.controllers.LibrarianController;
 import LibraryManagementProject.controllers.MainController;
 import LibraryManagementProject.factory.Book;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author 1982228, emmas
- */
-public class LibrarianAddBookView extends javax.swing.JFrame {
 
+public class LibrarianAddBookView extends javax.swing.JFrame {
+// implements LanguageChangeListener
     private MainController mainController;
 
     public LibrarianAddBookView(MainController mainController) {
         this.mainController = mainController;
         initComponents();
         displayBookCatalog();
+//        ResourceManager.addLanguageChangeListener(this);
+//        updateTexts();
     }
 
     /**
@@ -31,7 +34,7 @@ public class LibrarianAddBookView extends javax.swing.JFrame {
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();
-        labelTitle = new javax.swing.JLabel();
+        addBookTitleLabel = new javax.swing.JLabel();
         addBookButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
         addBookInputPanel = new javax.swing.JPanel();
@@ -58,11 +61,11 @@ public class LibrarianAddBookView extends javax.swing.JFrame {
 
         mainPanel.setBackground(new java.awt.Color(194, 228, 255));
 
-        labelTitle.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
-        labelTitle.setForeground(new java.awt.Color(27, 73, 101));
-        labelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelTitle.setText("Add Book");
-        labelTitle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        addBookTitleLabel.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
+        addBookTitleLabel.setForeground(new java.awt.Color(27, 73, 101));
+        addBookTitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        addBookTitleLabel.setText("Add Book");
+        addBookTitleLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         addBookButton.setBackground(new java.awt.Color(95, 168, 211));
         addBookButton.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
@@ -339,14 +342,14 @@ public class LibrarianAddBookView extends javax.swing.JFrame {
                 .addGap(31, 31, 31))
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGap(398, 398, 398)
-                .addComponent(labelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(addBookTitleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(454, 454, 454))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(labelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(addBookTitleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(mainPanelLayout.createSequentialGroup()
@@ -459,7 +462,28 @@ public class LibrarianAddBookView extends javax.swing.JFrame {
             });
         }
     }
+    
+//    @Override
+//    public void languageChanged() {
+//        updateTexts();
+//    }
+    
+    private void updateTexts() {
+//        addBookTitleLabel.setText(ResourceManager.getString("addBookTitle"));
+//        snLabel.setText(ResourceManager.getString("snLabel"));
+//        titleLabel.setText(ResourceManager.getString("titleLabel"));
+//        authorLabel.setText(ResourceManager.getString("authorLabel"));    
+//        publisherLabel.setText(ResourceManager.getString("publisherLabel"));
+//        priceLabel.setText(ResourceManager.getString("priceLabel"));
+//        qteLabel.setText(ResourceManager.getString("quantityLabel"));
+//        typeLabel.setText(ResourceManager.getString("typeLabel"));
+//        addBookButton.setText(ResourceManager.getString("addBookBtn"));
+//        backButton.setText(ResourceManager.getString("backBtn"));
+        
+    }
 
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -503,12 +527,12 @@ public class LibrarianAddBookView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBookButton;
     private javax.swing.JPanel addBookInputPanel;
+    private javax.swing.JLabel addBookTitleLabel;
     private javax.swing.JTable addedBooksTable;
     private javax.swing.JLabel authorLabel;
     private javax.swing.JTextField authorTextField;
     private javax.swing.JButton backButton;
     private javax.swing.JButton clearFieldsButton;
-    private javax.swing.JLabel labelTitle;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JTextField priceTextField;

@@ -110,6 +110,7 @@ public class LibrarianBookCatalogView extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel1AncestorMoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel1AncestorMoved
@@ -122,7 +123,8 @@ public class LibrarianBookCatalogView extends javax.swing.JFrame {
         librarianView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
-  // Method to fetch and display books
+  
+// Method to fetch and display books
     private void displayBooks() {
       MainController mainController = MainController.getInstance();
         Map<String, Book> bookCatalog = mainController.getBookCatalogLibrarian();

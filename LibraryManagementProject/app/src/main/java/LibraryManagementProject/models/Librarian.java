@@ -9,6 +9,12 @@ public class Librarian {
     private String username;
     private String password;
 
+    /**
+     * Constructor
+     * @param librarianID
+     * @param username
+     * @param password 
+     */
     public Librarian(int librarianID, String username, String password) {
         this.librarianID = librarianID;
         this.username = username;

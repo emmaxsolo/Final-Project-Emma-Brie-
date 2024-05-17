@@ -451,26 +451,26 @@ public class LibrarianView extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    // Add a student
     private void addStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentButtonActionPerformed
         LibrarianAddStudentView addAStudentView = new LibrarianAddStudentView(mainController);
         addAStudentView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_addStudentButtonActionPerformed
-
+    // Log out
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
         mainController.getLibrarianController().logOut();
         EntryView entryView = new EntryView(mainController);
         entryView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_logOutButtonActionPerformed
-
+    // Add book
     private void addBookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookButtonActionPerformed
         LibrarianAddBookView addBookView = new LibrarianAddBookView(mainController);
         addBookView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_addBookButtonActionPerformed
-
+    // View catalog
     private void viewCatalogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCatalogButtonActionPerformed
         LibrarianBookCatalogView view = new LibrarianBookCatalogView(mainController);
         view.setVisible(true);

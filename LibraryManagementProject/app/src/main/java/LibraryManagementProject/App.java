@@ -3,16 +3,8 @@
  */
 package LibraryManagementProject;
 
-import LibraryManagementProject.controllers.LibrarianController;
 import LibraryManagementProject.controllers.MainController;
 import LibraryManagementProject.views.EntryView;
-import LibraryManagementProject.views.LibrarianLoginView;
-import LibraryManagementProject.views.LibrarianSignUpView;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 public class App {
 

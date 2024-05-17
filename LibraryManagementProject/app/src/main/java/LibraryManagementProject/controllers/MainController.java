@@ -10,8 +10,8 @@ import java.util.Map;
 
 public class MainController {
 
-    private LibrarianController librarianController;
-    private StudentController studentController;
+    public LibrarianController librarianController;
+    public StudentController studentController;
     private static MainController mainController;
 
     public MainController() {
@@ -38,17 +38,21 @@ public class MainController {
         return librarianController.getBookCatalogLibrarian();
     }
 
-//    public Map<String, Book> getBookCatalogStudent() {
-//        return studentController.getBookCatalogStudent();
-//    }
-
-
     // LIBRARIAN
     public boolean addBookToCatalog(String sn, String title, String author, String publisher, double price, int quantity, char type) {
         String addedDate = Timestamp.valueOf(LocalDateTime.now()).toString();
         Book book = new BookFactory().createBook(sn, title, author, publisher, price, quantity, 0, addedDate, type);
         return librarianController.addBook(book);
     }
+    
+     public boolean returnBookLibrarian(int issuedBookId) {
+        return librarianController.returnBook(issuedBookId);
+    }
+     
+      public List<Map<String, Object>> getIssuedIssuedBooksForLibrarian(){
+            return librarianController.getAllIssuedBooks();
+    }
+    
 
     // STUDENT
     public Map<String, Book> getAvailableBooks() {
@@ -66,31 +70,10 @@ public class MainController {
     public boolean returnBook(int issuedBookId) {
         return studentController.returnBook(issuedBookId);
     }
-
+   
     public List<Map<String, Object>> getIssuedBooksForStudent() {
         return studentController.getIssuedBooksForStudent();
     }
-
+    
 }
-//    //method to add book to catalog
-//    public void addBook(String bookTitle) {
-//        if (librarianController.bookExistsInNewBooks(bookTitle)) {
-//            if(librarianController.bookExistsInBooks(bookTitle)){
-//               librarianController.updateBookQuantityByOne(bookTitle); 
-//            }else{
-//                librarianController.addBookToBooks(bookTitle);
-//            }
-//            librarianController.removeBookFromNewBooks(bookTitle);
-//        } else {
-//            System.out.println("Book Does not Exist");
-//        }
-//    }
-//    
-//   //method to order Books
-//    //ORDER BOOKS (create books)
-//    public void orderBook(char c, int sn,String title,String author,String publisher, double price, int quantity, int issued){
-//        BookFactory factory = new BookFactory();
-//        Book book = (Book) factory.createBook(c,sn, title, author, publisher, price, quantity, issued);
-//        librarianController.addBooktoNewBooks(book);
-//    }
 

@@ -3,19 +3,30 @@ package LibraryManagementProject.views;
 import LibraryManagementProject.controllers.LibrarianController;
 import LibraryManagementProject.controllers.MainController;
 import LibraryManagementProject.factory.Book;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author emmas
  */
 public class LibrarianBookCatalogView extends javax.swing.JFrame {
+    private MainController mainController;
+    private ResourceBundle bundle;
+    private ResourceBundle bundleFR;
+
     /**
      * Creates new form CatalogViewLibrarian
      */
-    public LibrarianBookCatalogView() {
+    public LibrarianBookCatalogView(MainController mainController) {
+        this.mainController = mainController;
         initComponents();
         displayBooks();
+        
+        bundle = ResourceBundle.getBundle("LibrarianCatalogView");
+        bundleFR = ResourceBundle.getBundle("LibrarianCatalogView_fr_FR", Locale.FRANCE);
     }
 
     /**
@@ -27,11 +38,14 @@ public class LibrarianBookCatalogView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         catalogLabel = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
-        catalogScrollPane = new javax.swing.JScrollPane();
-        bookTextArea = new javax.swing.JTextArea();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        librarianBookCatalogTable = new javax.swing.JTable();
+        englishButton = new javax.swing.JRadioButton();
+        frenchButton = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,40 +75,81 @@ public class LibrarianBookCatalogView extends javax.swing.JFrame {
             }
         });
 
-        bookTextArea.setEditable(false);
-        bookTextArea.setBackground(new java.awt.Color(214, 237, 255));
-        bookTextArea.setColumns(20);
-        bookTextArea.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        bookTextArea.setRows(5);
-        catalogScrollPane.setViewportView(bookTextArea);
+        librarianBookCatalogTable.setBackground(new java.awt.Color(214, 237, 255));
+        librarianBookCatalogTable.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        librarianBookCatalogTable.setForeground(new java.awt.Color(27, 73, 101));
+        librarianBookCatalogTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(librarianBookCatalogTable);
+
+        buttonGroup1.add(englishButton);
+        englishButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        englishButton.setSelected(true);
+        englishButton.setText("English");
+        englishButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                englishButtonActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(frenchButton);
+        frenchButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        frenchButton.setText("French");
+        frenchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frenchButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(catalogLabel)
-                .addGap(95, 95, 95))
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(catalogScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(168, 168, 168)
-                        .addComponent(backButton)))
-                .addContainerGap(48, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(englishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(frenchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(292, 292, 292))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 63, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(67, 67, 67))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(catalogLabel)
+                                .addGap(217, 217, 217))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addGap(20, 20, 20)
                 .addComponent(catalogLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(catalogScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(englishButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(frenchButton)))
                 .addContainerGap())
         );
 
@@ -118,27 +173,38 @@ public class LibrarianBookCatalogView extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1AncestorMoved
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        MainController mainController = new MainController();
         LibrarianView librarianView = new LibrarianView(mainController);
         librarianView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void englishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_englishButtonActionPerformed
+        catalogLabel.setText(bundle.getString("Title"));
+        backButton.setText(bundle.getString("Back"));
+    }//GEN-LAST:event_englishButtonActionPerformed
+
+    private void frenchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frenchButtonActionPerformed
+       catalogLabel.setText(bundleFR.getString("Title"));
+        backButton.setText(bundleFR.getString("Back"));
+    }//GEN-LAST:event_frenchButtonActionPerformed
   
 // Method to fetch and display books
     private void displayBooks() {
-      MainController mainController = MainController.getInstance();
-        Map<String, Book> bookCatalog = mainController.getBookCatalogLibrarian();
+       DefaultTableModel tableModel = (DefaultTableModel) librarianBookCatalogTable.getModel();
+        tableModel.setRowCount(0);
 
-        StringBuilder catalogText = new StringBuilder();
-        for (Book book : bookCatalog.values()) {
-            catalogText.append("Title: ").append(book.getTitle()).append("\n")
-                    .append("Author: ").append(book.getAuthor()).append("\n")
-                    .append("Publisher: ").append(book.getPublisher()).append("\n")
-                    .append("Price: ").append(book.getPrice()).append("\n")
-                    .append("Quantity: ").append(book.getQte()).append("\n\n");
+        Map<String, Book> bookCatalogLibraian= mainController.getBookCatalogLibrarian();
+        for (Book book : bookCatalogLibraian.values()) {
+            tableModel.addRow(new Object[]{
+                book.getSN(),
+                book.getTitle(),
+                book.getAuthor(),
+                book.getPublisher(),
+                book.getPrice(),
+                book.getQte(), 
+                book.getType()
+            });
         }
-
-        bookTextArea.setText(catalogText.toString());
     }
     /**
      * @param args the command line arguments
@@ -171,16 +237,20 @@ public class LibrarianBookCatalogView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LibrarianBookCatalogView().setVisible(true);
+                MainController mainController = new MainController();
+                new LibrarianBookCatalogView(mainController).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JTextArea bookTextArea;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel catalogLabel;
-    private javax.swing.JScrollPane catalogScrollPane;
+    private javax.swing.JRadioButton englishButton;
+    private javax.swing.JRadioButton frenchButton;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable librarianBookCatalogTable;
     // End of variables declaration//GEN-END:variables
 }

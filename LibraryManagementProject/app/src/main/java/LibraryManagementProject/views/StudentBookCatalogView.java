@@ -139,7 +139,6 @@ public class StudentBookCatalogView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        MainController mainController = new MainController();
         StudentView studentView = new StudentView(mainController);
         studentView.setVisible(true);
         this.dispose();

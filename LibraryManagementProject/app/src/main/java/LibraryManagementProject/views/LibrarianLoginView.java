@@ -5,6 +5,7 @@ import LibraryManagementProject.ResourceManager;
 import LibraryManagementProject.controllers.LibrarianController;
 import LibraryManagementProject.controllers.MainController;
 import LibraryManagementProject.views.*;
+import java.util.Locale;
 import javax.swing.*;
 import java.util.ResourceBundle;
 
@@ -12,18 +13,19 @@ import java.util.ResourceBundle;
  *
  * @author 1982228, emmas
  */
-public class LibrarianLoginView extends javax.swing.JFrame implements LanguageChangeListener {
+public class LibrarianLoginView extends javax.swing.JFrame  {
 
     private MainController mainController;
     private LibrarianController librarianController;
     private ResourceBundle bundle;
+    private ResourceBundle bundlefr;
 
     public LibrarianLoginView(MainController mainController) {
         this.mainController = mainController;
         this.librarianController = mainController.getLibrarianController();
         initComponents();
-        ResourceManager.addLanguageChangeListener(this);
-        updateTexts();
+        bundle = ResourceBundle.getBundle("LibrarianLoginView");
+        bundlefr = ResourceBundle.getBundle("LibrarianLoginView_fr_FR",Locale.FRANCE);
     }
 
     /**
@@ -35,6 +37,7 @@ public class LibrarianLoginView extends javax.swing.JFrame implements LanguageCh
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         labelTitle = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -45,6 +48,8 @@ public class LibrarianLoginView extends javax.swing.JFrame implements LanguageCh
         backButton = new javax.swing.JButton();
         btnLogin = new javax.swing.JButton();
         labelSignUp = new javax.swing.JLabel();
+        frenchButton = new javax.swing.JRadioButton();
+        englishButton = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Librarian Login");
@@ -55,6 +60,7 @@ public class LibrarianLoginView extends javax.swing.JFrame implements LanguageCh
 
         jPanel1.setBackground(new java.awt.Color(194, 228, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setToolTipText("");
         jPanel1.setPreferredSize(new java.awt.Dimension(500, 430));
 
         labelTitle.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
@@ -95,14 +101,11 @@ public class LibrarianLoginView extends javax.swing.JFrame implements LanguageCh
                     .addComponent(labelLibrarianUsername)
                     .addComponent(labelLibrarianPassword))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(usernameField, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+                    .addComponent(passwordField))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
-
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {passwordField, usernameField});
-
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -150,6 +153,25 @@ public class LibrarianLoginView extends javax.swing.JFrame implements LanguageCh
             }
         });
 
+        buttonGroup1.add(frenchButton);
+        frenchButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        frenchButton.setText("French");
+        frenchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frenchButtonActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(englishButton);
+        englishButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        englishButton.setSelected(true);
+        englishButton.setText("English");
+        englishButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                englishButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -164,24 +186,35 @@ public class LibrarianLoginView extends javax.swing.JFrame implements LanguageCh
                         .addComponent(labelSignUp)))
                 .addGap(6, 6, 6))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 681, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(223, 223, 223)
-                .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(247, 247, 247))
+                .addGap(17, 17, 17)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(englishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(frenchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(labelTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(30, 30, 30)
                 .addComponent(btnLogin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGap(82, 82, 82)
+                .addComponent(englishButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(frenchButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelSignUp, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(backButton, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -192,11 +225,16 @@ public class LibrarianLoginView extends javax.swing.JFrame implements LanguageCh
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -228,15 +266,24 @@ public class LibrarianLoginView extends javax.swing.JFrame implements LanguageCh
         this.dispose();
     }//GEN-LAST:event_labelSignUpMouseClicked
 
-    private void updateTexts() {
-        bundle = ResourceManager.getBundle("LibrarianLoginView");
-        labelTitle.setText(bundle.getString("librarianLogInTitle"));
-        labelLibrarianUsername.setText(bundle.getString("librarianUsername"));
-        labelLibrarianPassword.setText(bundle.getString("librarianPassword")); // librarianSignUpPrompt
-        labelSignUp.setText(bundle.getString("librarianSignUpPrompt"));
-        btnLogin.setText(bundle.getString("librarianLogIn"));
-        backButton.setText(bundle.getString("librarianBack"));
-    }
+    private void frenchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frenchButtonActionPerformed
+        labelTitle.setText(bundlefr.getString("Title"));
+        labelLibrarianUsername.setText(bundlefr.getString("Username"));
+        labelLibrarianPassword.setText(bundlefr.getString("Password"));
+        btnLogin.setText(bundlefr.getString("LogIn"));
+        backButton.setText(bundlefr.getString("Back"));
+        labelSignUp.setText(bundlefr.getString("SignUpPrompt"));
+    }//GEN-LAST:event_frenchButtonActionPerformed
+
+    private void englishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_englishButtonActionPerformed
+        labelTitle.setText(bundle.getString("Title"));
+        labelLibrarianUsername.setText(bundle.getString("Username"));
+        labelLibrarianPassword.setText(bundle.getString("Password"));
+        btnLogin.setText(bundle.getString("LogIn"));
+        backButton.setText(bundle.getString("Back"));
+        labelSignUp.setText(bundle.getString("SignUpPrompt"));
+    }//GEN-LAST:event_englishButtonActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -276,6 +323,9 @@ public class LibrarianLoginView extends javax.swing.JFrame implements LanguageCh
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JButton btnLogin;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JRadioButton englishButton;
+    private javax.swing.JRadioButton frenchButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel labelLibrarianPassword;
@@ -286,8 +336,5 @@ public class LibrarianLoginView extends javax.swing.JFrame implements LanguageCh
     private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void languageChanged() {
-        updateTexts();
-    }
+
 }

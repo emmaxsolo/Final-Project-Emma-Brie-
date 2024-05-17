@@ -6,6 +6,7 @@ import LibraryManagementProject.factory.BookFactory;
 import LibraryManagementProject.helpers.SQLCommands;
 import LibraryManagementProject.models.Librarian;
 import LibraryManagementProject.models.Session;
+import LibraryManagementProject.models.Student;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +14,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,7 +33,7 @@ public class LibrarianController {
 
     public boolean registerLibrarian(String username, String password) {
         String query = "INSERT INTO librarians (username, password) VALUES (?, ?)";
-        try (Connection conn = DatabaseInitializer.getInstance().getConnection()) {
+        try ( Connection conn = DatabaseInitializer.getInstance().getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setString(1, username);
             pstmt.setString(2, password);
@@ -44,7 +47,7 @@ public class LibrarianController {
 
     public boolean logInLibrarian(String username, String password) {
         String query = "SELECT * FROM Librarians WHERE username = ? AND password = ?";
-        try (Connection conn = DatabaseInitializer.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
+        try ( Connection conn = DatabaseInitializer.getInstance().getConnection();  PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, username);
             pstmt.setString(2, password);
             ResultSet rs = pstmt.executeQuery();
@@ -68,7 +71,7 @@ public class LibrarianController {
 
     public boolean addStudent(int studentId, String studentName, String contactNumber, int librarianId) {
         String checkQuery = "SELECT * FROM Students WHERE student_id = ?";
-        try (Connection conn = DatabaseInitializer.getInstance().getConnection(); PreparedStatement checkStmt = conn.prepareStatement(checkQuery)) {
+        try ( Connection conn = DatabaseInitializer.getInstance().getConnection();  PreparedStatement checkStmt = conn.prepareStatement(checkQuery)) {
             checkStmt.setInt(1, studentId);
             ResultSet rs = checkStmt.executeQuery();
             if (rs.next()) {
@@ -77,7 +80,7 @@ public class LibrarianController {
             }
 
             String query = "INSERT INTO Students (student_id, student_name, contact_number, added_by_librarian) VALUES (?, ?, ?, ?)";
-            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+            try ( PreparedStatement pstmt = conn.prepareStatement(query)) {
                 pstmt.setInt(1, studentId);
                 pstmt.setString(2, studentName);
                 pstmt.setString(3, contactNumber);
@@ -132,34 +135,33 @@ public class LibrarianController {
     }
 
     public void addBooktoNewBooks(Book newBook) {
-    String insertQuery = "INSERT INTO NEWBOOKS (SN,TITLE,AUTHOR,PUBLISHER,PRICE,QUANTITY,ISSUED) VALUES (?,?,?,?,?,?,?)";
+        String insertQuery = "INSERT INTO NEWBOOKS (SN,TITLE,AUTHOR,PUBLISHER,PRICE,QUANTITY,ISSUED) VALUES (?,?,?,?,?,?,?)";
 
-    try (Connection conn = DatabaseInitializer.getInstance().getConnection();
-         PreparedStatement insertStmt = conn.prepareStatement(insertQuery)) {
-        if (bookExistsInNewBooks(newBook.getTitle())) {
-            updateBookQuantityByOne(newBook.getTitle());
-        } else {
-            // Set parameters for the insert statement
-            insertStmt.setString(1, newBook.getSN());
-            insertStmt.setString(2, newBook.getTitle());
-            insertStmt.setString(3, newBook.getAuthor());
-            insertStmt.setString(4, newBook.getPublisher());
-            insertStmt.setDouble(5, (double) newBook.getPrice());
-            insertStmt.setInt(6, newBook.getQte());
-            insertStmt.setInt(7, newBook.getQteIssued());
-
-            // Execute the insert statement
-            int rowsInserted = insertStmt.executeUpdate();
-            if (rowsInserted > 0) {
-                System.out.println("Book added to newBooks table.");
+        try ( Connection conn = DatabaseInitializer.getInstance().getConnection();  PreparedStatement insertStmt = conn.prepareStatement(insertQuery)) {
+            if (bookExistsInNewBooks(newBook.getTitle())) {
+                updateBookQuantityByOne(newBook.getTitle());
             } else {
-                System.out.println("Failed to add book to newBooks table.");
+                // Set parameters for the insert statement
+                insertStmt.setString(1, newBook.getSN());
+                insertStmt.setString(2, newBook.getTitle());
+                insertStmt.setString(3, newBook.getAuthor());
+                insertStmt.setString(4, newBook.getPublisher());
+                insertStmt.setDouble(5, (double) newBook.getPrice());
+                insertStmt.setInt(6, newBook.getQte());
+                insertStmt.setInt(7, newBook.getQteIssued());
+
+                // Execute the insert statement
+                int rowsInserted = insertStmt.executeUpdate();
+                if (rowsInserted > 0) {
+                    System.out.println("Book added to newBooks table.");
+                } else {
+                    System.out.println("Failed to add book to newBooks table.");
+                }
             }
+        } catch (SQLException ex) {
+            System.out.println("Cannot add to newBooks: " + ex.getMessage());
         }
-    } catch (SQLException ex) {
-        System.out.println("Cannot add to newBooks: " + ex.getMessage());
     }
-}
 
     //add book form newBooks to the library(books)
     public void addBookToBooks(String bookTitle) {
@@ -210,22 +212,20 @@ public class LibrarianController {
 
     //ill fix this tmr
     public void updateBookQuantityByOne(String bookTitle) {
-    String query = "UPDATE BOOKS SET QUANTITY = QUANTITY + 1 WHERE TITLE = ?";
-    
-    try (Connection conn = DatabaseInitializer.getInstance().getConnection();
-         PreparedStatement pstmt = conn.prepareStatement(query)) {
-        pstmt.setString(1, bookTitle);
-        int rowsUpdated = pstmt.executeUpdate();
-        if (rowsUpdated > 0) {
-            System.out.println("Quantity Updated");
-        } else {
-            System.out.println("No book found with title: " + bookTitle);
-        }
-    } catch (SQLException e) {
-        System.err.println("Error updating book quantity: " + e.getMessage());
-    }
-}
+        String query = "UPDATE BOOKS SET QUANTITY = QUANTITY + 1 WHERE TITLE = ?";
 
+        try ( Connection conn = DatabaseInitializer.getInstance().getConnection();  PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, bookTitle);
+            int rowsUpdated = pstmt.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Quantity Updated");
+            } else {
+                System.out.println("No book found with title: " + bookTitle);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error updating book quantity: " + e.getMessage());
+        }
+    }
 
     public void removeBookFromNewBooks(String bookTitle) {
         String query = "DELETE FROM newBooks WHERE title = ?";
@@ -250,7 +250,7 @@ public class LibrarianController {
      */
     public boolean addBook(Book book) {
         String query = "INSERT INTO Books (SN, title, author, publisher, price, quantity, issued, addedDate, type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try (Connection conn = DatabaseInitializer.getInstance().getConnection()) {
+        try ( Connection conn = DatabaseInitializer.getInstance().getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setString(1, book.getSN());
             pstmt.setString(2, book.getTitle());
@@ -268,23 +268,56 @@ public class LibrarianController {
             return false;
         }
     }
+
     
-    public boolean issueBook(Book book) {
-//        String selectQuery = "SELECT * FROM Books where SN == ?";
-//        String insertQuery = "INSERT INTO IssuedBooks (id, SN, StId, IssueDate) VALUES (?,?,?,?)";
-//        try(Connection conn = DatabaseInitializer.getInstance().getConnection()) {
-//            PreparedStatement pstmt = conn.prepareStatement(insertQuery);
-//            pstmt.setString(1, book.);
-//        } catch (SQLException ex) {
-//            System.err.println("Issue book failed: " + e.getMessage());
-//        }
-        return false;
+    public boolean returnBook(int issuedBookId) {
+        Librarian currentLibrarian = Session.getCurrentLibrarian();
+        if (currentLibrarian == null) {
+            System.err.println("No librarian logged in.");
+            return false;
+        }
+
+        try (Connection conn = DatabaseInitializer.getInstance().getConnection()) {
+            // Get the book details from IssuedBooks
+            String selectQuery = "SELECT SN, quantity FROM IssuedBooks WHERE id = ? ";
+            try (PreparedStatement selectStmt = conn.prepareStatement(selectQuery)) {
+                selectStmt.setInt(1, issuedBookId);
+                ResultSet rs = selectStmt.executeQuery();
+                if (rs.next()) {
+                    String sn = rs.getString("SN");
+                    int quantity = rs.getInt("quantity");
+
+                    // Update the book quantities
+                    String updateQuery = "UPDATE Books SET issued = issued - ? WHERE SN = ?";
+                    try (PreparedStatement updateStmt = conn.prepareStatement(updateQuery)) {
+                        updateStmt.setInt(1, quantity);
+                        updateStmt.setString(2, sn);
+                        updateStmt.executeUpdate();
+                    }
+
+                    // Delete the record from IssuedBooks
+                    String deleteQuery = "DELETE FROM IssuedBooks WHERE id = ?";
+                    try (PreparedStatement deleteStmt = conn.prepareStatement(deleteQuery)) {
+                        deleteStmt.setInt(1, issuedBookId);
+                        deleteStmt.executeUpdate();
+                    }
+
+                    return true;
+                } else {
+                    System.err.println("Issued book not found.");
+                    return false;
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error returning book: " + e.getMessage());
+            return false;
+        }
     }
 
     public Map<String, Book> getBookCatalogLibrarian() {
         Map<String, Book> books = new HashMap<>();
         String query = "SELECT * FROM Books";
-        try (Connection conn = DatabaseInitializer.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query); ResultSet rs = pstmt.executeQuery()) {
+        try ( Connection conn = DatabaseInitializer.getInstance().getConnection();  PreparedStatement pstmt = conn.prepareStatement(query);  ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
                 Book book = new BookFactory().createBook(
                         rs.getString("SN"),
@@ -304,154 +337,36 @@ public class LibrarianController {
         }
         return books;
     }
+
+    public List<Map<String, Object>> getAllIssuedBooks() {
+        Librarian currentLibrarian = Session.getCurrentLibrarian();
+
+        if (currentLibrarian == null) {
+            System.err.println("No librarian logged in");
+            return new ArrayList<>();
+        }
+
+        List<Map<String, Object>> issuedBooks = new ArrayList<>();
+        String query = "SELECT * FROM ISSUEDBOOKS";
+
+        try ( Connection conn = DatabaseInitializer.getInstance().getConnection();  PreparedStatement pstmt = conn.prepareStatement(query)) {
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Map<String, Object> issuedBook = new HashMap<>();
+                issuedBook.put("id", rs.getInt("id"));
+                issuedBook.put("SN", rs.getString("SN"));
+                issuedBook.put("title", rs.getString("title"));
+                issuedBook.put("StId",rs.getString("StId"));
+                issuedBook.put("quantity", rs.getInt("quantity"));
+                issuedBook.put("IssueDate", rs.getString("IssueDate"));
+                issuedBooks.add(issuedBook);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error fetching issued books" + e.getMessage());
+        }
+        return issuedBooks;
+
+    }
 }
 
-//    //NEWBOOK MANIPULATION
-//    //Method do check if book title exists in the new book table
-//    public boolean bookExistsInNewBooks(String bookTitle) {
-//        String query = SQLCommands.checkNewBookExists;
-//
-//        try ( Connection conn = DatabaseInitializer.getInstance().getConnection();  PreparedStatement pstmt = conn.prepareStatement(query)) {
-//            pstmt.setString(1, bookTitle);
-//            ResultSet rs = pstmt.executeQuery();
-//            if (rs.next()) {
-//                int count = rs.getInt(1);
-//                return count > 0;
-//            }
-//        } catch (SQLException e) {
-//            System.err.println("Error checking book existence in newBooks: " + e.getMessage());
-//        }
-//        return false; // Default return value if an error occurs
-//    }
-//
-//    //Method do check if book title exists in the book table
-//    public boolean bookExistsInBooks(String bookTitle) {
-//        String query = SQLCommands.checkBookExists;
-//
-//        try ( Connection conn = DatabaseInitializer.getInstance().getConnection();  PreparedStatement pstmt = conn.prepareStatement(query)) {
-//            pstmt.setString(1, bookTitle);
-//            ResultSet rs = pstmt.executeQuery();
-//            if (rs.next()) {
-//                int count = rs.getInt(1);
-//                return count > 0;
-//            }
-//        } catch (SQLException e) {
-//            System.err.println("Error checking book existence in newBooks: " + e.getMessage());
-//        }
-//        return false; // Default return value if an error occurs
-//    }
-//
-//    public void addBooktoNewBooks(Book newBook) {
-//    String insertQuery = "INSERT INTO NEWBOOKS (SN,TITLE,AUTHOR,PUBLISHER,PRICE,QUANTITY,ISSUED) VALUES (?,?,?,?,?,?,?)";
-//
-//    try (Connection conn = DatabaseInitializer.getInstance().getConnection();
-//         PreparedStatement insertStmt = conn.prepareStatement(insertQuery)) {
-//        if (bookExistsInNewBooks(newBook.getTitle())) {
-//            updateBookQuantityByOne(newBook.getTitle());
-//        } else {
-//            // Set parameters for the insert statement
-//            insertStmt.setInt(1, newBook.getSN());
-//            insertStmt.setString(2, newBook.getTitle());
-//            insertStmt.setString(3, newBook.getAuthor());
-//            insertStmt.setString(4, newBook.getPublisher());
-//            insertStmt.setDouble(5, (double) newBook.getPrice());
-//            insertStmt.setInt(6, newBook.getQte());
-//            insertStmt.setInt(7, newBook.getQteIssued());
-//
-//            // Execute the insert statement
-//            int rowsInserted = insertStmt.executeUpdate();
-//            if (rowsInserted > 0) {
-//                System.out.println("Book added to newBooks table.");
-//            } else {
-//                System.out.println("Failed to add book to newBooks table.");
-//            }
-//        }
-//    } catch (SQLException ex) {
-//        System.out.println("Cannot add to newBooks: " + ex.getMessage());
-//    }
-//}
-//
-//    //add book form newBooks to the library(books)
-//    public void addBookToBooks(String bookTitle) {
-//        String selectQuery = "SELECT * FROM newBooks WHERE title = ?";
-//        String insertQuery = "INSERT INTO books (sn, title, author, publisher, price, quantity, issued, addedDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-//
-//        try ( Connection conn = DatabaseInitializer.getInstance().getConnection();  PreparedStatement selectStmt = conn.prepareStatement(selectQuery);  PreparedStatement insertStmt = conn.prepareStatement(insertQuery)) {
-//
-//            selectStmt.setString(1, bookTitle);
-//
-//            ResultSet rs = selectStmt.executeQuery();
-//            // Check if a record with the given title exists in newBooks table
-//            if (rs.next()) {
-//                // Get the book details from the newBooks table
-//                String title = rs.getString("title");
-//                String author = rs.getString("author");
-//                String publisher = rs.getString("publisher");
-//                double price = rs.getDouble("price");
-//                int qte = rs.getInt("quantity");
-//                int issuedQte = rs.getInt("issued");
-//                LocalDateTime currentDate = LocalDateTime.now();
-//                Timestamp timestamp = Timestamp.valueOf(currentDate);
-//
-//                // Set parameters for the insert statement
-//                insertStmt.setString(1, rs.getString("sn"));
-//                insertStmt.setString(2, title);
-//                insertStmt.setString(3, author);
-//                insertStmt.setString(4, publisher);
-//                insertStmt.setDouble(5, price);
-//                insertStmt.setInt(6, qte);
-//                insertStmt.setInt(7, issuedQte);
-//                insertStmt.setTimestamp(8, timestamp);
-//
-//                // Execute the insert query
-//                int rowsInserted = insertStmt.executeUpdate();
-//                if (rowsInserted > 0) {
-//                    System.out.println("Book '" + title + "' added to books table with addedDate: " + currentDate);
-//                } else {
-//                    System.out.println("Failed to add book to books table.");
-//                }
-//            } else {
-//                System.out.println("Book with title '" + bookTitle + "' not found in newBooks table.");
-//            }
-//        } catch (SQLException e) {
-//            System.err.println("Error adding book to books table: " + e.getMessage());
-//        }
-//    }
-//
-//    //ill fix this tmr
-//    public void updateBookQuantityByOne(String bookTitle) {
-//    String query = "UPDATE BOOKS SET QUANTITY = QUANTITY + 1 WHERE TITLE = ?";
-//    
-//    try (Connection conn = DatabaseInitializer.getInstance().getConnection();
-//         PreparedStatement pstmt = conn.prepareStatement(query)) {
-//        pstmt.setString(1, bookTitle);
-//        int rowsUpdated = pstmt.executeUpdate();
-//        if (rowsUpdated > 0) {
-//            System.out.println("Quantity Updated");
-//        } else {
-//            System.out.println("No book found with title: " + bookTitle);
-//        }
-//    } catch (SQLException e) {
-//        System.err.println("Error updating book quantity: " + e.getMessage());
-//    }
-//}
-//
-//
-//    public void removeBookFromNewBooks(String bookTitle) {
-//        String query = "DELETE FROM newBooks WHERE title = ?";
-//        try ( Connection conn = DatabaseInitializer.getInstance().getConnection();  PreparedStatement pstmt = conn.prepareStatement(query)) {
-//            // Set the book title parameter
-//            pstmt.setString(1, bookTitle);
-//            // Execute the delete query
-//            int rowsAffected = pstmt.executeUpdate();
-//            if (rowsAffected > 0) {
-//                System.out.println("Book '" + bookTitle + "' removed from newBooks table.");
-//            } else {
-//                System.out.println("No book with title '" + bookTitle + "' found in newBooks table.");
-//            }
-//        } catch (SQLException e) {
-//            System.err.println("Error removing book from newBooks table: " + e.getMessage());
-//        }
-//
-//    }
 

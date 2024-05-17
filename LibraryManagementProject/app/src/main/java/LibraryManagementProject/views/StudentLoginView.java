@@ -3,6 +3,8 @@ package LibraryManagementProject.views;
 import LibraryManagementProject.controllers.MainController;
 import LibraryManagementProject.controllers.StudentController;
 import LibraryManagementProject.views.StudentView;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 /**
@@ -10,9 +12,11 @@ import javax.swing.JOptionPane;
  * @author 1982228, emmas
  */
 public class StudentLoginView extends javax.swing.JFrame {
+
     private MainController mainController;
     private StudentController studentController;
-
+    private ResourceBundle bundle;
+    private ResourceBundle bundleFR;
 
     /**
      * Creates new form StudentLoginView
@@ -21,6 +25,8 @@ public class StudentLoginView extends javax.swing.JFrame {
         this.mainController = mainController;
         this.studentController = mainController.getStudentController();
         initComponents();
+        bundle = ResourceBundle.getBundle("StudentLogInView");
+        bundleFR = ResourceBundle.getBundle("StudentLogInView_fr_FR", Locale.FRANCE);
     }
 
     /**
@@ -32,6 +38,7 @@ public class StudentLoginView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         labelTitle = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -42,6 +49,8 @@ public class StudentLoginView extends javax.swing.JFrame {
         btnLogin = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
         labelSignUp = new javax.swing.JLabel();
+        englishBtn = new javax.swing.JRadioButton();
+        frenchBtn = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Student Log In");
@@ -142,6 +151,27 @@ public class StudentLoginView extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(englishBtn);
+        englishBtn.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        englishBtn.setForeground(new java.awt.Color(27, 73, 101));
+        englishBtn.setSelected(true);
+        englishBtn.setText("English");
+        englishBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                englishBtnActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(frenchBtn);
+        frenchBtn.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        frenchBtn.setForeground(new java.awt.Color(27, 73, 101));
+        frenchBtn.setText("French");
+        frenchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frenchBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -149,9 +179,17 @@ public class StudentLoginView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(btnLogin)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(6, 6, 6))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(6, 6, 6))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnLogin)
+                        .addGap(123, 123, 123)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(englishBtn, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(frenchBtn, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(38, 38, 38))))
             .addGroup(javax.swing.GroupLayout.Alignment.CENTER, jPanel1Layout.createSequentialGroup()
                 .addGap(162, 162, 162)
                 .addComponent(labelTitle)
@@ -173,11 +211,16 @@ public class StudentLoginView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnLogin)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(backButton))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(englishBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(frenchBtn))
+                            .addComponent(btnLogin))
+                        .addGap(43, 43, 43)
                         .addComponent(labelSignUp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -228,6 +271,28 @@ public class StudentLoginView extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_labelSignUpMouseClicked
 
+    private void englishBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_englishBtnActionPerformed
+        labelTitle.setText(bundle.getString("studentLoginTitle"));
+        labelStudentUsername.setText(bundle.getString("usernameLabel"));
+        labelStudentPassword.setText(bundle.getString("passwordLabel"));
+        btnLogin.setText(bundle.getString("loginButton"));
+        backButton.setText(bundle.getString("backButton"));
+        labelSignUp.setText(bundle.getString("signUpPrompt"));
+        englishBtn.setText(bundle.getString("englishBtn"));
+        frenchBtn.setText(bundle.getString("frenchBtn"));
+    }//GEN-LAST:event_englishBtnActionPerformed
+
+    private void frenchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frenchBtnActionPerformed
+        labelTitle.setText(bundleFR.getString("studentLoginTitle"));
+        labelStudentUsername.setText(bundleFR.getString("usernameLabel"));
+        labelStudentPassword.setText(bundleFR.getString("passwordLabel"));
+        btnLogin.setText(bundleFR.getString("loginButton"));
+        backButton.setText(bundleFR.getString("backButton"));
+        labelSignUp.setText(bundleFR.getString("signUpPrompt"));
+        englishBtn.setText(bundleFR.getString("englishBtn"));
+        frenchBtn.setText(bundleFR.getString("frenchBtn"));
+    }//GEN-LAST:event_frenchBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -256,16 +321,20 @@ public class StudentLoginView extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new StudentLoginView().setVisible(true);
-//            }
-//        });
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                MainController mainController = new MainController();
+                new StudentLoginView(mainController).setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JButton btnLogin;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JRadioButton englishBtn;
+    private javax.swing.JRadioButton frenchBtn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel labelSignUp;

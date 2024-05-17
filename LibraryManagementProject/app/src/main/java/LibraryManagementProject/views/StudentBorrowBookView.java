@@ -6,7 +6,9 @@ import LibraryManagementProject.factory.BookFactory;
 import LibraryManagementProject.models.Session;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,11 +19,15 @@ import javax.swing.table.DefaultTableModel;
 public class StudentBorrowBookView extends javax.swing.JFrame {
 
     private MainController mainController;
-
+    private ResourceBundle bundle;
+    private ResourceBundle bundleFR;
+    
     public StudentBorrowBookView(MainController mainController) {
         this.mainController = mainController;
         initComponents();
         displayAvailableBooks();
+        bundle = ResourceBundle.getBundle("StudentBorrowBookView");
+        bundleFR = ResourceBundle.getBundle("StudentBorrowBookView_fr_FR", Locale.FRANCE);
     }
 
     /**
@@ -33,6 +39,7 @@ public class StudentBorrowBookView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         mainPanel = new javax.swing.JPanel();
         borrowBookTitleLabel = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
@@ -42,6 +49,8 @@ public class StudentBorrowBookView extends javax.swing.JFrame {
         bookQuantityLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         availableBooksTable = new javax.swing.JTable();
+        englishBtn = new javax.swing.JRadioButton();
+        frenchBtn = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(202, 233, 255));
@@ -148,6 +157,27 @@ public class StudentBorrowBookView extends javax.swing.JFrame {
             availableBooksTable.getColumnModel().getColumn(6).setPreferredWidth(120);
         }
 
+        buttonGroup1.add(englishBtn);
+        englishBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        englishBtn.setForeground(new java.awt.Color(27, 73, 101));
+        englishBtn.setSelected(true);
+        englishBtn.setText("English");
+        englishBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                englishBtnActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(frenchBtn);
+        frenchBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        frenchBtn.setForeground(new java.awt.Color(27, 73, 101));
+        frenchBtn.setText("French");
+        frenchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frenchBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -155,17 +185,20 @@ public class StudentBorrowBookView extends javax.swing.JFrame {
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(313, 313, 313)
-                        .addComponent(backButton))
+                        .addGap(264, 264, 264)
+                        .addComponent(borrowBookTitleLabel))
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(englishBtn)
+                                    .addComponent(frenchBtn))
+                                .addGap(178, 178, 178)
+                                .addComponent(backButton))
                             .addComponent(borrowBookPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(264, 264, 264)
-                        .addComponent(borrowBookTitleLabel)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,8 +210,13 @@ public class StudentBorrowBookView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(borrowBookPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(backButton)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(backButton)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addComponent(englishBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(frenchBtn)))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -233,6 +271,24 @@ public class StudentBorrowBookView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Failed to borrow book.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_borrowBookButtonActionPerformed
+
+    private void englishBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_englishBtnActionPerformed
+       borrowBookTitleLabel.setText(bundle.getString("borrowBookTitle"));
+       bookQuantityLabel.setText(bundle.getString("enterQuantityLabel"));
+       borrowBookButton.setText(bundle.getString("borrowBooksButton"));
+       backButton.setText(bundle.getString("backButton"));
+       englishBtn.setText(bundle.getString("englishBtn"));
+       frenchBtn.setText(bundle.getString("frenchBtn"));
+    }//GEN-LAST:event_englishBtnActionPerformed
+
+    private void frenchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frenchBtnActionPerformed
+       borrowBookTitleLabel.setText(bundleFR.getString("borrowBookTitle"));
+       bookQuantityLabel.setText(bundleFR.getString("enterQuantityLabel"));
+       borrowBookButton.setText(bundleFR.getString("borrowBooksButton"));
+       backButton.setText(bundleFR.getString("backButton"));
+       englishBtn.setText(bundleFR.getString("englishBtn"));
+       frenchBtn.setText(bundleFR.getString("frenchBtn"));
+    }//GEN-LAST:event_frenchBtnActionPerformed
 
     private void displayAvailableBooks() {
         DefaultTableModel tableModel = (DefaultTableModel) availableBooksTable.getModel();
@@ -301,6 +357,9 @@ public class StudentBorrowBookView extends javax.swing.JFrame {
     private javax.swing.JButton borrowBookButton;
     private javax.swing.JPanel borrowBookPanel;
     private javax.swing.JLabel borrowBookTitleLabel;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JRadioButton englishBtn;
+    private javax.swing.JRadioButton frenchBtn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel mainPanel;
     // End of variables declaration//GEN-END:variables

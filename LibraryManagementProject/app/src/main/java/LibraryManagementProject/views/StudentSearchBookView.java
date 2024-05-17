@@ -2,7 +2,9 @@ package LibraryManagementProject.views;
 
 import LibraryManagementProject.controllers.MainController;
 import LibraryManagementProject.factory.Book;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,11 +15,15 @@ import javax.swing.table.DefaultTableModel;
 public class StudentSearchBookView extends javax.swing.JFrame {
 
     private MainController mainController;
+    private ResourceBundle bundle;
+    private ResourceBundle bundleFR;
 
     public StudentSearchBookView(MainController mainController) {
         this.mainController = mainController;
         initComponents();
         displayBookCatalog();
+        bundle = ResourceBundle.getBundle("StudentSearchBookView");
+        bundleFR = ResourceBundle.getBundle("StudentSearchBookView_fr_FR",Locale.FRANCE);
     }
 
     /**
@@ -30,6 +36,7 @@ public class StudentSearchBookView extends javax.swing.JFrame {
     private void initComponents() {
 
         searchButtonGroup = new javax.swing.ButtonGroup();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         mainPanel = new javax.swing.JPanel();
         searchBookTitleLabel = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
@@ -43,6 +50,8 @@ public class StudentSearchBookView extends javax.swing.JFrame {
         clearButton = new javax.swing.JButton();
         bookSearchTableScrollPane = new javax.swing.JScrollPane();
         bookCatalogStudentTable = new javax.swing.JTable();
+        englishBtn = new javax.swing.JRadioButton();
+        frenchBtn = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -193,6 +202,27 @@ public class StudentSearchBookView extends javax.swing.JFrame {
             bookCatalogStudentTable.getColumnModel().getColumn(6).setPreferredWidth(120);
         }
 
+        buttonGroup1.add(englishBtn);
+        englishBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        englishBtn.setForeground(new java.awt.Color(27, 73, 101));
+        englishBtn.setSelected(true);
+        englishBtn.setText("English");
+        englishBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                englishBtnActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(frenchBtn);
+        frenchBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        frenchBtn.setForeground(new java.awt.Color(27, 73, 101));
+        frenchBtn.setText("French");
+        frenchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frenchBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -204,12 +234,16 @@ public class StudentSearchBookView extends javax.swing.JFrame {
                         .addComponent(searchBookTitleLabel))
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(bookSearchTableScrollPane)
-                            .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(328, 328, 328)
-                        .addComponent(backButton)))
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(englishBtn)
+                                    .addComponent(frenchBtn))
+                                .addGap(189, 189, 189)
+                                .addComponent(backButton))
+                            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(bookSearchTableScrollPane)
+                                .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
@@ -218,12 +252,19 @@ public class StudentSearchBookView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(searchBookTitleLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bookSearchTableScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+                .addComponent(bookSearchTableScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(backButton)
-                .addGap(12, 12, 12))
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addComponent(backButton)
+                        .addGap(12, 12, 12))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addComponent(englishBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(frenchBtn)
+                        .addContainerGap())))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -270,6 +311,32 @@ public class StudentSearchBookView extends javax.swing.JFrame {
         searchButtonGroup.clearSelection();
         displayBookCatalog();
     }//GEN-LAST:event_clearButtonActionPerformed
+
+    private void englishBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_englishBtnActionPerformed
+        searchBookTitleLabel.setText(bundle.getString("searchBookTitle"));
+        searchBookLabel.setText(bundle.getString("searchByLabel"));
+        titleRadioButton.setText(bundle.getString("titleRadioButton"));
+        authorRadioButton.setText(bundle.getString("authorRadioButton"));
+        publisherRadioButton.setText(bundle.getString("publisherRadioButton"));
+        searchButton.setText(bundle.getString("searchButton"));
+        clearButton.setText(bundle.getString("clearButton"));
+        backButton.setText(bundle.getString("backButton"));
+        englishBtn.setText(bundle.getString("englishBtn"));
+        frenchBtn.setText(bundle.getString("frenchBtn"));
+    }//GEN-LAST:event_englishBtnActionPerformed
+
+    private void frenchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frenchBtnActionPerformed
+        searchBookTitleLabel.setText(bundleFR.getString("searchBookTitle"));
+        searchBookLabel.setText(bundleFR.getString("searchByLabel"));
+        titleRadioButton.setText(bundleFR.getString("titleRadioButton"));
+        authorRadioButton.setText(bundleFR.getString("authorRadioButton"));
+        publisherRadioButton.setText(bundleFR.getString("publisherRadioButton"));
+        searchButton.setText(bundleFR.getString("searchButton"));
+        clearButton.setText(bundleFR.getString("clearButton"));
+        backButton.setText(bundleFR.getString("backButton"));
+        englishBtn.setText(bundleFR.getString("englishBtn"));
+        frenchBtn.setText(bundleFR.getString("frenchBtn"));
+    }//GEN-LAST:event_frenchBtnActionPerformed
 
     private String getSelectedSearchCriteria() {
         if (titleRadioButton.isSelected()) {
@@ -318,7 +385,6 @@ public class StudentSearchBookView extends javax.swing.JFrame {
         }
     }
 
-
     /**
      * @param args the command line arguments
      */
@@ -360,7 +426,10 @@ public class StudentSearchBookView extends javax.swing.JFrame {
     private javax.swing.JButton backButton;
     private javax.swing.JTable bookCatalogStudentTable;
     private javax.swing.JScrollPane bookSearchTableScrollPane;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton clearButton;
+    private javax.swing.JRadioButton englishBtn;
+    private javax.swing.JRadioButton frenchBtn;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JRadioButton publisherRadioButton;
     private javax.swing.JLabel searchBookLabel;

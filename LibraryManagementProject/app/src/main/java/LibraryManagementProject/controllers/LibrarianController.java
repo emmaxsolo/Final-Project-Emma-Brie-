@@ -6,7 +6,6 @@ import LibraryManagementProject.factory.BookFactory;
 import LibraryManagementProject.helpers.SQLCommands;
 import LibraryManagementProject.models.Librarian;
 import LibraryManagementProject.models.Session;
-import LibraryManagementProject.models.Student;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,48 +17,82 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
- * @author 1982228,emmas
+ * @author 1982228, emmas
+ */
+
+/**
+ * The LibrarianController class contains all the librarian-related 
+ * actions that involve the library management system.
  */
 public class LibrarianController {
 
+    /**
+     * The empty LibrarianController constructor provides one instance when
+     * called from the MainController.
+     */
     public LibrarianController() {
 
     }
-
+    
+    /**
+     * The method enables the creation of a librarian user account where they can
+     * sign up for a desired username and password. 
+     * 
+     * The librarianID is auto-incremented by 1 each time a new Librarian registers
+     * for a librarian user account.
+     * 
+     * @param username librarian username
+     * @param password librarian password
+     * @return true if the sign up was successful where the username and password are set within the Librarians table
+     */
     public boolean registerLibrarian(String username, String password) {
-        String query = "INSERT INTO librarians (username, password) VALUES (?, ?)";
+        String insertQuery = "INSERT INTO librarians (username, password) VALUES (?, ?)";
         try ( Connection conn = DatabaseInitializer.getInstance().getConnection()) {
-            PreparedStatement pstmt = conn.prepareStatement(query);
+            PreparedStatement pstmt = conn.prepareStatement(insertQuery);
             pstmt.setString(1, username);
             pstmt.setString(2, password);
             int result = pstmt.executeUpdate();
-            return result > 0;
+            return result > 0; // if information has been stored to in a row, set boolean to true.
         } catch (SQLException e) {
-            System.err.println("SQL Error: " + e.getMessage());
-            return false;
+            System.err.println("Sign Up Failed: " + e.getMessage());
+            return false; // if information has not been stores in a row, set boole
         }
     }
 
+    /**
+     * The method enables the registered librarian to access a librarian user account where they can
+     * log in with their username and password stored within the Librarian's table once registered.
+     * 
+     * Set up the inputted username and password by the user input placeholders
+     * Checks if any data matches username and password entry.
+     * Once the librarian's information is retrieved, set the current librarian within the session.
+     * Confirm the librarian's ID once log in is successful.
+     * 
+     * @param username librarian username
+     * @param password librarian password
+     * @return true if login was successful where the the user name and password are returned from the Librarian's table
+     */
     public boolean logInLibrarian(String username, String password) {
         String query = "SELECT * FROM Librarians WHERE username = ? AND password = ?";
-        try ( Connection conn = DatabaseInitializer.getInstance().getConnection();  PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setString(1, username);
-            pstmt.setString(2, password);
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                Librarian loggedInLibrarian = new Librarian(
-                        rs.getInt("librarian_id"),
-                        rs.getString("username"),
-                        rs.getString("password")
-                );
-                Session.setCurrentLibrarian(loggedInLibrarian); // Set the current librarian in session
-                System.out.println("Successful login for librarian ID: " + loggedInLibrarian.getLibrarianID());
-                return true;
+        try ( Connection conn = DatabaseInitializer.getInstance().getConnection(); 
+                PreparedStatement pstmt = conn.prepareStatement(query)) {
+                    pstmt.setString(1, username);
+                    pstmt.setString(2, password);
+                    ResultSet rs = pstmt.executeQuery();
+                    if (rs.next()) {
+                        // Create a librarian object with the librarian id, username and password retrieved.
+                        Librarian loggedInLibrarian = new Librarian(
+                                rs.getInt("librarian_id"), 
+                                rs.getString("username"),
+                                rs.getString("password")
+                        );
+                        // Set the logged in librarian as the current librarian within the session and confirms Librarian ID.
+                        Session.setCurrentLibrarian(loggedInLibrarian);
+                        System.out.println("Successful login for librarian ID: " + loggedInLibrarian.getLibrarianID());
+                    return true;
             }
             System.out.println("Login failed for username: " + username);
             return false;
@@ -68,29 +101,47 @@ public class LibrarianController {
             return false;
         }
     }
-
+    
+    /**
+     * The method enables the current logged in librarian to add a student with student information.
+     * The method allows the added student to register a student user account with their desired username and password.
+     * 
+     * The checkQuery verifies if a student has already been added with a student id by checking the students table 
+     * if any student id exists based on user input.
+     * 
+     * The insertQuery inserts the student information, name, contact number and sets librarianID who has 
+     * added the student within the students table.
+     * 
+     * The method returns true once a student has been added successfully.
+     * @param studentId
+     * @param studentName
+     * @param contactNumber
+     * @param librarianId
+     * @return true once a student has been registered in the system by a librarian.
+     */
     public boolean addStudent(int studentId, String studentName, String contactNumber, int librarianId) {
         String checkQuery = "SELECT * FROM Students WHERE student_id = ?";
-        try ( Connection conn = DatabaseInitializer.getInstance().getConnection();  PreparedStatement checkStmt = conn.prepareStatement(checkQuery)) {
-            checkStmt.setInt(1, studentId);
-            ResultSet rs = checkStmt.executeQuery();
-            if (rs.next()) {
-                System.err.println("Student with ID " + studentId + " already exists.");
-                return false;
-            }
+        try ( Connection conn = DatabaseInitializer.getInstance().getConnection();  
+                PreparedStatement checkStmt = conn.prepareStatement(checkQuery)) {
+                checkStmt.setInt(1, studentId);
+                ResultSet rs = checkStmt.executeQuery();
+                    if (rs.next()) {
+                        System.err.println("Student with ID " + studentId + " already exists.");
+                        return false;
+                    }
 
-            String query = "INSERT INTO Students (student_id, student_name, contact_number, added_by_librarian) VALUES (?, ?, ?, ?)";
-            try ( PreparedStatement pstmt = conn.prepareStatement(query)) {
-                pstmt.setInt(1, studentId);
-                pstmt.setString(2, studentName);
-                pstmt.setString(3, contactNumber);
-                pstmt.setInt(4, librarianId);
-                pstmt.executeUpdate();
-                return true;
-            }
+                String insertQuery = "INSERT INTO Students (student_id, student_name, contact_number, added_by_librarian) VALUES (?, ?, ?, ?)";
+                try ( PreparedStatement pstmt = conn.prepareStatement(insertQuery)) {
+                    pstmt.setInt(1, studentId);
+                    pstmt.setString(2, studentName);
+                    pstmt.setString(3, contactNumber);
+                    pstmt.setInt(4, librarianId);
+                    pstmt.executeUpdate();
+                    return true;
+                }
         } catch (SQLException e) {
-            System.err.println("Add student failed: " + e.getMessage());
-            return false;
+                System.err.println("Add student failed: " + e.getMessage());
+                return false;
         }
     }
 

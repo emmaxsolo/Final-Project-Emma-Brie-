@@ -55,10 +55,6 @@ public class MainController {
     
 
     // STUDENT
-    public Map<String, Book> getAvailableBooks() {
-        return studentController.getAvailableBooks();
-    }
-
     public Map<String, Book> searchBooks(String searchText, String searchCriteria) {
         return studentController.searchBooks(searchText, searchCriteria);
     }
@@ -74,6 +70,10 @@ public class MainController {
     public List<Map<String, Object>> getIssuedBooksForStudent() {
         return studentController.getIssuedBooksForStudent();
     }
+
+  public Map<String, Book> getAvailableBooks() {
+    return studentController.getAvailableBooks();
+  }
     
 }
 

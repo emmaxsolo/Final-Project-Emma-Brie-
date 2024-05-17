@@ -25,7 +25,10 @@ public class StudentView extends javax.swing.JFrame {
     private ResourceBundle bundle;
     private ResourceBundle bundleFR;
     private MainController mainController;
-
+    /**
+     * This is the constructor for the Student view.
+     * @param mainController 
+     */
     public StudentView(MainController mainController) {
         this.mainController = mainController;
         initComponents();
@@ -356,26 +359,37 @@ public class StudentView extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    /*
+    This method allows the user to log out.
+    */
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
         mainController.getStudentController().logout();
         EntryView entryView = new EntryView(mainController);
         entryView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_logOutButtonActionPerformed
-
+    /**
+     * This method allows the user to redirect to the student search book view.
+     * @param evt 
+     */
     private void searchBooksButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBooksButtonActionPerformed
         StudentSearchBookView studentSearchBookView = new StudentSearchBookView(mainController);
         studentSearchBookView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_searchBooksButtonActionPerformed
-
+    /**
+     * This method allows the user to view the catalog.
+     * @param evt 
+     */
     private void viewCatalogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCatalogButtonActionPerformed
         StudentBookCatalogView studentCatalogView = new StudentBookCatalogView(mainController);
         studentCatalogView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_viewCatalogButtonActionPerformed
-
+    /**
+     * This method allows the user to return the book and deletes the row in the table.
+     * @param evt 
+     */
     private void returnBookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBookButtonActionPerformed
         int selectedRow = issuedBooksTable.getSelectedRow();
         if (selectedRow == -1) {
@@ -392,13 +406,20 @@ public class StudentView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Failed to return book.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_returnBookButtonActionPerformed
-
+    /**
+     * This method redirects the user to the studentBorrowBookView
+     * @param evt 
+     */
     private void borrowBookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrowBookButtonActionPerformed
         StudentBorrowBookView studentBorrowBookView = new StudentBorrowBookView(mainController);
         studentBorrowBookView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_borrowBookButtonActionPerformed
-
+    /**
+     * This method changes the texts of elements to english.
+     *
+     * @param evt
+     */
     private void englishBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_englishBtnActionPerformed
         studentTitleLabel.setText(bundle.getString("studentDashboardTitle"));
         booksBorrowedLabel.setText(bundle.getString("booksBorrowedLabel"));
@@ -410,7 +431,11 @@ public class StudentView extends javax.swing.JFrame {
         englishBtn.setText(bundle.getString("englishBtn"));
         frenchBtn.setText(bundle.getString("frenchBtn"));
     }//GEN-LAST:event_englishBtnActionPerformed
-
+/**
+     * This method changes the texts of elements to french.
+     *
+     * @param evt
+     */
     private void frenchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frenchBtnActionPerformed
         studentTitleLabel.setText(bundleFR.getString("studentDashboardTitle"));
         booksBorrowedLabel.setText(bundleFR.getString("booksBorrowedLabel"));
@@ -422,13 +447,17 @@ public class StudentView extends javax.swing.JFrame {
         englishBtn.setText(bundleFR.getString("englishBtn"));
         frenchBtn.setText(bundleFR.getString("frenchBtn"));
     }//GEN-LAST:event_frenchBtnActionPerformed
-
+    /**
+     * This method gets the current time and date then sets the text as the current date and time.
+     */
     public void currentDateTime() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("YYYY/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         dateTime.setText(dtf.format(now));
     }
-
+    /**
+     * This method displays the issued books in the table model.
+     */
     private void displayIssuedBooks() {
         DefaultTableModel tableModel = (DefaultTableModel) issuedBooksTable.getModel();
         tableModel.setRowCount(0);

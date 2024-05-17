@@ -239,7 +239,11 @@ public class StudentLoginView extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+     * Confirms the request to login and see if it is successful or not
+     *
+     * @param evt
+     */
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         String username = usernameField.getText().trim();
         String password = new String(passwordField.getPassword()).trim();
@@ -258,19 +262,32 @@ public class StudentLoginView extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_btnLoginActionPerformed
-
+    /**
+     * This button brings the user back to the entry view.
+     *
+     * @param evt
+     */
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         EntryView entryView = new EntryView(mainController);
         entryView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
-
+    /**
+     * This method allows the user to sign up and be redirected to the
+     * signUpView.
+     *
+     * @param evt
+     */
     private void labelSignUpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSignUpMouseClicked
         StudentSignUpView studentSignUpView = new StudentSignUpView(mainController);
         studentSignUpView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_labelSignUpMouseClicked
-
+    /**
+     * This method changes the texts of elements to english.
+     *
+     * @param evt
+     */
     private void englishBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_englishBtnActionPerformed
         labelTitle.setText(bundle.getString("studentLoginTitle"));
         labelStudentUsername.setText(bundle.getString("usernameLabel"));
@@ -281,7 +298,11 @@ public class StudentLoginView extends javax.swing.JFrame {
         englishBtn.setText(bundle.getString("englishBtn"));
         frenchBtn.setText(bundle.getString("frenchBtn"));
     }//GEN-LAST:event_englishBtnActionPerformed
-
+    /**
+     * This method changes the texts of elements to french.
+     *
+     * @param evt
+     */
     private void frenchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frenchBtnActionPerformed
         labelTitle.setText(bundleFR.getString("studentLoginTitle"));
         labelStudentUsername.setText(bundleFR.getString("usernameLabel"));

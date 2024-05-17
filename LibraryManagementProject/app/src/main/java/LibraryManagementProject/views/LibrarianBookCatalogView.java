@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
  * @author emmas
  */
 public class LibrarianBookCatalogView extends javax.swing.JFrame {
+
     private MainController mainController;
     private ResourceBundle bundle;
     private ResourceBundle bundleFR;
@@ -24,7 +25,7 @@ public class LibrarianBookCatalogView extends javax.swing.JFrame {
         this.mainController = mainController;
         initComponents();
         displayBooks();
-        
+
         bundle = ResourceBundle.getBundle("LibrarianCatalogView");
         bundleFR = ResourceBundle.getBundle("LibrarianCatalogView_fr_FR", Locale.FRANCE);
     }
@@ -80,13 +81,13 @@ public class LibrarianBookCatalogView extends javax.swing.JFrame {
         librarianBookCatalogTable.setForeground(new java.awt.Color(27, 73, 101));
         librarianBookCatalogTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "SN", "Title", "Author", "Publisher", "Price", "Quantity", "Issued", "Date", "Type"
             }
         ));
         jScrollPane1.setViewportView(librarianBookCatalogTable);
@@ -114,25 +115,23 @@ public class LibrarianBookCatalogView extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(75, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(englishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(frenchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(292, 292, 292))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 63, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(67, 67, 67))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(catalogLabel)
-                                .addGap(217, 217, 217))))))
+                        .addGap(302, 302, 302)
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(331, 331, 331)
+                        .addComponent(catalogLabel)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,19 +148,22 @@ public class LibrarianBookCatalogView extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(englishButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(frenchButton)))
-                .addContainerGap())
+                        .addComponent(frenchButton))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -184,16 +186,16 @@ public class LibrarianBookCatalogView extends javax.swing.JFrame {
     }//GEN-LAST:event_englishButtonActionPerformed
 
     private void frenchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frenchButtonActionPerformed
-       catalogLabel.setText(bundleFR.getString("Title"));
+        catalogLabel.setText(bundleFR.getString("Title"));
         backButton.setText(bundleFR.getString("Back"));
     }//GEN-LAST:event_frenchButtonActionPerformed
-  
+
 // Method to fetch and display books
     private void displayBooks() {
-       DefaultTableModel tableModel = (DefaultTableModel) librarianBookCatalogTable.getModel();
+        DefaultTableModel tableModel = (DefaultTableModel) librarianBookCatalogTable.getModel();
         tableModel.setRowCount(0);
 
-        Map<String, Book> bookCatalogLibraian= mainController.getBookCatalogLibrarian();
+        Map<String, Book> bookCatalogLibraian = mainController.getBookCatalogLibrarian();
         for (Book book : bookCatalogLibraian.values()) {
             tableModel.addRow(new Object[]{
                 book.getSN(),
@@ -201,11 +203,14 @@ public class LibrarianBookCatalogView extends javax.swing.JFrame {
                 book.getAuthor(),
                 book.getPublisher(),
                 book.getPrice(),
-                book.getQte(), 
+                book.getQte(),
+                book.getQteIssued(),
+                book.getAddedDate(),
                 book.getType()
             });
         }
     }
+
     /**
      * @param args the command line arguments
      */

@@ -4,7 +4,6 @@ import LibraryManagementProject.DatabaseInitializer;
 import LibraryManagementProject.factory.Book;
 import LibraryManagementProject.factory.BookFactory;
 import LibraryManagementProject.models.*;
-import LibraryManagementProject.views.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,13 +14,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * 
+ * @author emmas
+ */
 public class StudentController {
-
     public StudentController() {
 
     }
-
+    
+    /**
+     *  This method registers a student, meaning their chosen password and username is now
+     * inputted in the database system.
+     * @param studentId
+     * @param username
+     * @param password
+     * @return boolean
+     */
     public boolean registerStudent(int studentId, String username, String password) {
         try (Connection conn = DatabaseInitializer.getInstance().getConnection()) {
 
@@ -38,7 +47,13 @@ public class StudentController {
             return false;
         }
     }
-
+    
+    /**
+     * This method checks if the user is properly logged in.
+     * @param username
+     * @param password
+     * @return boolean
+     */
     public boolean logInStudent(String username, String password) {
         String query = "SELECT * FROM Students WHERE username = ? AND password = ?";
         try (Connection conn = DatabaseInitializer.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -63,38 +78,21 @@ public class StudentController {
         }
 
     }
-
+    /**
+     * Method to clear student from the session.
+     */
     public void logout() {
         System.out.println("Logging out student: " + (Session.getCurrentStudent() != null ? Session.getCurrentStudent().getStudentName() : "No student logged in"));
         Session.clearCurrentStudent();
     }
-
-//    public Map<String, Book> getBookCatalogStudent() {
-//        Map<String, Book> books = new HashMap<>();
-//        String getQuery = "SELECT SN, title, author, publisher, price, quantity, issued, type FROM Books ORDER BY SN ASC";
-//
-//        try (Connection conn = DatabaseInitializer.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(getQuery); ResultSet rs = pstmt.executeQuery()) {
-//            while (rs.next()) {
-//                int quantity = rs.getInt("quantity");
-//                int issued = rs.getInt("issued");
-//                int availableQuantity = quantity - issued;
-//
-//                Book book = new BookFactory().viewBook(
-//                        rs.getString("SN"),
-//                        rs.getString("title"),
-//                        rs.getString("author"),
-//                        rs.getString("publisher"),
-//                        rs.getDouble("price"),
-//                        availableQuantity, // Use available quantity
-//                        rs.getString("type").charAt(0)
-//                );
-//                books.put(rs.getString("SN"), book);
-//            }
-//        } catch (SQLException e) {
-//            System.err.println("Error fetching book catalog: " + e.getMessage());
-//        }
-//        return books;
-//    }
+    
+    /**
+ * Searches for books based on the provided search text and criteria.
+ * 
+ * @param searchText The text to search for.
+ * @param searchCriteria The criteria to search by (e.g., title, author).
+ * @return A map of books matching the search criteria, with their serial numbers as keys and Book objects as values.
+ */
     public Map<String, Book> searchBooks(String searchText, String searchCriteria) {
         Map<String, Book> books = new HashMap<>();
         String searchQuery = "SELECT SN, title, author, publisher, price, quantity, type FROM Books WHERE " + searchCriteria + " LIKE ? ORDER BY SN ASC";
@@ -119,7 +117,10 @@ public class StudentController {
         }
         return books;
     }
-
+/**
+ * This method retrieves the available books from the database
+ * @return Map<String,Book>
+ */
     public Map<String, Book> getAvailableBooks() {
         Map<String, Book> books = new HashMap<>();
         String getQuery = "SELECT SN, title, author, publisher, price, quantity, issued, type FROM Books WHERE quantity > issued";
@@ -145,7 +146,14 @@ public class StudentController {
         }
         return books;
     }
-
+    /**
+     * This method allows the user to borrow a book and enter how many
+     * units of that book they would like to borrow. It would then deduct from the
+     * quantity.
+     * @param sn
+     * @param quantity
+     * @return boolean
+     */
     public boolean borrowBook(String sn, int quantity) {
         Student currentStudent = Session.getCurrentStudent();
         if (currentStudent == null) {
@@ -198,7 +206,13 @@ public class StudentController {
             return false;
         }
     }
-
+    
+    /**
+     * This method allows the user to return a book.
+     * Then update the quantities.
+     * @param issuedBookId
+     * @return 
+     */
     public boolean returnBook(int issuedBookId) {
         Student currentStudent = Session.getCurrentStudent();
         if (currentStudent == null) {
@@ -243,7 +257,10 @@ public class StudentController {
             return false;
         }
     }
-
+    /**
+     * This method allows the user to get the list of all their borrowed books.
+     * @return 
+     */
     public List<Map<String, Object>> getIssuedBooksForStudent() {
         Student currentStudent = Session.getCurrentStudent();
         if (currentStudent == null) {

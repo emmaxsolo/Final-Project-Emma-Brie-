@@ -11,7 +11,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import LibraryManagementProject.factory.Book;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,7 +22,8 @@ import javax.swing.table.DefaultTableModel;
  * @author 1982228, emmas
  */
 public class StudentView extends javax.swing.JFrame {
-
+    private ResourceBundle bundle;
+    private ResourceBundle bundleFR;
     private MainController mainController;
 
     public StudentView(MainController mainController) {
@@ -28,6 +31,8 @@ public class StudentView extends javax.swing.JFrame {
         initComponents();
         currentDateTime();
         displayIssuedBooks();
+        bundle = ResourceBundle.getBundle("StudentView");
+        bundleFR = ResourceBundle.getBundle("StudentView_fr_FR", Locale.FRANCE);
     }
 
     /**
@@ -39,6 +44,7 @@ public class StudentView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         mainPanel = new javax.swing.JPanel();
         studentTitleLabel = new javax.swing.JLabel();
         returnBooksPanel = new javax.swing.JPanel();
@@ -54,6 +60,8 @@ public class StudentView extends javax.swing.JFrame {
         searchBooksButton = new javax.swing.JButton();
         borrowBookButton = new javax.swing.JButton();
         pictureLabel = new javax.swing.JLabel();
+        englishBtn = new javax.swing.JRadioButton();
+        frenchBtn = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(194, 228, 255));
@@ -172,7 +180,7 @@ public class StudentView extends javax.swing.JFrame {
                 .addComponent(studentTitleLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(returnBooksPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         sidePanel.setBackground(new java.awt.Color(173, 221, 255));
@@ -263,6 +271,27 @@ public class StudentView extends javax.swing.JFrame {
 
         pictureLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/illustrations/resized-images (3)/libraryDesign7.png"))); // NOI18N
 
+        buttonGroup1.add(englishBtn);
+        englishBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        englishBtn.setForeground(new java.awt.Color(27, 73, 101));
+        englishBtn.setSelected(true);
+        englishBtn.setText("English");
+        englishBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                englishBtnActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(frenchBtn);
+        frenchBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        frenchBtn.setForeground(new java.awt.Color(27, 73, 101));
+        frenchBtn.setText("French");
+        frenchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frenchBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout sidePanelLayout = new javax.swing.GroupLayout(sidePanel);
         sidePanel.setLayout(sidePanelLayout);
         sidePanelLayout.setHorizontalGroup(
@@ -282,7 +311,12 @@ public class StudentView extends javax.swing.JFrame {
                         .addComponent(sideActionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(sidePanelLayout.createSequentialGroup()
                         .addGap(70, 70, 70)
-                        .addComponent(logOutButton)))
+                        .addComponent(logOutButton))
+                    .addGroup(sidePanelLayout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addGroup(sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(frenchBtn)
+                            .addComponent(englishBtn))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         sidePanelLayout.setVerticalGroup(
@@ -296,6 +330,10 @@ public class StudentView extends javax.swing.JFrame {
                 .addComponent(sideActionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(logOutButton)
+                .addGap(18, 18, 18)
+                .addComponent(englishBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(frenchBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -304,15 +342,15 @@ public class StudentView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(sidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 1, Short.MAX_VALUE)
                 .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 831, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(sidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+            .addComponent(sidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 625, Short.MAX_VALUE)
         );
 
         pack();
@@ -360,6 +398,30 @@ public class StudentView extends javax.swing.JFrame {
         studentBorrowBookView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_borrowBookButtonActionPerformed
+
+    private void englishBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_englishBtnActionPerformed
+        studentTitleLabel.setText(bundle.getString("studentDashboardTitle"));
+        booksBorrowedLabel.setText(bundle.getString("booksBorrowedLabel"));
+        viewCatalogButton.setText(bundle.getString("viewCatalogButton"));
+        searchBooksButton.setText(bundle.getString("searchBookButton"));
+        borrowBookButton.setText(bundle.getString("borrowBookButton"));
+        returnBookButton.setText(bundle.getString("returnBookButton"));
+        logOutButton.setText(bundle.getString("logoutButton"));
+        englishBtn.setText(bundle.getString("englishBtn"));
+        frenchBtn.setText(bundle.getString("frenchBtn"));
+    }//GEN-LAST:event_englishBtnActionPerformed
+
+    private void frenchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frenchBtnActionPerformed
+        studentTitleLabel.setText(bundleFR.getString("studentDashboardTitle"));
+        booksBorrowedLabel.setText(bundleFR.getString("booksBorrowedLabel"));
+        viewCatalogButton.setText(bundleFR.getString("viewCatalogButton"));
+        searchBooksButton.setText(bundleFR.getString("searchBookButton"));
+        borrowBookButton.setText(bundleFR.getString("borrowBookButton"));
+        returnBookButton.setText(bundleFR.getString("returnBookButton"));
+        logOutButton.setText(bundleFR.getString("logoutButton"));
+        englishBtn.setText(bundleFR.getString("englishBtn"));
+        frenchBtn.setText(bundleFR.getString("frenchBtn"));
+    }//GEN-LAST:event_frenchBtnActionPerformed
 
     public void currentDateTime() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("YYYY/MM/dd HH:mm:ss");
@@ -422,7 +484,10 @@ public class StudentView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel booksBorrowedLabel;
     private javax.swing.JButton borrowBookButton;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel dateTime;
+    private javax.swing.JRadioButton englishBtn;
+    private javax.swing.JRadioButton frenchBtn;
     private javax.swing.JTable issuedBooksTable;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton logOutButton;

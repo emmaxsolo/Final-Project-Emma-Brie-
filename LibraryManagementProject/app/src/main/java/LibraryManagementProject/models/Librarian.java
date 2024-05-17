@@ -1,5 +1,9 @@
 package LibraryManagementProject.models;
 
+/**
+ * Librarian model class
+ * @author emmas, bridj
+ */
 public class Librarian {
     private int librarianID;
     private String username;
@@ -10,7 +14,7 @@ public class Librarian {
         this.username = username;
         this.password = password;
     }
-    
+
     public int getLibrarianID() {
         return librarianID;
     }

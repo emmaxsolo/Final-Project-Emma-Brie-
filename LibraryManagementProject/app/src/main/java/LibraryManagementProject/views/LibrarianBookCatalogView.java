@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author emmas
+ * @author emmas,bridj
  */
 public class LibrarianBookCatalogView extends javax.swing.JFrame {
     private MainController mainController;
@@ -169,7 +169,7 @@ public class LibrarianBookCatalogView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel1AncestorMoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel1AncestorMoved
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jPanel1AncestorMoved
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -188,7 +188,10 @@ public class LibrarianBookCatalogView extends javax.swing.JFrame {
         backButton.setText(bundleFR.getString("Back"));
     }//GEN-LAST:event_frenchButtonActionPerformed
   
-// Method to fetch and display books
+    /**
+     * The method displays the librarian book catalog of the book information using the table model
+     * using the librarianBookCatalog.
+     */
     private void displayBooks() {
        DefaultTableModel tableModel = (DefaultTableModel) librarianBookCatalogTable.getModel();
         tableModel.setRowCount(0);

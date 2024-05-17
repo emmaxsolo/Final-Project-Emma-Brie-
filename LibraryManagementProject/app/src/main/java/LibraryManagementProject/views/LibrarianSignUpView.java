@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
  * @author 1982228, emmas
  */
 public class LibrarianSignUpView extends javax.swing.JFrame {
-
     private MainController mainController;
     private LibrarianController librarianController;
 

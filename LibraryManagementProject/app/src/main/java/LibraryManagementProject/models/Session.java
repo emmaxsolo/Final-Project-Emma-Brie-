@@ -3,9 +3,14 @@ package LibraryManagementProject.models;
 import LibraryManagementProject.models.Librarian;
 import LibraryManagementProject.models.Student;
 
-
+/**
+ * Session class provides the user information about the current librarian or student
+ * that has logged in.
+ * 
+ * Useful for the issue/borrow and return actions.
+ * @author emmas, bridj
+ */
 public class Session {
-
     private static Librarian currentLibrarian;
     private static Student currentStudent;
 

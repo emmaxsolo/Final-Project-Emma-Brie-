@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author bridj
+ * @author emmas, bridj
  */
 public class LibrarianAddStudentView extends javax.swing.JFrame {
     private LibrarianController librarianController;
@@ -246,35 +246,33 @@ public class LibrarianAddStudentView extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Event handling for when the librarian saves student information.
+     * @param evt 
+     */
     private void saveStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveStudentButtonActionPerformed
         int librarianId = Session.getCurrentLibrarianId(); // gets the current librarian id
-        
-        if (librarianId == -1) {
-            JOptionPane.showMessageDialog(null, "No Librarian ID Found.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
         
         try {
             int studentId = Integer.parseInt(studentIDField.getText().trim());
             String studentName = studentNameField.getText().trim();
             String contactNumber = contactNumberField.getText().trim();
-
+            
+            // Input handling : if fields are empty such as student name and contact number.
             if (studentName.isEmpty() || contactNumber.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Please input all fields.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please input all fields.", "INPUT Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-
+            
+            // If the librarian has saved student creds then student can sign up and log in.
             if (librarianController.addStudent(studentId, studentName, contactNumber, librarianId)) {
                 JOptionPane.showMessageDialog(this, "Student added successfully!");
-                LibrarianView librarianView = new LibrarianView(mainController);
+                LibrarianView librarianView = new LibrarianView(mainController); // LibrarianView pops up.
                 librarianView.setVisible(true);
                 this.dispose();
-            } else {
+            } else { // If saved failed, then the student ID is already there in thes system.
                 JOptionPane.showMessageDialog(this, "Student ID already exists in the system.", "DB Error", JOptionPane.ERROR_MESSAGE);
             }
-        } catch (NumberFormatException nfe) {
-            JOptionPane.showMessageDialog(this, "Please enter the student ID in number format.", "INPUT Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "ERROR: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -287,7 +285,7 @@ public class LibrarianAddStudentView extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void frenchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frenchButtonActionPerformed
-        
+
         addStudentTitleLabel.setText(bundleFR.getString("Title"));
         addStudentLabel.setText(bundleFR.getString("StuId"));
         studentNameLabel.setText(bundleFR.getString("Name"));

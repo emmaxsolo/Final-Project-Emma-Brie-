@@ -1,7 +1,5 @@
 package LibraryManagementProject.views;
 
-import LibraryManagementProject.ResourceManager;
-import LibraryManagementProject.LanguageChangeListener;
 import LibraryManagementProject.controllers.LibrarianController;
 import LibraryManagementProject.controllers.MainController;
 import LibraryManagementProject.factory.Book;
@@ -11,9 +9,11 @@ import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
+/**
+ * 
+ * @author emmas,bridj
+ */
 public class LibrarianAddBookView extends javax.swing.JFrame {
-
     private MainController mainController;
     private ResourceBundle bundle;
     private ResourceBundle bundleFR;
@@ -23,7 +23,6 @@ public class LibrarianAddBookView extends javax.swing.JFrame {
         this.mainController = mainController;
         initComponents();
         displayBookCatalog();
-        
         bundle = ResourceBundle.getBundle("LibrarianAddBookView");
         bundleFR = ResourceBundle.getBundle("LibrarianAddBookView_fr_FR", Locale.FRANCE);
 
@@ -333,6 +332,7 @@ public class LibrarianAddBookView extends javax.swing.JFrame {
 
         buttonGroup1.add(englishButton);
         englishButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        englishButton.setForeground(new java.awt.Color(27, 73, 101));
         englishButton.setSelected(true);
         englishButton.setText("English");
         englishButton.addActionListener(new java.awt.event.ActionListener() {
@@ -343,6 +343,7 @@ public class LibrarianAddBookView extends javax.swing.JFrame {
 
         buttonGroup1.add(frenchButton);
         frenchButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        frenchButton.setForeground(new java.awt.Color(27, 73, 101));
         frenchButton.setText("French");
         frenchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -417,7 +418,10 @@ public class LibrarianAddBookView extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Event handling for addBOo
+     * @param evt 
+     */
     private void addBookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookButtonActionPerformed
         String sn = snTextField.getText().trim();
         String title = titleTextField.getText().trim();
@@ -426,26 +430,25 @@ public class LibrarianAddBookView extends javax.swing.JFrame {
         double price = Double.parseDouble(priceTextField.getText().trim());
         int quantity = Integer.parseInt(qteTextField.getText().trim());
         char type;
-
+        
+        // Input handling: User needs to type char value  E, H, or P for book type which will be converted into string.
         String typeStr = typeTextField.getText().trim();
         if (typeStr.length() != 1 || !"EHP".contains(typeStr)) {
-            JOptionPane.showMessageDialog(this, "Invalid book type. Must be 'E for E-Book', 'H for Hard-Cover', or 'P for Paperback!'.");
+            JOptionPane.showMessageDialog(this, "Please write E for Ebook, H for HardCover, P for PaperBook");
             return;
         }
+        
+        // Input handling: User needs to type all fields required.
         type = typeStr.charAt(0);
         if (sn.isEmpty() || title.isEmpty() || author.isEmpty() || publisher.isEmpty()) {
             JOptionPane.showMessageDialog(this, "All fields are required.");
             return;
         }
 
-        boolean success = mainController.addBookToCatalog(sn, title, author, publisher, price, quantity, type);
-        if (success) {
-            JOptionPane.showMessageDialog(this, "Book added successfully.");
-            displayBookCatalog();
-            clearFields();
-        } else {
-            JOptionPane.showMessageDialog(this, "Failed to add book.");
-        }
+        mainController.addBookToCatalog(sn, title, author, publisher, price, quantity, type);
+        JOptionPane.showMessageDialog(this, "Book added successfully.");
+        displayBookCatalog();
+        clearFields();
 
     }//GEN-LAST:event_addBookButtonActionPerformed
 
@@ -473,6 +476,7 @@ public class LibrarianAddBookView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_snTextFieldActionPerformed
 
+    // I8N
     private void englishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_englishButtonActionPerformed
         addBookTitleLabel.setText(bundle.getString("AddBook"));
         titleLabel.setText(bundle.getString("Title"));
@@ -527,28 +531,7 @@ public class LibrarianAddBookView extends javax.swing.JFrame {
             });
         }
     }
-    
-//    @Override
-//    public void languageChanged() {
-//        updateTexts();
-//    }
-    
-    private void updateTexts() {
-//        addBookTitleLabel.setText(ResourceManager.getString("addBookTitle"));
-//        snLabel.setText(ResourceManager.getString("snLabel"));
-//        titleLabel.setText(ResourceManager.getString("titleLabel"));
-//        authorLabel.setText(ResourceManager.getString("authorLabel"));    
-//        publisherLabel.setText(ResourceManager.getString("publisherLabel"));
-//        priceLabel.setText(ResourceManager.getString("priceLabel"));
-//        qteLabel.setText(ResourceManager.getString("quantityLabel"));
-//        typeLabel.setText(ResourceManager.getString("typeLabel"));
-//        addBookButton.setText(ResourceManager.getString("addBookBtn"));
-//        backButton.setText(ResourceManager.getString("backBtn"));
-        
-    }
 
-    
-    
     /**
      * @param args the command line arguments
      */

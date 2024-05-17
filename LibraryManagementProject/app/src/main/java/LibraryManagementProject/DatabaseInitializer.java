@@ -15,18 +15,6 @@ public class DatabaseInitializer {
         establishConnection();
     }
 
-    private void establishConnection() {
-        try {
-            if (connection == null || connection.isClosed()) {
-                connection = DriverManager.getConnection(url);
-                initializeDatabase();
-            }
-        } catch (SQLException e) {
-            System.err.println("Error connecting to the database: " + e.getMessage());
-            throw new RuntimeException("Error connecting to the database", e);
-        }
-    }
-
     public static synchronized DatabaseInitializer getInstance() {
         if (instance == null) {
             instance = new DatabaseInitializer();
@@ -43,6 +31,18 @@ public class DatabaseInitializer {
             System.err.println("Failed to re-establish connection: " + e.getMessage());
         }
         return connection;
+    }
+    
+     private void establishConnection() {
+        try {
+            if (connection == null || connection.isClosed()) {
+                connection = DriverManager.getConnection(url);
+                initializeDatabase();
+            }
+        } catch (SQLException e) {
+            System.err.println("Error connecting to the database: " + e.getMessage());
+            throw new RuntimeException("Error connecting to the database", e);
+        }
     }
 
     private void initializeDatabase() {

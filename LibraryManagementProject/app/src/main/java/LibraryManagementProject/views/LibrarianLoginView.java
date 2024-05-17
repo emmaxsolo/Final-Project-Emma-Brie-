@@ -1,7 +1,5 @@
 package LibraryManagementProject.views;
 
-import LibraryManagementProject.LanguageChangeListener;
-import LibraryManagementProject.ResourceManager;
 import LibraryManagementProject.controllers.LibrarianController;
 import LibraryManagementProject.controllers.MainController;
 import LibraryManagementProject.views.*;
@@ -14,7 +12,6 @@ import java.util.ResourceBundle;
  * @author 1982228, emmas
  */
 public class LibrarianLoginView extends javax.swing.JFrame  {
-
     private MainController mainController;
     private LibrarianController librarianController;
     private ResourceBundle bundle;
@@ -247,6 +244,11 @@ public class LibrarianLoginView extends javax.swing.JFrame  {
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 
+    /**
+     * Event handling for librarian log in: where the librarian will be redirected within the librarianView
+     * 
+     * @param evt 
+     */
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         String username = usernameField.getText();
         String password = new String(passwordField.getPassword());
@@ -266,6 +268,7 @@ public class LibrarianLoginView extends javax.swing.JFrame  {
         this.dispose();
     }//GEN-LAST:event_labelSignUpMouseClicked
 
+    // Internationalization
     private void frenchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frenchButtonActionPerformed
         labelTitle.setText(bundlefr.getString("Title"));
         labelLibrarianUsername.setText(bundlefr.getString("Username"));

@@ -6,6 +6,10 @@ package LibraryManagementProject;
 import LibraryManagementProject.controllers.MainController;
 import LibraryManagementProject.views.EntryView;
 
+/**
+ * 
+ * @author bridj
+ */
 public class App {
 
     public static void main(String[] args) {

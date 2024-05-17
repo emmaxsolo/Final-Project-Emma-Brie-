@@ -21,7 +21,12 @@ public class StudentBorrowBookView extends javax.swing.JFrame {
     private MainController mainController;
     private ResourceBundle bundle;
     private ResourceBundle bundleFR;
-    
+
+    /**
+     * Constructor for studentBorrowBookView.
+     *
+     * @param mainController
+     */
     public StudentBorrowBookView(MainController mainController) {
         this.mainController = mainController;
         initComponents();
@@ -233,14 +238,22 @@ public class StudentBorrowBookView extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * This method brings the student back to the student view.
+     *
+     * @param evt
+     */
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         MainController mainController = new MainController();
         StudentView studentView = new StudentView(mainController);
         studentView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
-
+    /**
+     * This method allows the user to confirm their request to borrow a book.
+     *
+     * @param evt
+     */
     private void borrowBookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrowBookButtonActionPerformed
         int selectedRow = availableBooksTable.getSelectedRow();
         String sn = (String) availableBooksTable.getValueAt(selectedRow, 0); // gets the sn of the table
@@ -271,25 +284,35 @@ public class StudentBorrowBookView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Failed to borrow book.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_borrowBookButtonActionPerformed
-
+    /**
+     * This method changes the texts of elements to english.
+     *
+     * @param evt
+     */
     private void englishBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_englishBtnActionPerformed
-       borrowBookTitleLabel.setText(bundle.getString("borrowBookTitle"));
-       bookQuantityLabel.setText(bundle.getString("enterQuantityLabel"));
-       borrowBookButton.setText(bundle.getString("borrowBooksButton"));
-       backButton.setText(bundle.getString("backButton"));
-       englishBtn.setText(bundle.getString("englishBtn"));
-       frenchBtn.setText(bundle.getString("frenchBtn"));
+        borrowBookTitleLabel.setText(bundle.getString("borrowBookTitle"));
+        bookQuantityLabel.setText(bundle.getString("enterQuantityLabel"));
+        borrowBookButton.setText(bundle.getString("borrowBooksButton"));
+        backButton.setText(bundle.getString("backButton"));
+        englishBtn.setText(bundle.getString("englishBtn"));
+        frenchBtn.setText(bundle.getString("frenchBtn"));
     }//GEN-LAST:event_englishBtnActionPerformed
-
+    /**
+     * This method changes the texts of elements to french.
+     *
+     * @param evt
+     */
     private void frenchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frenchBtnActionPerformed
-       borrowBookTitleLabel.setText(bundleFR.getString("borrowBookTitle"));
-       bookQuantityLabel.setText(bundleFR.getString("enterQuantityLabel"));
-       borrowBookButton.setText(bundleFR.getString("borrowBooksButton"));
-       backButton.setText(bundleFR.getString("backButton"));
-       englishBtn.setText(bundleFR.getString("englishBtn"));
-       frenchBtn.setText(bundleFR.getString("frenchBtn"));
+        borrowBookTitleLabel.setText(bundleFR.getString("borrowBookTitle"));
+        bookQuantityLabel.setText(bundleFR.getString("enterQuantityLabel"));
+        borrowBookButton.setText(bundleFR.getString("borrowBooksButton"));
+        backButton.setText(bundleFR.getString("backButton"));
+        englishBtn.setText(bundleFR.getString("englishBtn"));
+        frenchBtn.setText(bundleFR.getString("frenchBtn"));
     }//GEN-LAST:event_frenchBtnActionPerformed
-
+    /**
+     * This method displays all the available books
+     */
     private void displayAvailableBooks() {
         DefaultTableModel tableModel = (DefaultTableModel) availableBooksTable.getModel();
         tableModel.setRowCount(0);

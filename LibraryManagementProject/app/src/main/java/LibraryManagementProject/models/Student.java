@@ -13,13 +13,18 @@ public class Student {
     private int studentID;
     private String studentName;
     private String contactNumber;
-
+    /**
+     * Constructor
+     * @param studentID
+     * @param studentName
+     * @param contactNumber 
+     */
     public Student(int studentID, String studentName, String contactNumber) {
         this.studentID = studentID;
         this.studentName = studentName;
         this.contactNumber = contactNumber;
     }
-
+ 
     public int getStudentID() {
         return studentID;
     }

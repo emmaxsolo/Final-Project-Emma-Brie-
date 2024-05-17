@@ -18,6 +18,11 @@ public class StudentBookCatalogView extends javax.swing.JFrame {
     private ResourceBundle bundle;
     private ResourceBundle bundleFR;
 
+    /**
+     * This is a constructor for the studentBookCatalogView.
+     *
+     * @param mainController
+     */
     public StudentBookCatalogView(MainController mainController) {
         this.mainController = mainController;
         initComponents();
@@ -173,27 +178,41 @@ public class StudentBookCatalogView extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+     * This method brings user back to student view.
+     *
+     * @param evt
+     */
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         StudentView studentView = new StudentView(mainController);
         studentView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
-
+    /**
+     * This method changes the texts of elements to English.
+     *
+     * @param evt
+     */
     private void englishBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_englishBtnActionPerformed
         catalogViewTitleLabel.setText(bundle.getString("bookCatalogTitle"));
         backButton.setText(bundle.getString("backButton"));
         englishBtn.setText(bundle.getString("englishBtn"));
         frenchBtn.setText(bundle.getString("frenchBtn"));
     }//GEN-LAST:event_englishBtnActionPerformed
-
+    /**
+     * This method changes the texts of elements to french.
+     *
+     * @param evt
+     */
     private void frenchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frenchBtnActionPerformed
         catalogViewTitleLabel.setText(bundleFR.getString("bookCatalogTitle"));
         backButton.setText(bundleFR.getString("backButton"));
         englishBtn.setText(bundleFR.getString("englishBtn"));
         frenchBtn.setText(bundleFR.getString("frenchBtn"));
     }//GEN-LAST:event_frenchBtnActionPerformed
-
+    /**
+     * This method is to display all the information of the book.
+     */
     private void displayStudentBookCatalog() {
         DefaultTableModel tableModel = (DefaultTableModel) studentBookCatalogTable.getModel();
         tableModel.setRowCount(0);
@@ -206,7 +225,7 @@ public class StudentBookCatalogView extends javax.swing.JFrame {
                 book.getAuthor(),
                 book.getPublisher(),
                 book.getPrice(),
-                book.getQte(), 
+                book.getQte(),
                 book.getType()
             });
         }

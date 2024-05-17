@@ -17,7 +17,10 @@ public class StudentSearchBookView extends javax.swing.JFrame {
     private MainController mainController;
     private ResourceBundle bundle;
     private ResourceBundle bundleFR;
-
+    /**
+     * This is the constructor for StudentSearchView
+     * @param mainController 
+     */
     public StudentSearchBookView(MainController mainController) {
         this.mainController = mainController;
         initComponents();
@@ -281,14 +284,19 @@ public class StudentSearchBookView extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    /*
+    This method brings the user back to the StudentView.
+    */
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         MainController mainController = new MainController();
         StudentView studentView = new StudentView(mainController);
         studentView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
-
+    /*
+    This method takes the user input and confirms it to then
+    display the requested books.
+    */
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         String searchText = searchBookTextField.getText().trim();
         if (searchText.isEmpty()) {
@@ -305,13 +313,19 @@ public class StudentSearchBookView extends javax.swing.JFrame {
         Map<String, Book> searchResults = mainController.searchBooks(searchText, searchCriteria);
         displaySearchResults(searchResults);
     }//GEN-LAST:event_searchButtonActionPerformed
-
+    /*
+    This method clears the text fields.
+    */
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
         searchBookTextField.setText("");
         searchButtonGroup.clearSelection();
         displayBookCatalog();
     }//GEN-LAST:event_clearButtonActionPerformed
-
+/**
+     * This method changes the texts of elements to english.
+     *
+     * @param evt
+     */
     private void englishBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_englishBtnActionPerformed
         searchBookTitleLabel.setText(bundle.getString("searchBookTitle"));
         searchBookLabel.setText(bundle.getString("searchByLabel"));
@@ -324,7 +338,11 @@ public class StudentSearchBookView extends javax.swing.JFrame {
         englishBtn.setText(bundle.getString("englishBtn"));
         frenchBtn.setText(bundle.getString("frenchBtn"));
     }//GEN-LAST:event_englishBtnActionPerformed
-
+/**
+     * This method changes the texts of elements to french.
+     *
+     * @param evt
+     */
     private void frenchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frenchBtnActionPerformed
         searchBookTitleLabel.setText(bundleFR.getString("searchBookTitle"));
         searchBookLabel.setText(bundleFR.getString("searchByLabel"));
@@ -337,7 +355,10 @@ public class StudentSearchBookView extends javax.swing.JFrame {
         englishBtn.setText(bundleFR.getString("englishBtn"));
         frenchBtn.setText(bundleFR.getString("frenchBtn"));
     }//GEN-LAST:event_frenchBtnActionPerformed
-
+    /**
+     * This method gets the selected search criteria.
+     * @return 
+     */
     private String getSelectedSearchCriteria() {
         if (titleRadioButton.isSelected()) {
             return "title";
@@ -349,7 +370,9 @@ public class StudentSearchBookView extends javax.swing.JFrame {
             return null;
         }
     }
-
+    /**
+     * This method displays  all the books and their info
+     */
     private void displayBookCatalog() {
         DefaultTableModel tableModel = (DefaultTableModel) bookCatalogStudentTable.getModel();
         tableModel.setRowCount(0);
@@ -367,7 +390,10 @@ public class StudentSearchBookView extends javax.swing.JFrame {
             });
         }
     }
-
+    /**
+     * This method displays all the books depending on search results.
+     * @param searchResults 
+     */
     private void displaySearchResults(Map<String, Book> searchResults) {
         DefaultTableModel tableModel = (DefaultTableModel) bookCatalogStudentTable.getModel();
         tableModel.setRowCount(0);

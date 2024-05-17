@@ -6,6 +6,19 @@ package LibraryManagementProject.factory;
  */
 public class BookFactory {
 
+    /**
+     * Creates a new Book instance based on the provided parameters.
+     * @param sn
+     * @param title
+     * @param author
+     * @param publisher
+     * @param price
+     * @param quantity
+     * @param issued
+     * @param addedDate
+     * @param type
+     * @return Book
+     */
     public Book createBook(String sn, String title, String author, String publisher, double price, int quantity, int issued, String addedDate, char type) {
         switch (type) {
             case 'E':
@@ -18,7 +31,17 @@ public class BookFactory {
                 throw new IllegalArgumentException("Invalid book type: " + type);
         }
     }
-    
+    /**
+     * Allows user to see Book object and all of its information.
+     * @param sn
+     * @param title
+     * @param author
+     * @param publisher
+     * @param price
+     * @param quantity
+     * @param type
+     * @return 
+     */
     public Book viewBook(String sn, String title, String author, String publisher, double price, int quantity, char type) {
         switch (type) {
             case 'E':

@@ -7,26 +7,14 @@
  */
 
 plugins {
-    // Apply the application plugin to add support for building a CLI application in Java.
-    id 'application'
+    id 'java'
 }
 
 repositories {
-    // Use Maven Central for resolving dependencies.
     mavenCentral()
 }
 
 dependencies {
-    // Use JUnit Jupiter for testing.
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
-
-    // This dependency is used by the application.
+    testImplementation 'junit:junit:4.12' 
     implementation 'org.xerial:sqlite-jdbc:3.36.0.3'
 }
-
-application {
-    // Define the main class for the application.
-    mainClass = 'LibraryManagementProject.App'
-}
-
-

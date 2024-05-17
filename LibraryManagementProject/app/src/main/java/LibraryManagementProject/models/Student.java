@@ -5,6 +5,10 @@ package LibraryManagementProject.models;
  *
  * @author bridj,emmas
  */
+/**
+ * Model class for students
+ * @author emmas, bridj
+ */
 public class Student {
     private int studentID;
     private String studentName;

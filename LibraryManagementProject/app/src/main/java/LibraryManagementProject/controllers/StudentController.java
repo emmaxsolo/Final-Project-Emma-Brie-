@@ -19,12 +19,11 @@ import java.util.Map;
 public class StudentController {
 
     public StudentController() {
-
+        
     }
 
     public boolean registerStudent(int studentId, String username, String password) {
         try (Connection conn = DatabaseInitializer.getInstance().getConnection()) {
-
             String query = "UPDATE students SET username = ?, password = ? WHERE student_id = ?";
             try (PreparedStatement pstmt = conn.prepareStatement(query)) {
                 pstmt.setString(1, username);
@@ -41,7 +40,8 @@ public class StudentController {
 
     public boolean logInStudent(String username, String password) {
         String query = "SELECT * FROM Students WHERE username = ? AND password = ?";
-        try (Connection conn = DatabaseInitializer.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
+        try (Connection conn = DatabaseInitializer.getInstance().getConnection(); 
+            PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, username);
             pstmt.setString(2, password);
             ResultSet rs = pstmt.executeQuery();
@@ -65,41 +65,16 @@ public class StudentController {
     }
 
     public void logout() {
-        System.out.println("Logging out student: " + (Session.getCurrentStudent() != null ? Session.getCurrentStudent().getStudentName() : "No student logged in"));
         Session.clearCurrentStudent();
+        System.out.println("Student logged out.");
     }
 
-//    public Map<String, Book> getBookCatalogStudent() {
-//        Map<String, Book> books = new HashMap<>();
-//        String getQuery = "SELECT SN, title, author, publisher, price, quantity, issued, type FROM Books ORDER BY SN ASC";
-//
-//        try (Connection conn = DatabaseInitializer.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(getQuery); ResultSet rs = pstmt.executeQuery()) {
-//            while (rs.next()) {
-//                int quantity = rs.getInt("quantity");
-//                int issued = rs.getInt("issued");
-//                int availableQuantity = quantity - issued;
-//
-//                Book book = new BookFactory().viewBook(
-//                        rs.getString("SN"),
-//                        rs.getString("title"),
-//                        rs.getString("author"),
-//                        rs.getString("publisher"),
-//                        rs.getDouble("price"),
-//                        availableQuantity, // Use available quantity
-//                        rs.getString("type").charAt(0)
-//                );
-//                books.put(rs.getString("SN"), book);
-//            }
-//        } catch (SQLException e) {
-//            System.err.println("Error fetching book catalog: " + e.getMessage());
-//        }
-//        return books;
-//    }
     public Map<String, Book> searchBooks(String searchText, String searchCriteria) {
         Map<String, Book> books = new HashMap<>();
-        String searchQuery = "SELECT SN, title, author, publisher, price, quantity, type FROM Books WHERE " + searchCriteria + " LIKE ? ORDER BY SN ASC";
+        String searchQuery = "SELECT SN, title, author, publisher, price, quantity, type FROM Books WHERE " + searchCriteria;
 
-        try (Connection conn = DatabaseInitializer.getInstance().getConnection(); PreparedStatement pstmt = conn.prepareStatement(searchQuery)) {
+        try (Connection conn = DatabaseInitializer.getInstance().getConnection(); 
+            PreparedStatement pstmt = conn.prepareStatement(searchQuery)) {
             pstmt.setString(1, "%" + searchText + "%");
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {

@@ -226,17 +226,17 @@ public class LibrarianView extends javax.swing.JFrame {
         bookReturnsPanel.setLayout(bookReturnsPanelLayout);
         bookReturnsPanelLayout.setHorizontalGroup(
             bookReturnsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bookReturnsPanelLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookReturnsPanelLayout.createSequentialGroup()
+                .addContainerGap(42, Short.MAX_VALUE)
                 .addGroup(bookReturnsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookReturnsPanelLayout.createSequentialGroup()
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(53, Short.MAX_VALUE))
+                        .addGap(40, 40, 40))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookReturnsPanelLayout.createSequentialGroup()
                         .addComponent(booksRequestLabel4)
-                        .addGap(279, 279, 279))))
+                        .addGap(272, 272, 272))))
             .addGroup(bookReturnsPanelLayout.createSequentialGroup()
-                .addGap(298, 298, 298)
+                .addGap(292, 292, 292)
                 .addComponent(returnBookButton)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -247,9 +247,9 @@ public class LibrarianView extends javax.swing.JFrame {
                 .addComponent(booksRequestLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(returnBookButton)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
@@ -344,13 +344,13 @@ public class LibrarianView extends javax.swing.JFrame {
         sideActionPanelLayout.setVerticalGroup(
             sideActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sideActionPanelLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addContainerGap()
                 .addComponent(addStudentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(addBookButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addComponent(viewCatalogButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(23, 23, 23))
+                .addContainerGap())
         );
 
         logOutButton.setBackground(new java.awt.Color(95, 168, 211));
@@ -365,6 +365,7 @@ public class LibrarianView extends javax.swing.JFrame {
 
         buttonGroup1.add(frenchButton);
         frenchButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        frenchButton.setForeground(new java.awt.Color(27, 73, 101));
         frenchButton.setText("French");
         frenchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -374,6 +375,7 @@ public class LibrarianView extends javax.swing.JFrame {
 
         buttonGroup1.add(englishButton);
         englishButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        englishButton.setForeground(new java.awt.Color(27, 73, 101));
         englishButton.setSelected(true);
         englishButton.setText("English");
         englishButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -387,17 +389,6 @@ public class LibrarianView extends javax.swing.JFrame {
         sidePanel.setLayout(sidePanelLayout);
         sidePanelLayout.setHorizontalGroup(
             sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(sidePanelLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(sidePanelLayout.createSequentialGroup()
-                        .addComponent(pictureLabel)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(sidePanelLayout.createSequentialGroup()
-                        .addGroup(sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(logOutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(sideActionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(967, 967, 967))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sidePanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(dateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -408,6 +399,18 @@ public class LibrarianView extends javax.swing.JFrame {
                     .addComponent(englishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(frenchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(sidePanelLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(sidePanelLayout.createSequentialGroup()
+                        .addComponent(sideActionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(sidePanelLayout.createSequentialGroup()
+                        .addComponent(pictureLabel)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(sidePanelLayout.createSequentialGroup()
+                        .addComponent(logOutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(967, 967, 967))))
         );
         sidePanelLayout.setVerticalGroup(
             sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -416,15 +419,15 @@ public class LibrarianView extends javax.swing.JFrame {
                 .addComponent(dateTime)
                 .addGap(36, 36, 36)
                 .addComponent(pictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(29, 29, 29)
                 .addComponent(sideActionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(logOutButton)
-                .addGap(30, 30, 30)
+                .addGap(55, 55, 55)
                 .addComponent(englishButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(frenchButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -474,15 +477,20 @@ public class LibrarianView extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_viewCatalogButtonActionPerformed
 
+    /**
+     * Event handling: the librarian selects a specific row in order to return a book.
+     * @param evt 
+     */
     private void returnBookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBookButtonActionPerformed
         int selectedRow = issuedBooksLibrarianTable.getSelectedRow();
+        // If librarian does not select a row, error message will pop up to select.
         if(selectedRow == -1){
             JOptionPane.showMessageDialog(this, "Please select a book to return.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+        // the row in which the librarian clicks will take the issue id and it will return the books with the issue id. (will make the books available).
         int issuedBookId = (int) issuedBooksLibrarianTable.getValueAt(selectedRow, 0);
-        boolean success = mainController.returnBookLibrarian( issuedBookId);
+        boolean success = mainController.returnBookLibrarian(issuedBookId);
         if (success) {
             JOptionPane.showMessageDialog(this, "Book returned successfully.");
             displayIssuedBooks();
@@ -493,6 +501,7 @@ public class LibrarianView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_returnBookButtonActionPerformed
 
+    // Internationalization
     private void englishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_englishButtonActionPerformed
         librarianTitleLabel.setText(bundle.getString("Title"));
         booksRequestLabel4.setText(bundle.getString("BookIssued"));
@@ -512,13 +521,18 @@ public class LibrarianView extends javax.swing.JFrame {
         addBookButton.setText(bundleFR.getString("View"));
         addStudentButton.setText(bundleFR.getString("AddStu"));
     }//GEN-LAST:event_frenchButtonActionPerformed
-
+    
+    // Date and time labels
     public void currentDateTime() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("YYYY/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         dateTime.setText(dtf.format(now));
     }
     
+    /**
+     * The librarian issued books table are the list of issued books where
+     * the librarian can see the id, sn, title, stid, quantity and the date that it has been issued.
+     */
     private void displayIssuedBooks() {
         DefaultTableModel tableModel = (DefaultTableModel) issuedBooksLibrarianTable.getModel();
         tableModel.setRowCount(0);

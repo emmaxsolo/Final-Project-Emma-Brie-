@@ -3,10 +3,8 @@ package LibraryManagementProject.controllers;
 import LibraryManagementProject.DatabaseInitializer;
 import LibraryManagementProject.factory.Book;
 import LibraryManagementProject.factory.BookFactory;
-import LibraryManagementProject.helpers.SQLCommands;
 import LibraryManagementProject.models.Librarian;
 import LibraryManagementProject.models.Session;
-import LibraryManagementProject.models.Student;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,48 +16,75 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
- * @author 1982228,emmas
+ * @author 1982228, emmas
+ */
+
+/**
+ * The LibrarianController class contains all the librarian-related 
+ * actions that involve the library management system.
  */
 public class LibrarianController {
 
     public LibrarianController() {
-
     }
-
-    public boolean registerLibrarian(String username, String password) {
-        String query = "INSERT INTO librarians (username, password) VALUES (?, ?)";
+    
+    /**
+     * The method enables the creation of a librarian user account where they can
+     * sign up for a desired username and password. 
+     * 
+     * The librarianID is auto-incremented by 1 each time a new Librarian registers
+     * for a librarian user account.
+     * 
+     * @param username librarian username
+     * @param password librarian password
+     * @return true if the sign up was successful where the username and password are set within the Librarians table
+     */
+    public boolean registerLibrarian(String username, String password) throws SQLException {
+        String insertQuery = "INSERT INTO librarians (username, password) VALUES (?, ?)";
         try ( Connection conn = DatabaseInitializer.getInstance().getConnection()) {
-            PreparedStatement pstmt = conn.prepareStatement(query);
+            PreparedStatement pstmt = conn.prepareStatement(insertQuery);
             pstmt.setString(1, username);
-            pstmt.setString(2, password);
+                pstmt.setString(2, password);
             int result = pstmt.executeUpdate();
-            return result > 0;
+            return result > 0; // if information has been stored to in a row, set boolean to true.
         } catch (SQLException e) {
-            System.err.println("SQL Error: " + e.getMessage());
-            return false;
+            System.err.println("Sign Up Failed: " + e.getMessage());
+            return false; // if information has not been stores in a row, set boole
         }
     }
 
+    /**
+     * The method enables the registered librarian to access a librarian user account where they can
+     * log in with their username and password stored within the Librarian's table once registered.
+     * 
+     * Once librarian has registered username and password in the librarian table, it creates a new librarian obj 
+     * where it sets the current librarian logged in within the current session.
+     * 
+     * @param username librarian username
+     * @param password librarian password
+     * @return true if login was successful where the the user name and password are retrieved from the Librarian's table.
+     */
     public boolean logInLibrarian(String username, String password) {
         String query = "SELECT * FROM Librarians WHERE username = ? AND password = ?";
-        try ( Connection conn = DatabaseInitializer.getInstance().getConnection();  PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setString(1, username);
-            pstmt.setString(2, password);
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                Librarian loggedInLibrarian = new Librarian(
-                        rs.getInt("librarian_id"),
-                        rs.getString("username"),
-                        rs.getString("password")
-                );
-                Session.setCurrentLibrarian(loggedInLibrarian); // Set the current librarian in session
-                System.out.println("Successful login for librarian ID: " + loggedInLibrarian.getLibrarianID());
-                return true;
+        try ( Connection conn = DatabaseInitializer.getInstance().getConnection(); 
+                PreparedStatement pstmt = conn.prepareStatement(query)) {
+                    pstmt.setString(1, username);
+                    pstmt.setString(2, password);
+                    ResultSet rs = pstmt.executeQuery();
+                    if (rs.next()) {
+                        // Create a librarian object with the librarian id, username and password retrieved.
+                        Librarian loggedInLibrarian = new Librarian(
+                                rs.getInt("librarian_id"), 
+                                rs.getString("username"),
+                                rs.getString("password")
+                        );
+                        // Set the logged in librarian as the current librarian within the session and confirms Librarian ID.
+                        Session.setCurrentLibrarian(loggedInLibrarian);
+                        System.out.println("Successful login for librarian");
+                    return true;
             }
             System.out.println("Login failed for username: " + username);
             return false;
@@ -68,185 +93,69 @@ public class LibrarianController {
             return false;
         }
     }
-
+    
+    /**
+     * The method enables the current logged in librarian to add a student with the student information.
+     * The method allows the added student to register a student user account with their desired username and password.
+     * 
+     * First, checks if a student has already been added with a student id by checking the students table 
+     * if any student id exists based on user input.
+     * 
+     * Second, once student info is found, it inserts the student information in the students table and sets librarianID who has 
+     * added the student within the students table.
+     * 
+     * The method returns true once a student has been added successfully.
+     * 
+     * @param studentId
+     * @param studentName
+     * @param contactNumber
+     * @param librarianId
+     * @return true once a student with their student_id, student_name, contact_number has been registered in the system by a librarian.
+     */
     public boolean addStudent(int studentId, String studentName, String contactNumber, int librarianId) {
         String checkQuery = "SELECT * FROM Students WHERE student_id = ?";
-        try ( Connection conn = DatabaseInitializer.getInstance().getConnection();  PreparedStatement checkStmt = conn.prepareStatement(checkQuery)) {
-            checkStmt.setInt(1, studentId);
-            ResultSet rs = checkStmt.executeQuery();
-            if (rs.next()) {
-                System.err.println("Student with ID " + studentId + " already exists.");
-                return false;
-            }
+        
+        try(Connection conn = DatabaseInitializer.getInstance().getConnection();  
+                PreparedStatement checkStmt = conn.prepareStatement(checkQuery)) {
+                    checkStmt.setInt(1, studentId);
+                    ResultSet rs = checkStmt.executeQuery();
+                        if (rs.next()) {
+                            System.err.println("Student with ID " + studentId + " already exists.");
+                            return false;
+                        }
 
-            String query = "INSERT INTO Students (student_id, student_name, contact_number, added_by_librarian) VALUES (?, ?, ?, ?)";
-            try ( PreparedStatement pstmt = conn.prepareStatement(query)) {
-                pstmt.setInt(1, studentId);
-                pstmt.setString(2, studentName);
-                pstmt.setString(3, contactNumber);
-                pstmt.setInt(4, librarianId);
-                pstmt.executeUpdate();
-                return true;
+                    String insertQuery = "INSERT INTO Students (student_id, student_name, contact_number, added_by_librarian) VALUES (?, ?, ?, ?)";
+                    try (PreparedStatement pstmt = conn.prepareStatement(insertQuery)) {
+                    pstmt.setInt(1, studentId);
+                    pstmt.setString(2, studentName);
+                    pstmt.setString(3, contactNumber);
+                    pstmt.setInt(4, librarianId);
+                    pstmt.executeUpdate();
+                    return true;
             }
         } catch (SQLException e) {
-            System.err.println("Add student failed: " + e.getMessage());
-            return false;
+                System.err.println("Add student failed: " + e.getMessage());
+                return false;
         }
     }
-
+    
+    /**
+     * The helper method is used to clear the current librarian's session and to confirm that the current librarian has logged out.
+     */
     public void logOut() {
         Session.clearCurrentLibrarian();
         System.out.println("Librarian logged out.");
     }
-
-    //NEWBOOK MANIPULATION
-    //Method do check if book title exists in the new book table
-    public boolean bookExistsInNewBooks(String bookTitle) {
-        String query = SQLCommands.checkNewBookExists;
-
-        try ( Connection conn = DatabaseInitializer.getInstance().getConnection();  PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setString(1, bookTitle);
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                int count = rs.getInt(1);
-                return count > 0;
-            }
-        } catch (SQLException e) {
-            System.err.println("Error checking book existence in newBooks: " + e.getMessage());
-        }
-        return false; // Default return value if an error occurs
-    }
-
-    //Method do check if book title exists in the book table
-    public boolean bookExistsInBooks(String bookTitle) {
-        String query = SQLCommands.checkBookExists;
-
-        try ( Connection conn = DatabaseInitializer.getInstance().getConnection();  PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setString(1, bookTitle);
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                int count = rs.getInt(1);
-                return count > 0;
-            }
-        } catch (SQLException e) {
-            System.err.println("Error checking book existence in newBooks: " + e.getMessage());
-        }
-        return false; // Default return value if an error occurs
-    }
-
-    public void addBooktoNewBooks(Book newBook) {
-        String insertQuery = "INSERT INTO NEWBOOKS (SN,TITLE,AUTHOR,PUBLISHER,PRICE,QUANTITY,ISSUED) VALUES (?,?,?,?,?,?,?)";
-
-        try ( Connection conn = DatabaseInitializer.getInstance().getConnection();  PreparedStatement insertStmt = conn.prepareStatement(insertQuery)) {
-            if (bookExistsInNewBooks(newBook.getTitle())) {
-                updateBookQuantityByOne(newBook.getTitle());
-            } else {
-                // Set parameters for the insert statement
-                insertStmt.setString(1, newBook.getSN());
-                insertStmt.setString(2, newBook.getTitle());
-                insertStmt.setString(3, newBook.getAuthor());
-                insertStmt.setString(4, newBook.getPublisher());
-                insertStmt.setDouble(5, (double) newBook.getPrice());
-                insertStmt.setInt(6, newBook.getQte());
-                insertStmt.setInt(7, newBook.getQteIssued());
-
-                // Execute the insert statement
-                int rowsInserted = insertStmt.executeUpdate();
-                if (rowsInserted > 0) {
-                    System.out.println("Book added to newBooks table.");
-                } else {
-                    System.out.println("Failed to add book to newBooks table.");
-                }
-            }
-        } catch (SQLException ex) {
-            System.out.println("Cannot add to newBooks: " + ex.getMessage());
-        }
-    }
-
-    //add book form newBooks to the library(books)
-    public void addBookToBooks(String bookTitle) {
-        String selectQuery = "SELECT * FROM newBooks WHERE title = ?";
-        String insertQuery = "INSERT INTO books (sn, title, author, publisher, price, quantity, issued, addedDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-
-        try ( Connection conn = DatabaseInitializer.getInstance().getConnection();  PreparedStatement selectStmt = conn.prepareStatement(selectQuery);  PreparedStatement insertStmt = conn.prepareStatement(insertQuery)) {
-
-            selectStmt.setString(1, bookTitle);
-
-            ResultSet rs = selectStmt.executeQuery();
-            // Check if a record with the given title exists in newBooks table
-            if (rs.next()) {
-                // Get the book details from the newBooks table
-                String title = rs.getString("title");
-                String author = rs.getString("author");
-                String publisher = rs.getString("publisher");
-                double price = rs.getDouble("price");
-                int qte = rs.getInt("quantity");
-                int issuedQte = rs.getInt("issued");
-                LocalDateTime currentDate = LocalDateTime.now();
-                Timestamp timestamp = Timestamp.valueOf(currentDate);
-
-                // Set parameters for the insert statement
-                insertStmt.setString(1, rs.getString("sn"));
-                insertStmt.setString(2, title);
-                insertStmt.setString(3, author);
-                insertStmt.setString(4, publisher);
-                insertStmt.setDouble(5, price);
-                insertStmt.setInt(6, qte);
-                insertStmt.setInt(7, issuedQte);
-                insertStmt.setTimestamp(8, timestamp);
-
-                // Execute the insert query
-                int rowsInserted = insertStmt.executeUpdate();
-                if (rowsInserted > 0) {
-                    System.out.println("Book '" + title + "' added to books table with addedDate: " + currentDate);
-                } else {
-                    System.out.println("Failed to add book to books table.");
-                }
-            } else {
-                System.out.println("Book with title '" + bookTitle + "' not found in newBooks table.");
-            }
-        } catch (SQLException e) {
-            System.err.println("Error adding book to books table: " + e.getMessage());
-        }
-    }
-
-    //ill fix this tmr
-    public void updateBookQuantityByOne(String bookTitle) {
-        String query = "UPDATE BOOKS SET QUANTITY = QUANTITY + 1 WHERE TITLE = ?";
-
-        try ( Connection conn = DatabaseInitializer.getInstance().getConnection();  PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setString(1, bookTitle);
-            int rowsUpdated = pstmt.executeUpdate();
-            if (rowsUpdated > 0) {
-                System.out.println("Quantity Updated");
-            } else {
-                System.out.println("No book found with title: " + bookTitle);
-            }
-        } catch (SQLException e) {
-            System.err.println("Error updating book quantity: " + e.getMessage());
-        }
-    }
-
-    public void removeBookFromNewBooks(String bookTitle) {
-        String query = "DELETE FROM newBooks WHERE title = ?";
-        try ( Connection conn = DatabaseInitializer.getInstance().getConnection();  PreparedStatement pstmt = conn.prepareStatement(query)) {
-            // Set the book title parameter
-            pstmt.setString(1, bookTitle);
-            // Execute the delete query
-            int rowsAffected = pstmt.executeUpdate();
-            if (rowsAffected > 0) {
-                System.out.println("Book '" + bookTitle + "' removed from newBooks table.");
-            } else {
-                System.out.println("No book with title '" + bookTitle + "' found in newBooks table.");
-            }
-        } catch (SQLException e) {
-            System.err.println("Error removing book from newBooks table: " + e.getMessage());
-        }
-
-    }
-
-    /*
-    KEPT BOOKS TABLE BC I COULD NOT ADD CHAR TYPE BC IT CANT BE NULL ON TABLE SO I DID IT VIA SQLITE
+    
+    /**
+     * The method enables the librarian to add book within the Books table where the librarian inputs 
+     * the book information.
+     * 
+     * Books are created with the createBook method within BookFactory class with factory design pattern 
+     * where different book types exist in the library such as EBook, Paperback, or Hardcover.
+     * 
+     * @param book  
+     * @return true if the book has been added in the Books table.
      */
     public boolean addBook(Book book) {
         String query = "INSERT INTO Books (SN, title, author, publisher, price, quantity, issued, addedDate, type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -258,9 +167,9 @@ public class LibrarianController {
             pstmt.setString(4, book.getPublisher());
             pstmt.setDouble(5, book.getPrice());
             pstmt.setInt(6, book.getQte());
-            pstmt.setInt(7, book.getQteIssued());
+            pstmt.setInt(7, book.getQteIssued()); // starts at 0 
             pstmt.setString(8, Timestamp.valueOf(LocalDateTime.now()).toString()); // LOCAL DATE AND TIME
-            pstmt.setString(9, book.getType()); // char is primitive type, maybe it does not get the actual char value? can probably wrap obj
+            pstmt.setString(9, book.getType()); // char is primitive type not suported SQLITE
             int result = pstmt.executeUpdate();
             return result > 0;
         } catch (SQLException e) {
@@ -269,14 +178,24 @@ public class LibrarianController {
         }
     }
 
-    
+    /**
+     * The method allows the librarian to return a book based on the id of the issuedBooks table.
+     * The librarian can return book on behalf of any students. 
+     * 
+     * It verifies the issuedBook id where the book details are associated with it. It updates the book qte,
+     * based on the number of books the student has borrowed, ie. issue qte to be returned.
+     * 
+     * It removes the books that have been issued in the issued books table.
+     * @param issuedBookId
+     * @return true if book has been returned.
+     */
     public boolean returnBook(int issuedBookId) {
         Librarian currentLibrarian = Session.getCurrentLibrarian();
+        
         if (currentLibrarian == null) {
-            System.err.println("No librarian logged in.");
             return false;
         }
-
+        
         try (Connection conn = DatabaseInitializer.getInstance().getConnection()) {
             // Get the book details from IssuedBooks
             String selectQuery = "SELECT SN, quantity FROM IssuedBooks WHERE id = ? ";
@@ -287,7 +206,7 @@ public class LibrarianController {
                     String sn = rs.getString("SN");
                     int quantity = rs.getInt("quantity");
 
-                    // Update the book quantities
+                    // Update the book quantities 
                     String updateQuery = "UPDATE Books SET issued = issued - ? WHERE SN = ?";
                     try (PreparedStatement updateStmt = conn.prepareStatement(updateQuery)) {
                         updateStmt.setInt(1, quantity);
@@ -313,11 +232,18 @@ public class LibrarianController {
             return false;
         }
     }
-
+    
+    /**
+     * The method fetches the list of books in k-v pairs.
+     * The book type columns displays the book type in string based on the librarian input.
+     * 
+     * @return books 
+     */
     public Map<String, Book> getBookCatalogLibrarian() {
         Map<String, Book> books = new HashMap<>();
         String query = "SELECT * FROM Books";
-        try ( Connection conn = DatabaseInitializer.getInstance().getConnection();  PreparedStatement pstmt = conn.prepareStatement(query);  ResultSet rs = pstmt.executeQuery()) {
+        try ( Connection conn = DatabaseInitializer.getInstance().getConnection(); 
+                PreparedStatement pstmt = conn.prepareStatement(query);  ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
                 Book book = new BookFactory().createBook(
                         rs.getString("SN"),
@@ -337,12 +263,16 @@ public class LibrarianController {
         }
         return books;
     }
-
+    
+    /**
+     * The method gets all the books that the student has borrowed which are automatically issued to student.
+     * 
+     * @return list of k-v pairs issued books.
+     */
     public List<Map<String, Object>> getAllIssuedBooks() {
         Librarian currentLibrarian = Session.getCurrentLibrarian();
 
         if (currentLibrarian == null) {
-            System.err.println("No librarian logged in");
             return new ArrayList<>();
         }
 

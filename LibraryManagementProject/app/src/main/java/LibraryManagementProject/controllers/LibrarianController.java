@@ -21,12 +21,28 @@ import java.util.Map;
  *
  * @author 1982228,emmas
  */
+
+/**
+ * The LibrarianController class contains all the librarian-related 
+ * actions that involve the library management system.
+ */
 public class LibrarianController {
 
     public LibrarianController() {
 
     }
-
+    
+    /**
+     * The method enables the creation of a librarian user account where they can
+     * sign up for a desired username and password. 
+     * 
+     * The librarianID is auto-incremented by 1 each time a new Librarian registers
+     * for a librarian user account.
+     * 
+     * @param username librarian username
+     * @param password librarian password
+     * @return true if the sign up was successful where the username and password are set within the Librarians table
+     */
     public boolean registerLibrarian(String username, String password) {
         String query = "INSERT INTO librarians (username, password) VALUES (?, ?)";
         try ( Connection conn = DatabaseInitializer.getInstance().getConnection()) {
@@ -41,6 +57,17 @@ public class LibrarianController {
         }
     }
 
+    /**
+     * The method enables the registered librarian to access a librarian user account where they can
+     * log in with their username and password stored within the Librarian's table once registered.
+     * 
+     * Once librarian has registered username and password in the librarian table, it creates a new librarian obj 
+     * where it sets the current librarian logged in within the current session.
+     * 
+     * @param username librarian username
+     * @param password librarian password
+     * @return true if login was successful where the the user name and password are retrieved from the Librarian's table.
+     */
     public boolean logInLibrarian(String username, String password) {
         String query = "SELECT * FROM Librarians WHERE username = ? AND password = ?";
         try ( Connection conn = DatabaseInitializer.getInstance().getConnection();  PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -65,7 +92,26 @@ public class LibrarianController {
         }
     }
 
+    /**
+     * The method enables the current logged in librarian to add a student with the student information.
+     * The method allows the added student to register a student user account with their desired username and password.
+     * 
+     * First, checks if a student has already been added with a student id by checking the students table 
+     * if any student id exists based on user input.
+     * 
+     * Second, once student info is found, it inserts the student information in the students table and sets librarianID who has 
+     * added the student within the students table.
+     * 
+     * The method returns true once a student has been added successfully.
+     * 
+     * @param studentId
+     * @param studentName
+     * @param contactNumber
+     * @param librarianId
+     * @return true once a student with their student_id, student_name, contact_number has been registered in the system by a librarian.
+     */
     public boolean addStudent(int studentId, String studentName, String contactNumber, int librarianId) {
+        
         String checkQuery = "SELECT * FROM Students WHERE student_id = ?";
         try ( Connection conn = DatabaseInitializer.getInstance().getConnection();  PreparedStatement checkStmt = conn.prepareStatement(checkQuery)) {
             checkStmt.setInt(1, studentId);
@@ -89,12 +135,25 @@ public class LibrarianController {
             return false;
         }
     }
-
+    
+    /**
+     * The helper method is used to clear the current librarian's session and to confirm that the current librarian has logged out.
+     */
     public void logOut() {
         Session.clearCurrentLibrarian();
         System.out.println("Librarian logged out.");
     }
 
+    /**
+     * The method enables the librarian to add book within the Books table where the librarian inputs 
+     * the book information.
+     * 
+     * Books are created with the createBook method within BookFactory class with factory design pattern 
+     * where different book types exist in the library such as EBook, Paperback, or Hardcover.
+     * 
+     * @param book  
+     * @return true if the book has been added in the Books table.
+     */
     public boolean addBook(Book book) {
         String query = "INSERT INTO Books (SN, title, author, publisher, price, quantity, issued, addedDate, type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try ( Connection conn = DatabaseInitializer.getInstance().getConnection()) {
@@ -116,7 +175,17 @@ public class LibrarianController {
         }
     }
 
-    
+    /**
+     * The method allows the librarian to return a book based on the id of the issuedBooks table.
+     * The librarian can return book on behalf of any students. 
+     * 
+     * It verifies the issuedBook id where the book details are associated with it. It updates the book qte,
+     * based on the number of books the student has borrowed, ie. issue qte to be returned.
+     * 
+     * It removes the books that have been issued in the issued books table.
+     * @param issuedBookId
+     * @return true if book has been returned.
+     */
     public boolean returnBook(int issuedBookId) {
         Librarian currentLibrarian = Session.getCurrentLibrarian();
         if (currentLibrarian == null) {
@@ -160,7 +229,13 @@ public class LibrarianController {
             return false;
         }
     }
-
+    
+    /**
+     * The method fetches the list of books in k-v pairs.
+     * The book type columns displays the book type in string based on the librarian input.
+     * 
+     * @return books 
+     */
     public Map<String, Book> getBookCatalogLibrarian() {
         Map<String, Book> books = new HashMap<>();
         String query = "SELECT * FROM Books";
@@ -185,6 +260,11 @@ public class LibrarianController {
         return books;
     }
 
+    /**
+     * The method gets all the books that the student has borrowed which are automatically issued to student.
+     * 
+     * @return list of k-v pairs issued books
+     */
     public List<Map<String, Object>> getAllIssuedBooks() {
         Librarian currentLibrarian = Session.getCurrentLibrarian();
 

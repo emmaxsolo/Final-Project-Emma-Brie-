@@ -16,12 +16,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 
+ * @author emmas, bridj
+ */
 public class StudentController {
 
     public StudentController() {
         
     }
 
+    /**
+     * The method allows the student user to borrow a book based on the sn and the quantity they input.
+     * The row value takes the sn where the student choose the book they would like to borrow.
+     * 
+     * @param sn
+     * @param quantity
+     * @return true if the student has borrowed.
+     */
     public boolean registerStudent(int studentId, String username, String password) {
         try (Connection conn = DatabaseInitializer.getInstance().getConnection()) {
             String query = "UPDATE students SET username = ?, password = ? WHERE student_id = ?";
@@ -38,6 +50,14 @@ public class StudentController {
         }
     }
 
+    /**
+     * The method allows the student user to borrow a book based on the sn and the quantity they input.
+     * The row value takes the sn where the student choose the book they would like to borrow.
+     * 
+     * @param sn
+     * @param quantity
+     * @return true if the student has borrowed.
+     */
     public boolean logInStudent(String username, String password) {
         String query = "SELECT * FROM Students WHERE username = ? AND password = ?";
         try (Connection conn = DatabaseInitializer.getInstance().getConnection(); 
@@ -64,14 +84,30 @@ public class StudentController {
 
     }
 
+    /**
+     * The method allows the student user to borrow a book based on the sn and the quantity they input.
+     * The row value takes the sn where the student choose the book they would like to borrow.
+     * 
+     * @param sn
+     * @param quantity
+     * @return true if the student has borrowed.
+     */
     public void logout() {
         Session.clearCurrentStudent();
         System.out.println("Student logged out.");
     }
-
+    
+    /**
+     * The method allows the student user to borrow a book based on the sn and the quantity they input.
+     * The row value takes the sn where the student choose the book they would like to borrow.
+     * 
+     * @param sn
+     * @param quantity
+     * @return true if the student has borrowed.
+     */
     public Map<String, Book> searchBooks(String searchText, String searchCriteria) {
         Map<String, Book> books = new HashMap<>();
-        String searchQuery = "SELECT SN, title, author, publisher, price, quantity, type FROM Books WHERE " + searchCriteria;
+        String searchQuery = "SELECT SN, title, author, publisher, price, quantity, type FROM Books WHERE " + searchCriteria + " LIKE ? ORDER BY SN ASC";
 
         try (Connection conn = DatabaseInitializer.getInstance().getConnection(); 
             PreparedStatement pstmt = conn.prepareStatement(searchQuery)) {
@@ -95,6 +131,14 @@ public class StudentController {
         return books;
     }
 
+    /**
+     * The method allows the student user to borrow a book based on the sn and the quantity they input.
+     * The row value takes the sn where the student choose the book they would like to borrow.
+     * 
+     * @param sn
+     * @param quantity
+     * @return true if the student has borrowed.
+     */
     public Map<String, Book> getAvailableBooks() {
         Map<String, Book> books = new HashMap<>();
         String getQuery = "SELECT SN, title, author, publisher, price, quantity, issued, type FROM Books WHERE quantity > issued";
@@ -121,6 +165,14 @@ public class StudentController {
         return books;
     }
 
+    /**
+     * The method allows the student user to borrow a book based on the sn and the quantity they input.
+     * The row value takes the sn where the student choose the book they would like to borrow.
+     * 
+     * @param sn
+     * @param quantity
+     * @return true if the student has borrowed.
+     */
     public boolean borrowBook(String sn, int quantity) {
         Student currentStudent = Session.getCurrentStudent();
         if (currentStudent == null) {
@@ -173,7 +225,15 @@ public class StudentController {
             return false;
         }
     }
-
+    
+    /**
+     * The method allows the student user to borrow a book based on the sn and the quantity they input.
+     * The row value takes the sn where the student choose the book they would like to borrow.
+     * 
+     * @param sn
+     * @param quantity
+     * @return true if the student has borrowed.
+     */
     public boolean returnBook(int issuedBookId) {
         Student currentStudent = Session.getCurrentStudent();
         if (currentStudent == null) {
@@ -218,7 +278,15 @@ public class StudentController {
             return false;
         }
     }
-
+    
+    /**
+     * The method allows the student user to borrow a book based on the sn and the quantity they input.
+     * The row value takes the sn where the student choose the book they would like to borrow.
+     * 
+     * @param sn
+     * @param quantity
+     * @return true if the student has borrowed.
+     */
     public List<Map<String, Object>> getIssuedBooksForStudent() {
         Student currentStudent = Session.getCurrentStudent();
         if (currentStudent == null) {
